@@ -3,10 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Simple Page</title>
+    <title>Homepage Index</title>
+    <style>
+        /* Simple CSS for centering */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .link-list {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        .link-list li {
+            margin: 15px 0;
+        }
+        .link-list a {
+            font-size: 1.5em;
+            color: #007bff; /* Blue link color */
+            text-decoration: none;
+        }
+        .link-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>This is my first website hosted with GitHub Pages.</p>
+    <h1>My Markdown Document Index</h1>
+
+    <ul class="link-list">
+        <li><a href="article-one.html">Read Article One</a></li>
+        <li><a href="another-article.html">Another Page (coming soon)</a></li>
+    </ul>
 </body>
 </html>
