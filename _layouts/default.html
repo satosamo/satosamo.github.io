@@ -7,8 +7,11 @@
     
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
     <style>
-        /* Simple CSS to center the main content on the screen */
+        /* (Your CSS from the previous step) */
         body {
             font-family: sans-serif;
             display: flex;
@@ -19,16 +22,14 @@
         }
         .container {
             width: 100%;
-            max-width: 800px; /* Optional: Sets a max width for readability */
+            max-width: 800px;
             padding: 20px;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         {{ content }}
     </div>
-
 </body>
 </html>
