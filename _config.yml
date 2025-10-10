@@ -1,0 +1,4 @@
+# _config.yml
+title: My Simple Markdown Site
+description: A collection of plain markdown documents.
+theme: jekyll-theme-minimal
