@@ -11,21 +11,21 @@ layout: "welcome.njk"
 
 
 <ul class="link-list">
-  {%- for info in collections.infos -%}
+  {%- for info in collections.infos | sort(attribute="data.order") -%}
     <li><a href="{{ info.url }}">{{ info.data.title }}</a></li>
   {%- endfor -%}
 
 <hr style="border: 3px solid gray; border-radius: 2px;">
 
 <ul class="link-list">
-  {%- for misc in collections.miscs -%}
+  {%- for misc in collections.miscs | sort(attribute="data.order") -%}
     <li><a href="{{ misc.url }}">{{ misc.data.title }}</a></li>
   {%- endfor -%}
 
 <hr style="border: 3px solid gray; border-radius: 2px;">
 
 <ul class="link-list">
-  {%- for chapter in collections.chapters -%}
+  {%- for chapter in collections.chapters | sort(attribute="data.order") -%}
     <li><a href="{{ chapter.url }}">{{ chapter.data.title }}</a></li>
   {%- endfor -%}
 
