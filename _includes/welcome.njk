@@ -40,9 +40,17 @@
         max-width: 100%;         /* Ensures it doesn't exceed parent width */
         overflow-wrap: anywhere; /* Handles extremely long words without spaces */
         }
+
+        .links-line {
+        border: 3px solid gray;
+        width: 150px;
+        margin: 20px auto;
+        border-radius: 2px;
+    }
     </style>
 </head>
 <body>
+    <br/><br/><br/>
     {{ content | safe }}
     <br/><br/><br/>
 </body>
