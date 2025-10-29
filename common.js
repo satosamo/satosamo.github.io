@@ -1,7 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.createElement("a");
-  btn.href = "427712_index.html";
+  btn.href = "../427712_index.html"; // adjust path if needed
   btn.textContent = "Home";
-  btn.style = "position:fixed;top:10px;left:10px;padding:8px 12px;background:#007bff;color:white;border-radius:4px;text-decoration:none;";
+
+  // Style the button
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "8px 14px",
+    background: "#007bff",
+    color: "#fff",
+    "border-radius": "6px",
+    "text-decoration": "none",
+    "font-size": "14px",
+    "box-shadow": "0 2px 6px rgba(0,0,0,0.2)",
+    "z-index": 9999,
+    "opacity": 0.7,
+    "transition": "opacity 0.3s",
+  });
+
+  // Fade effect on hover
+  btn.addEventListener("mouseenter", () => (btn.style.opacity = 1));
+  btn.addEventListener("mouseleave", () => (btn.style.opacity = 0.7));
+
   document.body.appendChild(btn);
 });
