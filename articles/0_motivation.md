@@ -1,3 +1,9 @@
+---
+title: "Motivation"
+layout: "article.njk"
+tags: "misc"
+---
+
 # Motivation
 
 TODO

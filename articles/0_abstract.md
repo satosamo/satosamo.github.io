@@ -1,7 +1,7 @@
 ---
 title: "Abstract"
 layout: "article.njk"
-tags: "articles"
+tags: "infos"
 ---
 
 # Abstract

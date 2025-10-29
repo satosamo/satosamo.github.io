@@ -1,3 +1,9 @@
+---
+title: "Details"
+layout: "article.njk"
+tags: "infos"
+---
+
 # Master's Thesis
 Comenius University Bratislava - Department of Computer Science
 

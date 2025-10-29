@@ -9,8 +9,24 @@ layout: "welcome.njk"
     <h2> Master's Thesis </h2>
     <i class="centered-text"> Modern Techniques for Medical Data Imaging on Consumer-Grade Hardware</i>
 
+
 <ul class="link-list">
-  {%- for article in collections.articles -%}
-    <li><a href="{{ article.url }}">{{ article.data.title }}</a></li>
+  {%- for info in collections.infos -%}
+    <li><a href="{{ info.url }}">{{ info.data.title }}</a></li>
   {%- endfor -%}
+
+<hr style="border: 3px solid gray; border-radius: 2px;">
+
+<ul class="link-list">
+  {%- for misc in collections.miscs -%}
+    <li><a href="{{ misc.url }}">{{ misc.data.title }}</a></li>
+  {%- endfor -%}
+
+<hr style="border: 3px solid gray; border-radius: 2px;">
+
+<ul class="link-list">
+  {%- for chapter in collections.chapters -%}
+    <li><a href="{{ chapter.url }}">{{ chapter.data.title }}</a></li>
+  {%- endfor -%}
+
 </ul>

@@ -1,3 +1,9 @@
+---
+title: "Literature"
+layout: "article.njk"
+tags: "misc"
+---
+
 # Literature (Direct Volume Rendering)
 
 ## Articles
