@@ -11,8 +11,9 @@ layout: "welcome.njk"
 
 <br/><br/><br/>
 
+<div class="link-section">
 <hr class="link-list" style="border: 3px solid gray; border-radius: 2px;">
-
+</div>
 <ul class="link-list">
   {%- for info in collections.infos | sort(attribute="data.order") -%}
     <li><a href="{{ info.url }}">{{ info.data.title }}</a></li>
