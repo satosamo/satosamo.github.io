@@ -1,3 +1,10 @@
+---
+title: "Thoughts"
+layout: "article.njk"
+tags: "miscs"
+order : 4
+---
+
 # Thoughts (Dynamic)
 
 TODO

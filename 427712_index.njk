@@ -9,6 +9,9 @@ layout: "welcome.njk"
     <h2> Master's Thesis </h2>
     <i class="centered-text"> Modern Techniques for Medical Data Imaging on Consumer-Grade Hardware</i>
 
+<br/><br/><br/>
+
+<hr style="border: 3px solid gray; border-radius: 2px;">
 
 <ul class="link-list">
   {%- for info in collections.infos | sort(attribute="data.order") -%}
@@ -26,7 +29,7 @@ layout: "welcome.njk"
 
 <ul class="link-list">
   {%- for chapter in collections.chapters | sort(attribute="data.order") -%}
-    <li><a href="{{ chapter.url }}">{{ chapter.data.title }}</a></li>
+    <li><a href="{{ chapter.url }}">{{ loop.index }}.{{ chapter.data.title }}</a></li>
   {%- endfor -%}
 
 </ul>
