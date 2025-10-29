@@ -2,6 +2,7 @@
 title: "Details"
 layout: "article.njk"
 tags: "infos"
+order : 2
 ---
 
 # Master's Thesis

@@ -1,7 +1,8 @@
 ---
 title: "Literature"
 layout: "article.njk"
-tags: "miscs"
+tags: "infos"
+order : 3
 ---
 
 # Literature (Direct Volume Rendering)

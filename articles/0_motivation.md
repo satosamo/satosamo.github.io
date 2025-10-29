@@ -2,6 +2,7 @@
 title: "Motivation"
 layout: "article.njk"
 tags: "miscs"
+order : 1
 ---
 
 # Motivation
