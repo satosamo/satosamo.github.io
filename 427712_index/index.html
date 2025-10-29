@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matej Lorinc</title>
+    <style>
+        /* Simple CSS for centering */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .link-list {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        .link-list li {
+            margin: 15px 0;
+        }
+        .link-list a {
+            font-size: 1.5em;
+            color: #007bff; /* Blue link color */
+            text-decoration: none;
+        }
+        .link-list a:hover {
+            text-decoration: underline;
+        }
+
+        .centered-text {
+        display: block;          /* Makes the <i> element behave like a block element */
+        text-align: center;      /* Centers text horizontally */
+        white-space: normal;     /* Allows text to wrap to next line */
+        word-wrap: break-word;   /* Breaks long words that overflow */
+        max-width: 100%;         /* Ensures it doesn't exceed parent width */
+        overflow-wrap: anywhere; /* Handles extremely long words without spaces */
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Matej L&ouml;rinc</h1>
+    Comenius University Bratislava
+<hr style="border: none; height: 2px; background-color: black; width: 80%;margin-top: 30px;">
+    <h2> Master's Thesis </h2>
+    <i class="centered-text"> Modern Techniques for Medical Data Imaging on Consumer-Grade Hardware</i>
+
+<ul class="link-list"><li><a href="/articles/0_abstract/">Abstract</a></li></ul>
+</body>
+</html>
