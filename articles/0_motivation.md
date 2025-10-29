@@ -1,7 +1,7 @@
 ---
 title: "Motivation"
 layout: "article.njk"
-tags: "misc"
+tags: "miscs"
 ---
 
 # Motivation
