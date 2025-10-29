@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.createElement("a");
-  btn.href = "../../427712_index/index.html"; // adjust path if needed
+  btn.href = "../../427712_index/index.html";
   btn.textContent = "Home";
 
-  // Style the button
   Object.assign(btn.style, {
     position: "fixed",
     bottom: "20px",
