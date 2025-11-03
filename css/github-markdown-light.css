@@ -1,3 +1,23 @@
+.katex {
+  font-size: 1.4em;
+}
+
+/* style block math */
+.katex-display {
+  margin: 1.8em 0;
+}
+
+.has-arrow {
+  background-color: rgb(255, 0, 0);
+}
+
+/* for now like this, but later maybe not for all img */
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* light */
 .markdown-body {
   color-scheme: light;
