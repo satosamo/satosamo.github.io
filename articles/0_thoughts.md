@@ -5,10 +5,12 @@ tags: "miscs"
 order : 4
 ---
 
-# Thoughts (Dynamic)
 
-TODO
+# Thoughts
 
-will contain a dynamically growing collection of thoughts with dates to track mental progress through out the writing
+*(30.10.2025)*
 
-TODO
+will contain a dynamically growing collection of thoughts with dates to track mental process and progress throughout the writing
+
+*(1.11.2025)*
+![](/images/thoughts_1.svg)

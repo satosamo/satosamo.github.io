@@ -15,6 +15,27 @@
             min-height: 100vh;
             margin: 0;
         }
+        body::after {
+            content: "";
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: gray;
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+            z-index: 9999;
+            animation: bounce 1.2s infinite;
+        }   
+        body.arrow-stopped::after {
+        animation: none; /* stops the bounce */
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         .link-list {
             list-style: none;
             padding: 0;
@@ -53,5 +74,21 @@
     <br/><br/><br/>
     {{ content | safe }}
     <br/><br/><br/>
+
+    <script>
+    // Stop arrow animation after first scroll
+    let arrowStopped = false;
+    function stopArrowAnimation() {
+        if (!arrowStopped) {
+            document.body.style.setProperty('--arrow-animation', 'none');
+            // Remove the animation from the pseudo-element
+            document.body.classList.add('arrow-stopped');
+            arrowStopped = true;
+        }
+    }
+    window.addEventListener('scroll', stopArrowAnimation, { once: true });
+    window.addEventListener('wheel', stopArrowAnimation, { once: true });
+    window.addEventListener('touchmove', stopArrowAnimation, { once: true });
+    </script>
 </body>
 </html>

@@ -6,9 +6,4 @@ order : 1
 ---
 
 # Motivation
-
-TODO
-
-talking about why is something like this even needed
-
-TODO
+*(where i talk about why is something like this even needed)*

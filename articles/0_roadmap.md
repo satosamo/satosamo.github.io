@@ -5,7 +5,12 @@ tags: "miscs"
 order : 3
 ---
 
-# Castle Building Roadmap
+# Roadmap
+
+![](/images/roadmap.svg)
+
+*(PLACEHOLDER MD TEST)*
+## Castle Building Roadmap
 
 ## Overview
 A high-level, phase-driven roadmap for planning and executing a castle construction project. Adapt the timelines, resources and deliverables to your scope (historical reconstruction, fantasy build, real-world fortified manor, etc.).
