@@ -1,0 +1,99 @@
+.construction-banner {
+  width: 100%;
+  background-color: #FFD54F; /* Material amber */
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.construction-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+body {
+  padding-top: 50px; /* prevent content from hiding under the banner */
+}
+
+.construction-banner img {
+  height: 35px;
+  margin-right: 10px;
+}
+
+.construction-banner span {
+  font-weight: 500;
+}
+
+
+/* Simple CSS for centering */
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+body::after {
+    content: "";
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: gray;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    z-index: 9999;
+    animation: bounce 1.2s infinite;
+}   
+
+body.arrow-stopped::after {
+animation: none; /* stops the bounce */
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.link-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+.link-list li {
+    margin: 15px 0;
+}
+.link-list a {
+    font-size: 1.5em;
+    color: #007bff; /* Blue link color */
+    text-decoration: none;
+}
+.link-list a:hover {
+    text-decoration: underline;
+}
+
+.centered-text {
+display: block;          /* Makes the <i> element behave like a block element */
+text-align: center;      /* Centers text horizontally */
+white-space: normal;     /* Allows text to wrap to next line */
+word-wrap: break-word;   /* Breaks long words that overflow */
+max-width: 100%;         /* Ensures it doesn't exceed parent width */
+overflow-wrap: anywhere; /* Handles extremely long words without spaces */
+}
+
+.links-line {
+border: 3px solid gray;
+width: 150px;
+margin: 20px auto;
+border-radius: 2px;
+}
