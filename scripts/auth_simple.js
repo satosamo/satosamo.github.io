@@ -1,5 +1,6 @@
 console.log(document.getElementById("submitButton"));
-PATH = "/homepages/homepage_1/index.html"
+PATH_DIPL = "/homepages/homepage_1/index.html"
+PATH_COMPBIO = "/homepages/homepage_compbio/index.html"
 
 document.getElementById("submitButton").addEventListener("click", checkPassword);
 document.getElementById("passwordInput").addEventListener("keyup", (event) => {
@@ -15,7 +16,9 @@ async function checkPassword() {
     messageEl.textContent = "";
 
     if (input === "dipl") {
-        window.location.href = PATH;
+        window.location.href = PATH_DIPL;
+    } else if (input === "compbio") {
+        window.location.href = PATH_COMPBIO;
     } else {
         messageEl.textContent = "Access Denied";
     }
