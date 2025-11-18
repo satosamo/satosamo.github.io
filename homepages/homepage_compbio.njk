@@ -13,11 +13,12 @@ showArrow: true
     <h1>Computational Biology</h1>
     <i>Tutorial</i>
 
-
 <br/><br/>
 
 <ul class="link-list">
+<h3> Journal Blog </h3>
 <hr class="links-line">
+<h3> (28.11 - 25.11.2025) </h3>
   {%- for blog in collections.blogs | sort(attribute="data.order") -%}
     <li><a href="{{ blog.url }}">{{ blog.data.title }}</a></li>
   {%- endfor -%}

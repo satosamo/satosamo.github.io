@@ -1,6 +1,6 @@
 ---
 title: "Pipeline"
-layout: "article.njk"
+layout: "compbio_article.njk"
 tags: "blogs"
 order : 1
 ---
