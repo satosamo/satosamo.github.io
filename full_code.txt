@@ -1,0 +1,851 @@
+Directory Tree:
+satosamo.github.io/
+│   ├── eleventy.config.js
+│   ├── index.html
+│   ├── .git/ [EXCLUDED]
+│   ├── .github/ [EXCLUDED]
+│   ├── articles/
+│   │   ├── 0_abstract.md
+│   │   ├── 0_details.md
+│   │   ├── 0_introduction.md
+│   │   ├── 0_literature.md
+│   │   ├── 0_motivation.md
+│   │   ├── 0_roadmap.md
+│   │   ├── 0_thoughts.md
+│   │   ├── 1_medical_scans.md
+│   │   ├── 1_volume_reconstruction.md
+│   │   ├── addscript.py
+│   │   ├── compbio/
+│   │   │   ├── intro_article.md
+│   │   │   ├── pipeline.md
+│   ├── css/
+│   │   ├── github-markdown-light.css
+│   │   ├── homepage.css
+│   ├── homepages/
+│   │   ├── homepage_1.njk
+│   │   ├── homepage_compbio.njk
+│   │   ├── supp_blog.njk
+│   ├── images/
+│   │   ├── 1_1.svg
+│   │   ├── construction.jpg
+│   │   ├── roadmap.svg
+│   │   ├── thoughts_1.svg
+│   │   ├── uk_logo.ico
+│   │   ├── uk_logo.jpg
+│   │   ├── uk_logo.png
+│   ├── node_modules/ [EXCLUDED]
+│   ├── pages/
+│   │   ├── main_blog/
+│   │   ├── supp_blog/
+│   │   │   ├── p_0_radiancefields.md
+│   ├── resources/
+│   │   ├── papers/
+│   │   │   ├── orig_cr_mc.pdf
+│   ├── scripts/
+│   │   ├── auth_hash.js
+│   │   ├── auth_simple.js
+│   │   ├── compbio_homebutton.js
+│   │   ├── homebutton.js
+│   │   ├── stop_arrow.js
+│   │   ├── supphomebutton.js
+│   ├── _includes/
+│   │   ├── article.njk
+│   │   ├── base.njk
+│   │   ├── compbio_article.njk
+│   │   ├── homepage.njk
+│   │   ├── supp_article.njk
+
+
+
+
+# ======================
+# File: eleventy.config.js
+# ======================
+
+const markdownIt = require("markdown-it");
+const markdownItDeflist = require("markdown-it-deflist");
+const mk = require("@vscode/markdown-it-katex").default;
+
+module.exports = function(eleventyConfig) {
+  // Pass through static files
+  eleventyConfig.addPassthroughCopy("index.html");
+  eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("resources");
+  eleventyConfig.addPassthroughCopy("scripts");
+
+  let md = markdownIt({
+  html: true,
+  breaks: true,
+  linkify: true
+  })
+  .use(markdownItDeflist)
+  .use(mk);;
+  eleventyConfig.setLibrary("md", md);
+
+  // Process files from the 'articles' directory
+  return {
+    dir: {
+      input: ".",
+      output: "_site", // Final site build location
+      includes: "_includes"
+    }
+  };
+};
+
+# ======================
+# File: index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization</title>
+    <link rel="icon" type="image/x-icon" href="/images/uk_logo.ico">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: grid;
+            place-items: center;
+            min-height: 80vh;
+            background-color: #f4f4f4;
+        }
+        #auth-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        input {
+            font-size: 1rem;
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            margin-top: 1rem;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="auth-box">
+        <h2>Authorization</h2>
+        <input type="password" id="passwordInput" placeholder="Password...">
+        <button id="submitButton">Go</button>
+        <p id="message"></p>
+    </div>
+    <script src = "/scripts/auth_simple.js"></script>
+</body>
+</html>
+
+
+# ======================
+# File: articles\0_abstract.md
+# ======================
+
+---
+title: "Abstract"
+layout: "article.njk"
+tags: "infos"
+order : 1
+---
+
+# Abstract
+
+Volumetric data from medical scans (e.g. CT, MRI) is essential for clinical analysis, medical education, and patient communication. However, achieving photorealistic rendering of this data using traditional methods often either compromises real-time rendering times or requires expensive hardware, limiting its accessibility.
+
+This thesis proposes a novel rendering framework to address this limitation. We will investigate the use of path tracing combined with splatting methods to render medical volumetric data. Together with targeted performance optimizations, we aim to achieve photorealistic and real-time results on consumer-grade GPUs.
+
+The efficacy of the proposed method will be evaluated through its performance and visual fidelity will be benchmarked against traditional volume rendering techniques. The diagnostic quality of the resulting visualizations will be qualitatively assessed in consultation with medical professionals.
+
+# ======================
+# File: articles\0_details.md
+# ======================
+
+---
+title: "Details"
+layout: "article.njk"
+tags: "infos"
+order : 2
+---
+
+# Details
+
+## Master's Thesis
+
+Department - Faculty  - Institute
+: Faculty of Mathematics, Physics and Informatics - Department of Computer Science - Comenius University Bratislava
+
+Supervisor
+: doc. RNDr. Pavel Chalmovianský, PhD.
+
+Title
+: Modern Techniques for Medical Data Imaging on Consumer-Grade Hardware
+
+Abstract
+: Volumetric data from medical scans (e.g. CT, MRI) is essential for clinical analysis, medical education, and patient communication. However, achieving photorealistic rendering of this data using traditional methods often either compromises real-time rendering times or requires expensive hardware, limiting its accessibility.
+
+: This thesis proposes a novel rendering framework to address this limitation. We will investigate the use of path tracing combined with splatting methods to render medical volumetric data. Together with targeted performance optimizations, we aim to achieve photorealistic and real-time results on consumer-grade GPUs.
+
+: The efficacy of the proposed method will be evaluated through its performance and visual fidelity will be benchmarked against traditional volume rendering techniques. The diagnostic quality of the resulting visualizations will be qualitatively assessed in consultation with medical professionals.
+
+
+# ======================
+# File: articles\0_introduction.md
+# ======================
+
+---
+title: "Introduction"
+layout: "article.njk"
+tags: "miscs"
+order : 2
+---
+
+# Introduction
+
+TODO
+
+intoroduction to the problem, possible solutions and current ideas of how to proceed
+
+TODO
+
+# ======================
+# File: articles\0_literature.md
+# ======================
+
+---
+title: "Literature"
+layout: "article.njk"
+tags: "infos"
+order : 3
+---
+
+# Literature
+
+## Primary Literature
+
+Optical properties of biological tissues: a review
+: https://doi.org/10.1088/0031-9155/58/11/r37
+```
+@article{Jacques_2013,
+doi = {10.1088/0031-9155/58/11/R37},
+url = {https://doi.org/10.1088/0031-9155/58/11/R37},
+year = {2013},
+month = {may},
+publisher = {IOP Publishing},
+volume = {58},
+number = {11},
+pages = {R37},
+author = {Jacques, Steven L},
+title = {Optical properties of biological tissues: a review},
+journal = {Physics in Medicine & Biology},
+}
+```
+
+3D Gaussian Splatting for Real-Time Radiance Field Rendering
+: https://doi.org/10.48550/arXiv.2308.04079
+```
+@misc{kerbl20233dgaussiansplattingrealtime,
+      title={3D Gaussian Splatting for Real-Time Radiance Field Rendering}, 
+      author={Bernhard Kerbl and Georgios Kopanas and Thomas Leimkühler and George Drettakis},
+      year={2023},
+      eprint={2308.04079},
+      archivePrefix={arXiv},
+      primaryClass={cs.GR},
+      url={https://arxiv.org/abs/2308.04079}, 
+}
+```
+
+Real-Time Monte-Carlo Path Tracing of Medical Volume Data
+: [Local Copy](/resources/papers/orig_cr_mc.pdf)
+```
+@inproceedings{Engel2016,
+  author    = {Engel, Klaus},
+  title     = {Real-Time Monte-Carlo Path Tracing of Medical Volume Data},
+  booktitle = {Proceedings of the GPU Technology Conference (GTC)},
+  year      = {2016},
+  address   = {San Jose Convention Center, San Jose, CA, USA},
+  month     = {April 4--7},
+  note      = {GPU Technology Conference},
+}
+```
+
+Physically Based Rendering: From Theory to Implementation
+: https://www.pbrt.org/
+```
+@book{Pharr2023,
+  author    = {Pharr, Matt and Jakob, Wenzel and Humphreys, Greg},
+  title     = {Physically Based Rendering: From Theory to Implementation},
+  edition   = {4th},
+  year      = {2023},
+  publisher = {MIT Press},
+  address   = {Cambridge, MA, USA},
+  isbn      = {9780262048026},
+  url       = {https://pbrt.org/}
+}
+```
+
+## Other Literature
+*(Subject to change)*
+### Direct Volume Rendering
+
+#### Articles
+
+*   [https://cgl.ethz.ch/teaching/former/scivis\_07/Notes/stuff/StuttgartCourse/VIS-Modules-06-Direct\_Volume\_Rendering.pdf](https://cgl.ethz.ch/teaching/former/scivis_07/Notes/stuff/StuttgartCourse/VIS-Modules-06-Direct_Volume_Rendering.pdf)
+
+### General Rendering
+
+#### Books
+
+*   Physically Based Rendering (PBR),
+*   Real-Time Rendering, CRC
+
+### Monte Carlo Path Tracing
+
+#### Papers
+
+*   Mathematical Basics of Monte Carlo Rendering Algorithms
+
+### 3D Gaussian Splatting
+
+*   [https://github.com/MrNeRF/awesome-3D-gaussian-splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) - Curated list of resources on 3DGS
+
+#### Papers
+
+*   [https://arxiv.org/pdf/2308.04079](https://arxiv.org/pdf/2308.04079) - Original 3DGS paper
+*   [https://arxiv.org/pdf/2311.16043](https://arxiv.org/pdf/2311.16043) - Original Relightable 3D Gaussians
+*   [https://arxiv.org/pdf/2311.17977](https://arxiv.org/pdf/2311.17977) - 3DGS with shading functions
+*   [https://arxiv.org/pdf/2311.16473](https://arxiv.org/pdf/2311.16473) - Another Relightable 3DGS
+*   [https://arxiv.org/pdf/2507.20512](https://arxiv.org/pdf/2507.20512) - Complex 3DGS shadowing
+*   [https://arxiv.org/pdf/2412.19282](https://arxiv.org/pdf/2412.19282) - Reflective 3DGS
+
+# ======================
+# File: articles\0_motivation.md
+# ======================
+
+---
+title: "Motivation"
+layout: "article.njk"
+tags: "miscs"
+order : 1
+---
+
+# Motivation
+*(where i talk about why is something like this even needed)*
+
+
+# ======================
+# File: articles\0_roadmap.md
+# ======================
+
+---
+title: "Roadmap"
+layout: "article.njk"
+tags: "miscs"
+order : 3
+---
+
+# Roadmap
+
+![](/images/roadmap.svg)
+
+# ======================
+# File: articles\0_thoughts.md
+# ======================
+
+---
+title: "Thoughts"
+layout: "article.njk"
+tags: "miscs"
+order : 4
+---
+
+
+# Thoughts
+
+*(30.10.2025)*
+
+will contain a dynamically growing collection of thoughts with dates to track mental process and progress throughout the writing
+
+*(1.11.2025)*
+![](/images/thoughts_1.svg)
+
+# ======================
+# File: articles\1_medical_scans.md
+# ======================
+
+---
+title: "Medical Scans"
+layout: "article.njk"
+tags: "chapters"
+order : 1
+---
+
+*(30.10 - )*
+
+# Medical Scans
+
+This chapter serves as a introduction to the concepts of medical scans. The bread and butter of our thesis as the source of input data.
+
+## CT Scans
+
+CT scan
+: computed tomography scan
+
+In this section we will look at the fundamentals of ct scans. As our primary source of data it is important to get a sense of the historical motivation behind the technology and the science that drove it.
+
+We will briefly cover its beginnings, advances and the current state-of-art solutions that maximize the quality of the resulting scan but at the same time minimize the exposure to radiation. Then, briefly, we will examine the physics and mathematics behind the process of acquiring and processing ct scans so that a full and informative picture can be made as to where our sources come from.
+
+![Alt text](/images/1_1.svg)
+
+
+# ======================
+# File: articles\1_volume_reconstruction.md
+# ======================
+
+---
+title: "Volume Reconstruction"
+layout: "article.njk"
+tags: "chapters"
+order : 2
+---
+
+
+
+# ======================
+# File: articles\addscript.py
+# ======================
+
+import os
+
+# Root folder where your HTML files are located
+root_folder = "."  # <-- change this
+
+# Script line to insert
+script_line = '  <script src="../common.js"></script>\n'
+
+# Walk through all files in the directory recursively
+for dirpath, dirnames, filenames in os.walk(root_folder):
+    for filename in filenames:
+        if filename.endswith(".html") and filename != "index.html":
+            file_path = os.path.join(dirpath, filename)
+            
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            # Skip if the script is already present
+            if "../common.js" in content:
+                continue
+
+            # Insert script before </body>
+            if "</body>" in content:
+                new_content = content.replace("</body>", f"<br/><br/><br/>{script_line}</body>", 1)
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(new_content)
+                print(f"✅ Updated: {file_path}")
+            else:
+                print(f"⚠️ Skipped (no </body>): {file_path}")
+
+print("✅ All eligible HTML files updated.")
+
+# ======================
+# File: articles\compbio\intro_article.md
+# ======================
+
+---
+title: "Introduction"
+layout: "compbio_article.njk"
+tags: "compbio_intros"
+order : 1
+---
+
+ASDASD
+
+# ======================
+# File: articles\compbio\pipeline.md
+# ======================
+
+---
+title: "Pipeline"
+layout: "compbio_article.njk"
+tags: "blogs"
+order : 1
+---
+
+ASDASD
+
+# ======================
+# File: css\github-markdown-light.css
+# ======================
+
+.katex {
+  font-size: 1.4em;
+}
+
+/* style block math */
+.katex-display {
+  margin: 1.8em 0;
+}
+
+.has-arrow {
+  background-color: rgb(255, 0, 0);
+}
+
+/* for now like this, but later maybe not for all img */
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+FULL CSS OF LIGHT MARKDOWN GITHUB STYLE NOT INCLUDED TO SAVE ON CONTEXT TOKENS
+
+<rest of css...>
+
+
+# ======================
+# File: css\homepage.css
+# ======================
+
+.construction-banner {
+  width: 100%;
+  background-color: #FFD54F; /* Material amber */
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.construction-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+body {
+  padding-top: 50px; /* prevent content from hiding under the banner */
+}
+
+.construction-banner img {
+  height: 35px;
+  margin-right: 10px;
+}
+
+.construction-banner span {
+  font-weight: 500;
+}
+
+
+/* Simple CSS for centering */
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+body::after {
+    content: "";
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: gray;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    z-index: 9999;
+    animation: bounce 1.2s infinite;
+}   
+
+body.arrow-stopped::after {
+animation: none; /* stops the bounce */
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.link-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+.link-list li {
+    margin: 15px 0;
+}
+.link-list a {
+    font-size: 1.5em;
+    color: #007bff; /* Blue link color */
+    text-decoration: none;
+}
+.link-list a:hover {
+    text-decoration: underline;
+}
+
+.centered-text {
+display: block;          /* Makes the <i> element behave like a block element */
+text-align: center;      /* Centers text horizontally */
+white-space: normal;     /* Allows text to wrap to next line */
+word-wrap: break-word;   /* Breaks long words that overflow */
+max-width: 100%;         /* Ensures it doesn't exceed parent width */
+overflow-wrap: anywhere; /* Handles extremely long words without spaces */
+}
+
+.links-line {
+border: 3px solid gray;
+width: 150px;
+margin: 20px auto;
+border-radius: 2px;
+}
+
+# ======================
+# File: pages\supp_blog\p_0_radiancefields.md
+# ======================
+
+---
+title: "Radiance Fields"
+layout: "supp_article.njk"
+tags: "physics"
+order : 0
+---
+
+ASD
+
+# ======================
+# File: scripts\auth_hash.js
+# ======================
+
+        const CORRECT_HASH = "b2581e1bdbe7c3fdcbe6814978fcce82fc76a8ed3ccc2ab69717f91be294df98";
+        const XOR_CONSTANT_B64 = "HgECVgICU2kIWVYAHUteWQcEHUpfRwlc";
+        document.getElementById("submitButton").addEventListener("click", checkPassword);
+        document.getElementById("passwordInput").addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+
+        async function checkPassword() {
+            const input = document.getElementById("passwordInput").value;
+            const messageEl = document.getElementById("message");
+            
+            const inputHash = await hashString(input);
+        
+            if (inputHash === CORRECT_HASH) {
+                messageEl.textContent = "";
+        
+                const XOR_CONSTANT = atob(XOR_CONSTANT_B64); 
+        
+                const salt = await hashString(input + input);
+                const saltedInput = input + salt;
+                const secondHash = await hashString(saltedInput);
+        
+                const key = secondHash.substring(0, XOR_CONSTANT.length);
+                const path = xorStrings(key, XOR_CONSTANT);
+        
+                console.log("Access granted. Redirecting to:", path);
+                window.location.href = path;
+        
+            } else {
+                messageEl.textContent = "Access Denied";
+            }
+        }
+
+        async function hashString(str) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(str);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hexHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hexHash;
+        }
+
+        function xorStrings(s1, s2) {
+            let result = '';
+            const length = Math.min(s1.length, s2.length);
+
+            for (let i = 0; i < length; i++) {
+                result += String.fromCharCode(s1.charCodeAt(i) ^ s2.charCodeAt(i));
+            }
+            return result;
+        }
+
+# ======================
+# File: scripts\auth_simple.js
+# ======================
+
+console.log(document.getElementById("submitButton"));
+PATH_DIPL = "/homepages/homepage_1/index.html"
+PATH_COMPBIO = "/homepages/homepage_compbio/index.html"
+
+document.getElementById("submitButton").addEventListener("click", checkPassword);
+document.getElementById("passwordInput").addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+        checkPassword();
+    }
+});
+
+async function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    const messageEl = document.getElementById("message");
+    
+    messageEl.textContent = "";
+
+    if (input === "dipl") {
+        window.location.href = PATH_DIPL;
+    } else if (input === "compbio") {
+        window.location.href = PATH_COMPBIO;
+    } else {
+        messageEl.textContent = "Access Denied";
+    }
+}
+
+
+# ======================
+# File: scripts\compbio_homebutton.js
+# ======================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.createElement("a");
+  btn.href = "/homepages/homepage_compbio/index.html";
+  btn.textContent = "Home";
+
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "8px 14px",
+    background: "#007bff",
+    color: "#fff",
+    "border-radius": "6px",
+    "text-decoration": "none",
+    "font-size": "14px",
+    "font-family": "'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif",
+    "box-shadow": "0 2px 6px rgba(0,0,0,0.2)",
+    "z-index": 9999,
+    "opacity": 0.7,
+    "transition": "opacity 0.3s",
+  });
+
+  // Fade effect on hover
+  btn.addEventListener("mouseenter", () => (btn.style.opacity = 1));
+  btn.addEventListener("mouseleave", () => (btn.style.opacity = 0.7));
+
+  document.body.appendChild(btn);
+});
+
+
+# ======================
+# File: scripts\homebutton.js
+# ======================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.createElement("a");
+  btn.href = "/homepages/homepage_1/index.html";
+  btn.textContent = "Home";
+
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "8px 14px",
+    background: "#007bff",
+    color: "#fff",
+    "border-radius": "6px",
+    "text-decoration": "none",
+    "font-size": "14px",
+    "font-family": "'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif",
+    "box-shadow": "0 2px 6px rgba(0,0,0,0.2)",
+    "z-index": 9999,
+    "opacity": 0.7,
+    "transition": "opacity 0.3s",
+  });
+
+  // Fade effect on hover
+  btn.addEventListener("mouseenter", () => (btn.style.opacity = 1));
+  btn.addEventListener("mouseleave", () => (btn.style.opacity = 0.7));
+
+  document.body.appendChild(btn);
+});
+
+
+# ======================
+# File: scripts\stop_arrow.js
+# ======================
+
+let arrowStopped = false;
+function stopArrowAnimation() {
+    if (!arrowStopped) {
+        document.body.classList.add('arrow-stopped');
+        arrowStopped = true;
+    }
+}
+
+window.addEventListener('scroll', stopArrowAnimation, { once: true });
+window.addEventListener('wheel', stopArrowAnimation, { once: true });
+window.addEventListener('touchmove', stopArrowAnimation, { once: true });
+
+
+# ======================
+# File: scripts\supphomebutton.js
+# ======================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.createElement("a");
+  btn.href = "/homepages/supp_blog/index.html";
+  btn.textContent = "Supp Blog";
+
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "8px 14px",
+    background: "#007bff",
+    color: "#fff",
+    "border-radius": "6px",
+    "text-decoration": "none",
+    "font-size": "14px",
+    "font-family": "'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif",
+    "box-shadow": "0 2px 6px rgba(0,0,0,0.2)",
+    "z-index": 9999,
+    "opacity": 0.7,
+    "transition": "opacity 0.3s",
+  });
+
+  // Fade effect on hover
+  btn.addEventListener("mouseenter", () => (btn.style.opacity = 1));
+  btn.addEventListener("mouseleave", () => (btn.style.opacity = 0.7));
+
+  document.body.appendChild(btn);
+});

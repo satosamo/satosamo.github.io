@@ -1,0 +1,24 @@
+---
+title: "Data Structures"
+layout: "homepage.njk"
+showArrow: true
+tags: "homepages"
+---
+
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+  <span>This website is currently under heavy construction</span>
+</div>
+
+    <h1>Course Blog:</h1>
+    <h2>Data Structures</h2>
+<hr style="border: none; height: 2px; background-color: black; width: 50%; margin-top: 15px;">
+
+<ul class="link-list">
+  {%- for datastructure in collections.datastructures | sort(attribute="data.order") -%}
+    <li><a href="{{ datastructure.url }}">{{ datastructure.data.title }}</a></li>
+  {%- endfor -%}
+
+
+</ul>
