@@ -1,0 +1,26 @@
+---
+title: "Computational Biology"
+layout: "homepage.njk"
+showArrow: true
+---
+
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+  <span>This website is currently under heavy construction</span>
+</div>
+
+    <h1>Computational Biology</h1>
+    <i>Tutorial</i>
+
+
+<br/><br/>
+
+<ul class="link-list">
+<hr class="links-line">
+  {%- for blog in collections.blogs | sort(attribute="data.order") -%}
+    <li><a href="{{ blog.url }}">{{ blog.data.title }}</a></li>
+  {%- endfor -%}
+
+
+</ul>
