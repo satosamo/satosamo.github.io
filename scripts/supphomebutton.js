@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.createElement("a");
-  btn.href = "/homepages/supp_blog/index.html";
+  btn.href = "/homepages/homepage_supp_blog/index.html";
   btn.textContent = "Supp Blog";
 
   Object.assign(btn.style, {

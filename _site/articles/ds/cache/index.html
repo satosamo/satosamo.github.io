@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cache | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h3>CPU cache</h3>
+<p>CPU cache is a small, high-speed memory that is physically located near the CPU. It sotred frequently used data and instructions to reduce the time it takes the processor to access them from other memory, like the main memory (RAM).</p>
+<p>Modern processors have multiple cache levels. These levels interact with each other and with the CPU based on the specific CPU architecture.</p>
+<p>The main properties of cache are</p>
+<ul>
+<li>cache size</li>
+<li>cache block size</li>
+<li>the number of blocks in a set</li>
+<li>the cache set replacement policy</li>
+<li>the cache write policy</li>
+</ul>
+<h3>Cache Loading</h3>
+<p>When a CPU wants to access a data stored in the main memory it first loads the data into the cache. This loading, however, only happens in chunks called <strong>cache lines</strong>. Typical cache line is 64 bytes (on modern x86-64 CPUs). This means that the cpu loads the amount of data it wants to access and the next however bytes to load full 64 bytes.</p>
+<p>This also means that we may get unrelated memory in the cache to our interest. This is normal since cache behavior is not observable at the semantic level, it happens automatically and we need to work with it in order to maximize the performance of our program.</p>
+<ul>
+<li>L1 cache access: ~0.5ns</li>
+<li>L2 cache access: ~3ns</li>
+<li>L3 cache access: ~15ns</li>
+<li>RAM access: ~100ns</li>
+<li>SSD access: ~10ms (10000ns)</li>
+</ul>
+<h3>Cache-Friendliness</h3>
+<p>Even a single trip to DRAM is about 200 CPU cycles. We want our programs to work with the CPU's natural prefetching and caching mechanism. Once the data is in cache, the operations are extremely fast so we want to design our algorithms so that we minimize:</p>
+<h4>Cache misses</h4>
+<p>Cpu fails to find the data it needs in cache and has to load another cache line. We minimize this waste by designing layouts so that elements of the data structure fit inside the cache lines.</p>
+<ul>
+<li>grouping 'hot' (frequently accessed) fields together</li>
+<li>using structs of arrays instead of arrays of structs</li>
+<li><em>not</em> placing rarely used fields next to hot data</li>
+<li><em>not</em> storing 32-byte pointers next to 8-byte ints</li>
+</ul>
+<h4>Pointer chasing</h4>
+<p>Every pointer-following step risks crossing to a new cache line. Meaning:</p>
+<ul>
+<li>hash maps with chained buckets perform poorly</li>
+<li>tree structures are slow</li>
+<li><code>absl::flat_hash_map</code> hash maps put keys and values contiguously in arrays and are <em>fast</em></li>
+</ul>
+
+  </article>
+
+  <br/><br/><br/>
+  <script src="/scripts/homebutton_ds.js"></script>
+
+</body>
+</html>

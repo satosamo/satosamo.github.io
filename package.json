@@ -16,8 +16,10 @@
     "@11ty/eleventy": "^3.1.2"
   },
   "dependencies": {
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "@vscode/markdown-it-katex": "^1.1.2",
     "github-markdown-css": "^5.8.1",
+    "markdown-it-container": "^4.0.0",
     "markdown-it-deflist": "^3.0.0"
   }
 }

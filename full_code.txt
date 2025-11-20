@@ -24,7 +24,7 @@ satosamo.github.io/
 │   ├── homepages/
 │   │   ├── homepage_1.njk
 │   │   ├── homepage_compbio.njk
-│   │   ├── supp_blog.njk
+│   │   ├── homepage_supp_blog.njk
 │   ├── images/
 │   │   ├── 1_1.svg
 │   │   ├── construction.jpg
@@ -36,7 +36,7 @@ satosamo.github.io/
 │   ├── node_modules/ [EXCLUDED]
 │   ├── pages/
 │   │   ├── main_blog/
-│   │   ├── supp_blog/
+│   │   ├── homepage_supp_blog/
 │   │   │   ├── p_0_radiancefields.md
 │   ├── resources/
 │   │   ├── papers/
@@ -627,7 +627,7 @@ border-radius: 2px;
 }
 
 # ======================
-# File: pages\supp_blog\p_0_radiancefields.md
+# File: pages\homepage_supp_blog\p_0_radiancefields.md
 # ======================
 
 ---
@@ -822,7 +822,7 @@ window.addEventListener('touchmove', stopArrowAnimation, { once: true });
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.createElement("a");
-  btn.href = "/homepages/supp_blog/index.html";
+  btn.href = "/homepages/homepage_supp_blog/index.html";
   btn.textContent = "Supp Blog";
 
   Object.assign(btn.style, {
