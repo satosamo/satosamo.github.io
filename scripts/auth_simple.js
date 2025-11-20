@@ -1,5 +1,5 @@
 console.log(document.getElementById("submitButton"));
-PATH_DIPL = "/homepages/homepage_1/index.html"
+PATH_DIPL = "/homepages/homepage_dipl/index.html"
 PATH_COMPBIO = "/homepages/homepage_compbio/index.html"
 
 document.getElementById("submitButton").addEventListener("click", checkPassword);

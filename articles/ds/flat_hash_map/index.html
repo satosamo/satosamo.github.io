@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>flat_hash_map | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <p><em>Based on: CppCon 2017: Matt Kulukundis “Designing a Fast, Efficient, Cache-friendly Hash Table, Step by Step”</em></p>
+<h2>Designing and Implementing flat_hash_map</h2>
+<p>The hash table described by Matt Kulukundis in his presentation at CppCon 2017 is a <strong>swiss table</strong> (designed in Zürich by Abseil) family of hash tables design. They are meant to replace <code>std::unordered_set</code> and <code>std::unordered_map</code>.</p>
+<p>The <strong>flat</strong> variant of the swiss table is a open-addressed hash table with extra metadata to hold information about the slots, allowing for fast lookup, delete and insert times.</p>
+<h3>all items are stored in a single backing array</h3>
+<dl>
+<dt>items:</dt>
+<dd>the values distributed according to the hash values of their keys modulo table size</dd>
+</dl>
+<p>In <code>flat_hash_map</code> all items are stored in a single array, also called <strong>backing array</strong>. We call each location in the array a <strong>slot</strong>. This sets the scene for cache-friendliness.</p>
+<h3>the backing array is divided into groups of 16 slots</h3>
+<p>The defining feature of swiss tables is that it utilizes SIMD to effectively compare metadata when performing an operation on the table. The result of such comparison is a 16-bit long word that acts as a mask for our 16 slots in a group.</p>
+<h3>metadata is tightly packed</h3>
+<p>The metadata uses 8 bits (a WHOLE BYTE) for each element and is tightly packed in memory. This means we have 16 bytes of tightly packed metadata.</p>
+<ul>
+<li>Store 1 bit (msb) as a flag:
+<ul>
+<li>0 - full slot, follows by 7 bits of hash</li>
+<li>1 - non-full slot</li>
+</ul>
+</li>
+<li>Store 7 bits of hash code in the least significant bits</li>
+</ul>
+<p><strong>If</strong> a slot is full, the first bit will be 0 followed by the hash value:<br>
+<code>0b0xxxxxxx</code></p>
+<p><strong>Else if</strong> a slot is not full but was never occupied, then the value is<br>
+<code>kEmpty = -128</code> or <code>0b10000000</code></p>
+<p><strong>Else if</strong> a slot is not full but was once occupied and deleted, then it is a tombstone with a value<br>
+<code>kDeleted = -2</code> or <code>0b11111110</code></p>
+<p><strong>Else</strong> the slot is a padding, allowing us to stop scanning metadata for table scan and uses<br>
+<code>kSentinel = -1</code> or <code>0b11111111</code></p>
+<h3>the hash value is thus divided into two</h3>
+<p>Every time we hash a key, we divide the hash value into two parts:</p>
+<ul>
+<li><strong>H1</strong> - 57 bits and determines the position in the array</li>
+<li><strong>H2</strong> - 7 bits and is used in the metadata</li>
+</ul>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">Entropy</p>
+<p>Since we split the hash value into two distinct parts we need a hash function that distributes entropy evenly. This prevents collisions in either H1 or H2 since unevenly distributed entropy makes one of those two collision-prone.</p>
+</div>
+<p><strong>Implementation</strong></p>
+<p>For H1 we just shift 7 bits, leaving the 57 msb bits. For H2 we filter out the msb bits with <code>01111111</code> AND operation, leaving us with 7 lsb.</p>
+<pre class="language-cpp"><code class="language-cpp">size_t <span class="token function">H1</span><span class="token punctuation">(</span>size_t hash<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> hash <span class="token operator">>></span> <span class="token number">7</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+ctrl_t <span class="token function">H2</span><span class="token punctuation">(</span>size_t hash<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> hash <span class="token operator">&amp;</span> <span class="token number">0x7F</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
+<h3>find operation</h3>
+<p><strong>Sequential</strong></p>
+<ul>
+<li>when looking for a key in the table we first compute the hash value of the key</li>
+<li>the hash value is then split into H1 and H2</li>
+<li>H1 is ran through modulo <code>num_groups</code> to find the index of the group it should fall into</li>
+<li>sequentially iterate over all elements in the group</li>
+<li><strong>if is full</strong>: compare H2 hash value
+<ul>
+<li><strong>if same</strong>: hit</li>
+<li><strong>if not same</strong>: move to the next slot</li>
+</ul>
+</li>
+<li><strong>if is not full</strong>: move to the next slot</li>
+</ul>
+<p><strong>SIMD-based</strong></p>
+<ul>
+<li>find the group index</li>
+<li>compare ALL H2 entries in metadata</li>
+<li>jump to the matching element</li>
+</ul>
+<p><strong>Implementation</strong></p>
+<p>The 16 slot group allows us to compute the H2 values extremely fast.</p>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">SSE</p>
+<p>Streaming SIMD Extensions (SSE) is a single instruction, multiple data (SIMD) instruction set extension to the x86 architecture.</p>
+</div>
+<p>The <code>find</code> function is:</p>
+<pre class="language-cpp"><code class="language-cpp">iterator <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">const</span> K<span class="token operator">&amp;</span> key<span class="token punctuation">,</span> size_t hash<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    size_t group <span class="token operator">=</span> <span class="token function">H1</span><span class="token punctuation">(</span>hash<span class="token punctuation">)</span> <span class="token operator">%</span> num_groups_<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Group g<span class="token punctuation">{</span>ctrl_ <span class="token operator">+</span> group <span class="token operator">*</span> <span class="token number">16</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">:</span> g<span class="token punctuation">.</span><span class="token function">Match</span><span class="token punctuation">(</span>h2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> slots<span class="token punctuation">[</span>group <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">+</span> i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> <span class="token function">iterator_at</span><span class="token punctuation">(</span>group <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>g<span class="token punctuation">.</span><span class="token function">MatchEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        group <span class="token operator">=</span> <span class="token punctuation">(</span>group <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> num_groups_<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">Compiler Details</p>
+<p>The <code>if (key == slots[group * 16 + i])</code> equality operator is ALMOST always true at least once, since we already know the kay should fall into that group as we are comparing the H2 hashes. This allows for <code>predict true</code>.</p>
+</div>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">Full Groups</p>
+<p>If <code>(g.MatchEmpty()) return end();</code> is false, we hit an empty, never filled slot and the search may stop since it means no other collisions and potential matches occur after that. If it is true for the whole group we must probe to the next group. This almost never happens pre Matt Kulukundis.</p>
+</div>
+<p>The SIMD <code>match</code> function is:</p>
+<pre class="language-cpp"><code class="language-cpp">BitMask<span class="token operator">&lt;</span>unit32_t<span class="token operator">></span> <span class="token function">Match</span><span class="token punctuation">(</span>h2_t hash<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    <span class="token keyword">auto</span> match <span class="token operator">=</span> <span class="token function">_mm_set1_epi8</span><span class="token punctuation">(</span>hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token generic-function"><span class="token function">BitMask</span> <span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">uint32_t</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>
+        <span class="token function">_mm_movemask_epi8</span><span class="token punctuation">(</span><span class="token function">_mm_cmpeq_epi8</span><span class="token punctuation">(</span>match<span class="token punctuation">,</span> crtl<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Where:</p>
+<ul>
+<li><code>_mm_set1_epi8(arg)</code> initializes array of 16 elements each of size one byte with value of argument</li>
+<li><code>_mm_cmpeq_epi8(arg1, arg2)</code> compares the arguments byte wise and returns <code>FF</code> in place of match and <code>00</code> otherwise</li>
+<li><code>_mm_movemask_epi8(arg)</code> takes 16 byte array and squished it into 16 bits (according to the msb of the array)</li>
+</ul>
+<h3>some naming</h3>
+<p>A group consists of the backing array and the metadata array. A position in the backing array is slot and position in the metadata is called <strong>control</strong>. A table has <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> groups.</p>
+<h3>erasing is easy</h3>
+<pre class="language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">erase</span><span class="token punctuation">(</span>iterator it<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">--</span>size_<span class="token punctuation">;</span>
+    Group g<span class="token punctuation">{</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>ctrl_ <span class="token operator">-</span> ctrl_<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">16</span> <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">+</span> crtl_<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>it<span class="token punctuation">.</span>ctrl_ <span class="token operator">=</span> g<span class="token punctuation">.</span><span class="token function">MatchEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> kEmpty <span class="token operator">:</span> kDeleted<span class="token punctuation">;</span>
+    it<span class="token punctuation">.</span>slot_<span class="token punctuation">.</span><span class="token operator">~</span><span class="token function">K</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+
+  </article>
+
+  <br/><br/><br/>
+  <script src="/scripts/homebutton_ds.js"></script>
+
+</body>
+</html>

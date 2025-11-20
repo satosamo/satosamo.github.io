@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hashing | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h2>Hashing</h2>
+<p>Hashing is a process during which an input, called the <strong>key</strong>, gets transformed into a fixed-size output, a <strong>hash value</strong> using a <strong>hash function</strong>.</p>
+<h3>Compression of Information</h3>
+<p>Information theory treats a hash function as a function that compresses information into fewer bits.</p>
+<ul>
+<li>SHA-256 maps to 256 bits</li>
+<li>a typical hash table maps to 32 or 64 bits</li>
+<li>bucket hash table maps to a few bits after modulo</li>
+</ul>
+<p>Since this hash mapping reduce the number of bits, information is necessarily lost. This causes an events called <strong>collisions</strong> where two keys map to the same hash value.</p>
+<h3>Good Hash Function</h3>
+<p>A good hash function exhibits high level of randomness.</p>
+<ul>
+<li>every bit of the output depends on each bit of the input</li>
+<li>output bits behave statistically independently</li>
+<li>for any two keys, the probability they map to the same hash value is small, ideally uniform</li>
+</ul>
+<h3>Data Hashing</h3>
+<p>The goal of hashing in computer science applications is to place data into a fixed-sized structure efficiently. This includes:</p>
+<ul>
+<li>hash tables</li>
+<li>bloom filters</li>
+<li>hash-based file systems</li>
+<li>symbol tables</li>
+<li>caches</li>
+<li>cryptography</li>
+</ul>
+<p>This is achieved by interpreting the hash value of a piece of data as the index in that data structure.</p>
+<pre class="language-python"><code class="language-python">h <span class="token operator">=</span> <span class="token builtin">hash</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+index <span class="token operator">=</span> h mod table_size</code></pre>
+<h3>The Need for Speed</h3>
+<p>For arbitrary data, hashing is the only known practical method to achieve constant time lookup. This means that hash tables allow us to access and element in expected constant time.</p>
+<ul>
+<li>modern workloads require billions of lookups per second (google)</li>
+</ul>
+<h3>Distributed Systems</h3>
+<p>Having a consistent hashing system allows distributed systems to unify in data storage and handle requests among clusters. Hashing eliminates the need for central command unifying local data storage systems.</p>
+
+  </article>
+
+  <br/><br/><br/>
+  <script src="/scripts/homebutton_ds.js"></script>
+
+</body>
+</html>

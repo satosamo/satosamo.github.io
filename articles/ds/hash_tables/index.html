@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hash Tables | Matej Lorinc</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
   <link rel="stylesheet" href="/css/github-markdown-light.css">
   
   <style>
@@ -28,11 +29,57 @@
 
 
   <article class="markdown-body"> 
-    
+    <h2>Hash Tables</h2>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">In a Nutshell</p>
+<p>Hash tables are space-time tradeoff. Infinite memory means the entire key can be used directly as an index. Infinite time means values can be stored without regard for their keys.</p>
+</div>
+<p>Hash tables are the way to implement the associative array abstract data structure. A key is hashed using a hash function. The hash value is used to index the key in a memory. The key may be associated with a value (maps) or may not (sets).</p>
+<ul>
+<li><code>len(table)</code> is small relative to <code>len(hashable_keys)</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext></mrow><annotation encoding="application/x-tex">\implies</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span> collisions are inevitable</li>
+</ul>
+<p>The art of hash tables is the art of collision resolution.</p>
+<ul>
+<li>pointer solution: chaining</li>
+<li>index computing solution: probing</li>
+</ul>
+<h3>Chaining Hash Tables</h3>
+<p>Each slot contains a list of items.</p>
+<ul>
+<li>C++ <code>std::unordered_map</code></li>
+<li>Java <code>HashMap</code></li>
+</ul>
+<h3>Probing</h3>
+<p>The chaining hash table solves collisions by introducing pointers. The hash table slot points to the start of the list containing all the collided keys. Additionally, to be able to grow the slot at the start, we need to keep a dummy.</p>
+<blockquote>
+<p>TODO why not vectors for locality?</p>
+</blockquote>
+<p>Pointers are an enemy of cache-friendliness. We want to make sure cache lines contain the collided sequence of keys. This also allows for SIMD-ing the probing.</p>
+<p>A collision triggers a computation of new index:</p>
+<ul>
+<li>linear probing: the new index is the collided one incremented by 1</li>
+</ul>
+<pre class="language-mathematica"><code class="language-mathematica">h<span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre>
+<ul>
+<li>quadratic probing</li>
+</ul>
+<pre class="language-mathematica"><code class="language-mathematica">h<span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">1</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">3</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre>
+<ul>
+<li>double hashing</li>
+</ul>
+<pre class="language-mathematica"><code class="language-mathematica">h <span class="token operator">+</span> i <span class="token operator">*</span> h2<span class="token punctuation">(</span>key<span class="token punctuation">)</span></code></pre>
+<p>The con of probing is the difficulty when deleting an entry.</p>
+<h3>Modern Probing</h3>
+<ul>
+<li>Google SwissTable / Abseil <code>flat_hash_map</code> (metadata + SIMD acceleration)</li>
+<li>Rust <code>HashMap</code> (SwissTable)</li>
+<li>Robin Hood hashing (balances probe lengths)</li>
+</ul>
+
   </article>
 
   <br/><br/><br/>
-  <script src="/scripts/homebutton.js"></script>
+  <script src="/scripts/homebutton_ds.js"></script>
 
 </body>
 </html>
