@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homework 1 | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  <link rel="stylesheet" href="/css/homepage.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h1>Homework 1: Cifar10 CNN</h1>
+<h2>Assignment</h2>
+<p>The goal of this homework is to:</p>
+<ul>
+<li>Design a basic CNN and train on Cifar10 dataset</li>
+<li>Improve the model iteratively and benchmark each iteration</li>
+</ul>
+<h3>What is Cifar10</h3>
+<p>CIFAR-10 is a collection of 60,000 32x32 <strong>color images</strong> divided into 10 mutually exclusive classes. The dataset is split into a training set of 50,000 images and a test set of 10,000 images. The 10 classes are: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, and truck.</p>
+<h2>Solution</h2>
+<h3>Setting</h3>
+<p>For this project, we will also try to learn how to use Google Cloud virtual machine for compute. Because the virtual machine uses os image with <code>python 3.12</code> and <code>pytorch 2.7.</code> we will be using those versions.</p>
+<p>We will be using uv for project management.</p>
+<p>The package name of our project will be <code>cifar10_cnn</code> and the structure is:</p>
+<ul>
+<li>Core package contains the training module</li>
+<li>Subpackage <code>models</code> contains the base model and every upgrade iteration</li>
+<li>Subpackage <code>tests</code> contains testing</li>
+<li>Subpackage <code>utils</code> contains data loaders</li>
+</ul>
+<h3>Dataset Loaders</h3>
+<p>Function <code>get_loaders(batch_size, augment=False, first_1000=False)</code> returns <code>DataLoader</code> objects from <code>torch.utils.data</code>:</p>
+<ul>
+<li>the <code>train_loader</code> filled with training data</li>
+<li>the <code>val_loader</code> filled with validation data</li>
+</ul>
+<p>The data can be transformed between loading from builtin Cifar10 object to the loaders:</p>
+<ul>
+<li><code>batch_size</code> - self explaining</li>
+<li><code>augment</code> - image augmentation is handled trough tensor transformation by <code>CIFAR10</code> object</li>
+<li><code>first_1000</code> - allows for fast prototyping via <code>Subset</code> object</li>
+</ul>
+<h3>Input data</h3>
+<p>Images with resolution of 32x32 and 3 channels. 10 classes. <code>(image, class)</code></p>
+<h3>Training</h3>
+<p>The training loop is classic pytorch template loop:</p>
+<ul>
+<li><strong>For all epochs do</strong>
+<ul>
+<li>Train one epoch on training data</li>
+<li>Evaluate the epoch on validation data</li>
+</ul>
+</li>
+<li><strong>For each epoch do</strong>
+<ul>
+<li>Set model to training mode - <code>model.train()</code></li>
+<li><strong>For each batch in loader do</strong> (e.g. <code>torch.Size([64, 3, 32, 32])</code>)
+<ul>
+<li>Send the data to available device (CPU, GPU if CUDA)</li>
+<li>Do one forward pass on the data</li>
+<li>Calculate loss</li>
+<li>Compute statistics</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Base Model</h3>
+<p>The base model <code>class Cifar10_CNN_Base(nn.Module):</code> uses the Adam optimizer and ReLU activations per the assignment.</p>
+<p>The model consists of 3 feature-extraction layers with kernel size 3 and standard padding of 1:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Layer</th>
+<th style="text-align:center">InOut / Size</th>
+<th style="text-align:right">Result Data Dimension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Input</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>3x32x32</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Convolutional</td>
+<td style="text-align:center"><code>3, 32</code></td>
+<td style="text-align:right"><code>32x32x32</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Max Pool</td>
+<td style="text-align:center"><code>2</code></td>
+<td style="text-align:right"><code>32x16x16</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Convolutional</td>
+<td style="text-align:center"><code>32, 64</code></td>
+<td style="text-align:right"><code>64x16x16</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Max Pool</td>
+<td style="text-align:center"><code>2</code></td>
+<td style="text-align:right"><code>64x8x8</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Convolutional</td>
+<td style="text-align:center"><code>64, 128</code></td>
+<td style="text-align:right"><code>128x8x8</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Max Pool</td>
+<td style="text-align:center"><code>2</code></td>
+<td style="text-align:right"><code>128x4x4</code></td>
+</tr>
+</tbody>
+</table>
+<p>And of two classification layers that take in flattened output of the convolution module:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Layer</th>
+<th style="text-align:center">InOut / Act</th>
+<th style="text-align:right">Result Data Dimension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Input</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>128x4x4</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Flatten</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>2048</code></td>
+</tr>
+<tr>
+<td style="text-align:left">---</td>
+<td style="text-align:center">---</td>
+<td style="text-align:right">---</td>
+</tr>
+<tr>
+<td style="text-align:left">Input</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>2048</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Linear</td>
+<td style="text-align:center">ReLU</td>
+<td style="text-align:right"><code>2048x256</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Linear</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>256x10</code></td>
+</tr>
+</tbody>
+</table>
+<p>The output is raw logit representation of the classes logistic distribution.</p>
+
+  </article>
+
+<br/><br/><br/>
+
+
+<a href="/homepages/homepage_dlcv" class="floating-home-btn">Home</a>
+
+</body>
+</html>
