@@ -1,0 +1,32 @@
+[
+  {
+    "label": "Thesis Home",
+    "url": "/homepages/homepage_dipl/",
+    "id": "dipl",
+    "chatUrl": "/chats/dipl_chats/"
+  },
+  {
+    "label": "Supplementary Blog",
+    "url": "/homepages/homepage_supp_blog/",
+    "id": "supp",
+    "chatUrl": "/chats/supp_chats/"
+  },
+  {
+    "label": "Data Structures",
+    "url": "/homepages/homepage_ds/",
+    "id": "ds",
+    "chatUrl": "/chats/ds_chats/"
+  },
+  {
+    "label": "Computational Biology",
+    "url": "/homepages/homepage_compbio/",
+    "id": "compbio",
+    "chatUrl": "/chats/compbio_chats/"
+  },
+  {
+    "label": "DL: Computer Vision",
+    "url": "/homepages/homepage_dlcv/",
+    "id": "dlcv",
+    "chatUrl": "/chats/dlcv_chats/"
+  }
+]

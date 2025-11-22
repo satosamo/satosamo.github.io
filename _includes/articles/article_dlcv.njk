@@ -1,10 +1,9 @@
-{% extends "base.njk" %}
+{% extends "base/base_article.njk" %}
 
 {% block content %}
   <article class="markdown-body"> 
     {{ content | safe }}
   </article>
 
-  <br/><br/><br/>
-  <script src="/scripts/compbio_homebutton.js"></script>
+<br/><br/><br/>
 {% endblock %}

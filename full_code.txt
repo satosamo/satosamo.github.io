@@ -1,29 +1,42 @@
 Directory Tree:
 satosamo.github.io/
 │   ├── eleventy.config.js
+│   ├── full_code.txt
 │   ├── index.html
+│   ├── readme.md
 │   ├── .git/ [EXCLUDED]
 │   ├── .github/ [EXCLUDED]
+│   ├── .vscode/
+│   │   ├── settings.json
 │   ├── articles/
-│   │   ├── 0_abstract.md
-│   │   ├── 0_details.md
-│   │   ├── 0_introduction.md
-│   │   ├── 0_literature.md
-│   │   ├── 0_motivation.md
-│   │   ├── 0_roadmap.md
-│   │   ├── 0_thoughts.md
-│   │   ├── 1_medical_scans.md
-│   │   ├── 1_volume_reconstruction.md
-│   │   ├── addscript.py
 │   │   ├── compbio/
 │   │   │   ├── intro_article.md
 │   │   │   ├── pipeline.md
+│   │   ├── dipl/
+│   │   │   ├── 0_abstract.md
+│   │   │   ├── 0_details.md
+│   │   │   ├── 0_introduction.md
+│   │   │   ├── 0_literature.md
+│   │   │   ├── 0_motivation.md
+│   │   │   ├── 0_roadmap.md
+│   │   │   ├── 0_thoughts.md
+│   │   │   ├── 1_medical_scans.md
+│   │   │   ├── 1_volume_reconstruction.md
+│   │   ├── dlcv/
+│   │   │   ├── homework1.md
+│   │   ├── ds/
+│   │   │   ├── cache.md
+│   │   │   ├── flat_hash_map.md
+│   │   │   ├── hashing.md
+│   │   │   ├── hash_functions.md
+│   │   │   ├── hash_tables.md
 │   ├── css/
-│   │   ├── github-markdown-light.css
 │   │   ├── homepage.css
 │   ├── homepages/
-│   │   ├── homepage_1.njk
 │   │   ├── homepage_compbio.njk
+│   │   ├── homepage_dipl.njk
+│   │   ├── homepage_dlcv.njk
+│   │   ├── homepage_ds.njk
 │   │   ├── homepage_supp_blog.njk
 │   ├── images/
 │   │   ├── 1_1.svg
@@ -36,7 +49,7 @@ satosamo.github.io/
 │   ├── node_modules/ [EXCLUDED]
 │   ├── pages/
 │   │   ├── main_blog/
-│   │   ├── homepage_supp_blog/
+│   │   ├── supp_blog/
 │   │   │   ├── p_0_radiancefields.md
 │   ├── resources/
 │   │   ├── papers/
@@ -46,14 +59,113 @@ satosamo.github.io/
 │   │   ├── auth_simple.js
 │   │   ├── compbio_homebutton.js
 │   │   ├── homebutton.js
+│   │   ├── homebutton_ds.js
 │   │   ├── stop_arrow.js
 │   │   ├── supphomebutton.js
+│   ├── _data/
+│   │   ├── navigation.json
 │   ├── _includes/
 │   │   ├── article.njk
 │   │   ├── base.njk
-│   │   ├── compbio_article.njk
-│   │   ├── homepage.njk
-│   │   ├── supp_article.njk
+│   │   ├── articles/
+│   │   │   ├── article_compbio.njk
+│   │   │   ├── article_dipl.njk
+│   │   │   ├── article_dlcv.njk
+│   │   │   ├── article_ds.njk
+│   │   │   ├── article_supp.njk
+│   │   ├── base/
+│   │   │   ├── base_article.njk
+│   │   │   ├── base_homepage.njk
+│   ├── _site/
+│   │   ├── index.html
+│   │   ├── articles/
+│   │   │   ├── compbio/
+│   │   │   │   ├── intro_article/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── pipeline/
+│   │   │   │   │   ├── index.html
+│   │   │   ├── dipl/
+│   │   │   │   ├── 0_abstract/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── 0_details/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── 0_introduction/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── 0_literature/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── 0_motivation/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── 0_roadmap/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── 0_thoughts/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── 1_medical_scans/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── 1_volume_reconstruction/
+│   │   │   │   │   ├── index.html
+│   │   │   ├── dlcv/
+│   │   │   │   ├── homework1/
+│   │   │   │   │   ├── index.html
+│   │   │   ├── ds/
+│   │   │   │   ├── cache/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── flat_hash_map/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── hashing/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── hash_functions/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── hash_tables/
+│   │   │   │   │   ├── index.html
+│   │   ├── css/
+│   │   │   ├── homepage.css
+│   │   ├── homepages/
+│   │   │   ├── homepage_compbio/
+│   │   │   │   ├── index.html
+│   │   │   ├── homepage_dipl/
+│   │   │   │   ├── index.html
+│   │   │   ├── homepage_dlcv/
+│   │   │   │   ├── index.html
+│   │   │   ├── homepage_ds/
+│   │   │   │   ├── index.html
+│   │   │   ├── homepage_supp_blog/
+│   │   │   │   ├── index.html
+│   │   ├── images/
+│   │   │   ├── 1_1.svg
+│   │   │   ├── construction.jpg
+│   │   │   ├── roadmap.svg
+│   │   │   ├── thoughts_1.svg
+│   │   │   ├── uk_logo.ico
+│   │   │   ├── uk_logo.jpg
+│   │   │   ├── uk_logo.png
+│   │   ├── pages/
+│   │   │   ├── supp_blog/
+│   │   │   │   ├── p_0_radiancefields/
+│   │   │   │   │   ├── index.html
+│   │   ├── readme/
+│   │   │   ├── index.html
+│   │   ├── resources/
+│   │   │   ├── papers/
+│   │   │   │   ├── orig_cr_mc.pdf
+│   │   ├── scripts/
+│   │   │   ├── auth_hash.js
+│   │   │   ├── auth_simple.js
+│   │   │   ├── compbio_homebutton.js
+│   │   │   ├── homebutton.js
+│   │   │   ├── homebutton_ds.js
+│   │   │   ├── stop_arrow.js
+│   │   │   ├── supphomebutton.js
+│   │   ├── _includes/
+│   │   │   ├── articles/
+│   │   │   │   ├── article_dlcv/
+│   │   │   │   │   ├── index.html
+│   │   │   │   ├── article_ds/
+│   │   │   │   │   ├── index.html
+│   │   │   ├── base/
+│   │   │   │   ├── base_article/
+│   │   │   │   │   ├── index.html
+│   │   │   ├── base_article/
+│   │   │   │   ├── index.html
 
 
 
@@ -65,6 +177,44 @@ satosamo.github.io/
 const markdownIt = require("markdown-it");
 const markdownItDeflist = require("markdown-it-deflist");
 const mk = require("@vscode/markdown-it-katex").default;
+const container = require("markdown-it-container");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+
+
+const callout = (name, title) => [
+  container,
+  name,
+  {
+    render: (tokens, idx) => {
+      const token = tokens[idx];
+      if (token.nesting === 1) {
+        return `<div class="markdown-alert markdown-alert-${name}">
+  <p class="markdown-alert-title">${title}</p>\n`;
+      } else {
+        return `</div>\n`;
+      }
+    },
+  },
+];
+
+function calloutPlugin(md, name, defaultTitle) {
+  md.use(container, name, {
+    render: (tokens, idx) => {
+      const token = tokens[idx];
+
+      if (token.nesting === 1) {
+        // extract custom title (everything after the name)
+        const info = token.info.trim().slice(name.length).trim();
+        const title = info || defaultTitle;
+
+        return `<div class="markdown-alert markdown-alert-${name}">
+  <p class="markdown-alert-title">${md.utils.escapeHtml(title)}</p>\n`;
+      } else {
+        return `</div>\n`;
+      }
+    }
+  });
+}
 
 module.exports = function(eleventyConfig) {
   // Pass through static files
@@ -74,13 +224,27 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("resources");
   eleventyConfig.addPassthroughCopy("scripts");
 
+  eleventyConfig.addPlugin(syntaxHighlight);
+
   let md = markdownIt({
   html: true,
   breaks: true,
   linkify: true
   })
   .use(markdownItDeflist)
-  .use(mk);;
+  .use(mk)
+  .use(...callout("note", "Note"))
+  .use(...callout("tip", "Tip"))
+  .use(...callout("warning", "Warning"))
+  .use(...callout("important", "Important"))
+  .use(...callout("caution", "Caution"));
+
+  calloutPlugin(md, "note", "Note");
+  calloutPlugin(md, "tip", "Tip");
+  calloutPlugin(md, "warning", "Warning");
+  calloutPlugin(md, "important", "Important");
+  calloutPlugin(md, "caution", "Caution");
+
   eleventyConfig.setLibrary("md", md);
 
   // Process files from the 'articles' directory
@@ -159,12 +323,59 @@ module.exports = function(eleventyConfig) {
 
 
 # ======================
-# File: articles\0_abstract.md
+# File: readme.md
+# ======================
+
+### For loops - blog lists
+
+Every nunjucks tag ends with 's'. The for cycle in template uses:
+- `tagname` for `tagnames`.
+- example: `dlcv for dlcvs`
+
+# ======================
+# File: .vscode\settings.json
+# ======================
+
+{
+    "chatgpt.commentCodeLensEnabled": false
+}
+
+# ======================
+# File: articles\compbio\intro_article.md
+# ======================
+
+---
+title: "Introduction"
+layout: "articles/article_compbio.njk"
+homeTag: "compbio"
+tags: "compbio_intros"
+order : 1
+---
+
+ASDASD
+
+# ======================
+# File: articles\compbio\pipeline.md
+# ======================
+
+---
+title: "Pipeline"
+layout: "articles/article_compbio.njk"
+homeTag: "compbio"
+tags: "blogs"
+order : 1
+---
+
+ASDASD
+
+# ======================
+# File: articles\dipl\0_abstract.md
 # ======================
 
 ---
 title: "Abstract"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "infos"
 order : 1
 ---
@@ -178,12 +389,13 @@ This thesis proposes a novel rendering framework to address this limitation. We 
 The efficacy of the proposed method will be evaluated through its performance and visual fidelity will be benchmarked against traditional volume rendering techniques. The diagnostic quality of the resulting visualizations will be qualitatively assessed in consultation with medical professionals.
 
 # ======================
-# File: articles\0_details.md
+# File: articles\dipl\0_details.md
 # ======================
 
 ---
 title: "Details"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "infos"
 order : 2
 ---
@@ -210,12 +422,13 @@ Abstract
 
 
 # ======================
-# File: articles\0_introduction.md
+# File: articles\dipl\0_introduction.md
 # ======================
 
 ---
 title: "Introduction"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "miscs"
 order : 2
 ---
@@ -229,12 +442,13 @@ intoroduction to the problem, possible solutions and current ideas of how to pro
 TODO
 
 # ======================
-# File: articles\0_literature.md
+# File: articles\dipl\0_literature.md
 # ======================
 
 ---
 title: "Literature"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "infos"
 order : 3
 ---
@@ -339,12 +553,13 @@ Physically Based Rendering: From Theory to Implementation
 *   [https://arxiv.org/pdf/2412.19282](https://arxiv.org/pdf/2412.19282) - Reflective 3DGS
 
 # ======================
-# File: articles\0_motivation.md
+# File: articles\dipl\0_motivation.md
 # ======================
 
 ---
 title: "Motivation"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "miscs"
 order : 1
 ---
@@ -354,12 +569,13 @@ order : 1
 
 
 # ======================
-# File: articles\0_roadmap.md
+# File: articles\dipl\0_roadmap.md
 # ======================
 
 ---
 title: "Roadmap"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "miscs"
 order : 3
 ---
@@ -368,13 +584,146 @@ order : 3
 
 ![](/images/roadmap.svg)
 
+*(PLACEHOLDER MD TEST)*
+## Castle Building Roadmap
+
+## Overview
+A high-level, phase-driven roadmap for planning and executing a castle construction project. Adapt the timelines, resources and deliverables to your scope (historical reconstruction, fantasy build, real-world fortified manor, etc.).
+
+## Vision & Objectives
+- Primary vision: Build a durable, functional castle that meets safety, aesthetic and program requirements.
+- Objectives:
+    - Structural integrity and longevity
+    - Defensible layout (if applicable)
+    - Period-appropriate aesthetics / chosen style
+    - Visitor access and safety
+    - Budget and schedule adherence
+
+## Success Criteria
+- Structural inspection passed
+- Key spaces (keep, great hall, gatehouse, towers) functional and approved
+- Systems (water, drainage, basic utilities) operational
+- Final budget within agreed variance
+- Handover documentation and maintenance plan complete
+
+---
+
+## Phases & High-Level Timeline
+1. Concept & Feasibility — 2–6 weeks
+2. Site Survey & Permits — 4–12 weeks (parallel tasks possible)
+3. Schematic & Detailed Design — 8–16 weeks
+4. Site Preparation & Foundations — 4–12 weeks
+5. Superstructure (walls, towers) — 12–36 weeks
+6. Roof, Floors & Openings — 8–20 weeks
+7. Interiors & Systems — 8–20 weeks
+8. Defenses, Landscaping & External Works — 6–16 weeks
+9. Commissioning & Inspections — 2–6 weeks
+10. Handover & Maintenance Setup — 2–4 weeks
+
+(Adjust durations according to scale and resources.)
+
+---
+
+## Example Milestones
+- M1: Feasibility report approved
+- M2: Planning permission granted
+- M3: Foundation completed and inspected
+- M4: External walls closed / weather-tight
+- M5: Roof complete
+- M6: Systems commissioned
+- M7: Final inspection passed
+- M8: Handover complete
+
+Each milestone should include acceptance criteria, owner, target date, and required documents.
+
+---
+
+## Roles & Responsibilities
+- Project Sponsor — funding and strategic decisions
+- Project Manager — schedule, budget, coordination
+- Lead Architect / Historian — design and authenticity
+- Structural Engineer — foundations and load-bearing elements
+- Site Manager / Contractor — daily site operations
+- MEP Engineer — utilities and systems
+- Safety Officer — site safety and compliance
+- QA / Inspector — quality checks and sign-offs
+
+---
+
+## Resource Plan
+- Materials: stone/brick, lime mortar, timber, metalwork, roofing materials
+- Equipment: excavation, scaffolding, lifting equipment
+- Labor: masons, carpenters, laborers, specialists
+- Consultants: archaeologist (if needed), conservation specialist, planners
+- Budget categories: design, permits, materials, labor, contingencies, professional fees
+
+---
+
+## Risk Register (sample entries)
+- Ground conditions worse than expected — mitigant: pre-construction geotechnical survey, contingency budget
+- Permit delays — mitigant: early engagement with authorities, buffer in schedule
+- Material shortages / price increases — mitigant: early procurement, alternate suppliers
+- Weather impacts — mitigant: phased scheduling, temporary weather protection
+
+---
+
+## Deliverables per Phase
+- Concept: vision statement, feasibility study, preliminary cost estimate
+- Design: schematic plans, detailed drawings, structural calculations, specification
+- Construction: daily logs, inspection reports, material certificates
+- Commissioning: system test reports, safety certificates
+- Handover: as-built drawings, O&M manuals, maintenance schedule
+
+---
+
+## Communication Plan
+- Weekly site report (to stakeholders)
+- Bi-weekly progress meeting (project team)
+- Monthly executive summary (sponsor)
+- Change control process: log changes, impact assessment, formal approval
+
+---
+
+## Acceptance Checklist (before Handover)
+- Structural certificate obtained
+- Fire & life-safety checks passed
+- Utilities functional (water, power where applicable)
+- Drainage and erosion control verified
+- Accessibility / paths inspected
+- As-built drawings and documentation delivered
+
+---
+
+## Maintenance & Lifecycle
+- Routine inspections (annual)
+- Masonry repointing schedule (as required)
+- Roof and drainage maintenance (bi-annual)
+- Record-keeping for repairs and conservation
+
+---
+
+## Templates & Notes
+- Milestone template: Title, Owner, Target date, Acceptance criteria, Status
+- Task template: ID, Description, Assignee, Start/End, Dependencies, Estimate, Status
+- Change request template: ID, Description, Impact (schedule/budget/scope), Decision
+
+---
+
+## Appendix
+- Glossary of terms
+- Reference standards and local regulations
+- Contact list (authorities, suppliers, consultants)
+
+Customize this roadmap to your project's scale, style and legal context. Use the milestones and templates to convert the plan into a detailed project schedule and task list.
+
 # ======================
-# File: articles\0_thoughts.md
+# File: articles\dipl\0_thoughts.md
 # ======================
 
 ---
 title: "Thoughts"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "miscs"
 order : 4
 ---
@@ -390,12 +739,13 @@ will contain a dynamically growing collection of thoughts with dates to track me
 ![](/images/thoughts_1.svg)
 
 # ======================
-# File: articles\1_medical_scans.md
+# File: articles\dipl\1_medical_scans.md
 # ======================
 
 ---
 title: "Medical Scans"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "chapters"
 order : 1
 ---
@@ -419,12 +769,13 @@ We will briefly cover its beginnings, advances and the current state-of-art solu
 
 
 # ======================
-# File: articles\1_volume_reconstruction.md
+# File: articles\dipl\1_volume_reconstruction.md
 # ======================
 
 ---
 title: "Volume Reconstruction"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "chapters"
 order : 2
 ---
@@ -432,136 +783,699 @@ order : 2
 
 
 # ======================
-# File: articles\addscript.py
-# ======================
-
-import os
-
-# Root folder where your HTML files are located
-root_folder = "."  # <-- change this
-
-# Script line to insert
-script_line = '  <script src="../common.js"></script>\n'
-
-# Walk through all files in the directory recursively
-for dirpath, dirnames, filenames in os.walk(root_folder):
-    for filename in filenames:
-        if filename.endswith(".html") and filename != "index.html":
-            file_path = os.path.join(dirpath, filename)
-            
-            with open(file_path, "r", encoding="utf-8") as f:
-                content = f.read()
-
-            # Skip if the script is already present
-            if "../common.js" in content:
-                continue
-
-            # Insert script before </body>
-            if "</body>" in content:
-                new_content = content.replace("</body>", f"<br/><br/><br/>{script_line}</body>", 1)
-                with open(file_path, "w", encoding="utf-8") as f:
-                    f.write(new_content)
-                print(f"✅ Updated: {file_path}")
-            else:
-                print(f"⚠️ Skipped (no </body>): {file_path}")
-
-print("✅ All eligible HTML files updated.")
-
-# ======================
-# File: articles\compbio\intro_article.md
+# File: articles\dlcv\homework1.md
 # ======================
 
 ---
-title: "Introduction"
-layout: "compbio_article.njk"
-tags: "compbio_intros"
+title: "Homework 1"
+layout: "articles/article_dlcv.njk"
+homeTag: "dlcv"
+tags: "dlcvs"
 order : 1
 ---
 
-ASDASD
+# Homework 1: Cifar10 CNN
+
+## Assignment
+
+The goal of this homework is to:
+
+- Design a basic CNN and train on Cifar10 dataset
+- Improve the model iteratively and benchmark each iteration
+
+### What is Cifar10
+
+CIFAR-10 is a collection of 60,000 32x32 **color images** divided into 10 mutually exclusive classes. The dataset is split into a training set of 50,000 images and a test set of 10,000 images. The 10 classes are: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, and truck.
+
+## Solution
+
+### Setting
+
+For this project, we will also try to learn how to use Google Cloud virtual machine for compute. Because the virtual machine uses os image with `python 3.12` and `pytorch 2.7.` we will be using those versions.
+
+We will be using uv for project management.
+
+The package name of our project will be `cifar10_cnn` and the structure is:
+
+- Core package contains the training module
+- Subpackage `models` contains the base model and every upgrade iteration
+- Subpackage `tests` contains testing
+- Subpackage `utils` contains data loaders
+
+### Dataset Loaders
+
+Function `get_loaders(batch_size, augment=False, first_1000=False)` returns `DataLoader` objects from `torch.utils.data`:
+
+- the `train_loader` filled with training data
+- the `val_loader` filled with validation data
+
+The data can be transformed between loading from builtin Cifar10 object to the loaders:
+
+- `batch_size` - self explaining
+- `augment` - image augmentation is handled trough tensor transformation by `CIFAR10` object
+- `first_1000` - allows for fast prototyping via `Subset` object
+
+### Input data
+
+Images with resolution of 32x32 and 3 channels. 10 classes. `(image, class)`
+
+### Training
+
+The training loop is classic pytorch template loop:
+
+- **For all epochs do**
+    - Train one epoch on training data
+    - Evaluate the epoch on validation data
+- **For each epoch do**
+    - Set model to training mode - `model.train()`
+    - **For each batch in loader do** (e.g. `torch.Size([64, 3, 32, 32])`)
+        - Send the data to available device (CPU, GPU if CUDA)
+        - Do one forward pass on the data
+        - Calculate loss
+        - Compute statistics
+
+### Base Model
+
+The base model `class Cifar10_CNN_Base(nn.Module):` uses the Adam optimizer and ReLU activations per the assignment.
+
+The model consists of 3 feature-extraction layers with kernel size 3 and standard padding of 1:
+
+| Layer | InOut / Size | Result Data Dimension |
+| :---        |    :----:   |          ---: |
+| Input | - | `3x32x32` |
+| 2D Convolutional | `3, 32` | `32x32x32` |
+| 2D Max Pool | `2` | `32x16x16` |
+| 2D Convolutional | `32, 64` | `64x16x16` |
+| 2D Max Pool | `2` | `64x8x8` |
+| 2D Convolutional | `64, 128` | `128x8x8` |
+| 2D Max Pool | `2` | `128x4x4` |
+
+And of two classification layers that take in flattened output of the convolution module:
+
+| Layer | InOut / Act | Result Data Dimension |
+| :---        |    :----:   |          ---: |
+| Input | - | `128x4x4` |
+| Flatten | - | `2048` |
+| ---        |    ---   |          --- |
+| Input | - | `2048` |
+| Linear | ReLU | `2048x256` |
+| Linear | - | `256x10` |
+
+The output is raw logit representation of the classes logistic distribution.
+
+
 
 # ======================
-# File: articles\compbio\pipeline.md
+# File: articles\ds\cache.md
 # ======================
 
 ---
-title: "Pipeline"
-layout: "compbio_article.njk"
-tags: "blogs"
+title: "Cache"
+layout: "articles/article_ds.njk"
+homeTag: "ds"
+tags: "datastructures"
 order : 1
 ---
 
-ASDASD
+### CPU cache
+
+CPU cache is a small, high-speed memory that is physically located near the CPU. It sotred frequently used data and instructions to reduce the time it takes the processor to access them from other memory, like the main memory (RAM).
+
+Modern processors have multiple cache levels. These levels interact with each other and with the CPU based on the specific CPU architecture.
+
+The main properties of cache are
+- cache size
+- cache block size
+- the number of blocks in a set
+- the cache set replacement policy
+- the cache write policy
+
+### Cache Loading
+
+When a CPU wants to access a data stored in the main memory it first loads the data into the cache. This loading, however, only happens in chunks called **cache lines**. Typical cache line is 64 bytes (on modern x86-64 CPUs). This means that the cpu loads the amount of data it wants to access and the next however bytes to load full 64 bytes.
+
+This also means that we may get unrelated memory in the cache to our interest. This is normal since cache behavior is not observable at the semantic level, it happens automatically and we need to work with it in order to maximize the performance of our program.
+
+- L1 cache access: ~0.5ns
+- L2 cache access: ~3ns
+- L3 cache access: ~15ns
+- RAM access: ~100ns
+- SSD access: ~10ms (10000ns)
+
+### Cache-Friendliness
+
+Even a single trip to DRAM is about 200 CPU cycles. We want our programs to work with the CPU's natural prefetching and caching mechanism. Once the data is in cache, the operations are extremely fast so we want to design our algorithms so that we minimize:
+
+#### Cache misses
+
+Cpu fails to find the data it needs in cache and has to load another cache line. We minimize this waste by designing layouts so that elements of the data structure fit inside the cache lines.
+
+- grouping 'hot' (frequently accessed) fields together
+- using structs of arrays instead of arrays of structs
+- *not* placing rarely used fields next to hot data
+- *not* storing 32-byte pointers next to 8-byte ints
+
+#### Pointer chasing
+
+Every pointer-following step risks crossing to a new cache line. Meaning:
+
+- hash maps with chained buckets perform poorly
+- tree structures are slow
+- `absl::flat_hash_map` hash maps put keys and values contiguously in arrays and are *fast*
+
+
 
 # ======================
-# File: css\github-markdown-light.css
+# File: articles\ds\flat_hash_map.md
 # ======================
 
-.katex {
-  font-size: 1.4em;
+---
+title: "flat_hash_map"
+layout: "articles/article_ds.njk"
+homeTag: "ds"
+tags: "datastructures"
+order : 5
+---
+
+*Based on: CppCon 2017: Matt Kulukundis “Designing a Fast, Efficient, Cache-friendly Hash Table, Step by Step”*
+
+## Designing and Implementing flat_hash_map
+
+The hash table described by Matt Kulukundis in his presentation at CppCon 2017 is a **swiss table** (designed in Zürich by Abseil) family of hash tables design. They are meant to replace `std::unordered_set` and `std::unordered_map`.
+
+The **flat** variant of the swiss table is a open-addressed hash table with extra metadata to hold information about the slots, allowing for fast lookup, delete and insert times.
+
+### all items are stored in a single backing array
+
+items:
+: the values distributed according to the hash values of their keys modulo table size
+
+In `flat_hash_map` all items are stored in a single array, also called **backing array**. We call each location in the array a **slot**. This sets the scene for cache-friendliness.
+
+### the backing array is divided into groups of 16 slots
+
+The defining feature of swiss tables is that it utilizes SIMD to effectively compare metadata when performing an operation on the table. The result of such comparison is a 16-bit long word that acts as a mask for our 16 slots in a group.
+
+### metadata is tightly packed
+
+The metadata uses 8 bits (a WHOLE BYTE) for each element and is tightly packed in memory. This means we have 16 bytes of tightly packed metadata.
+
+- Store 1 bit (msb) as a flag:
+    - 0 - full slot, follows by 7 bits of hash
+    - 1 - non-full slot
+- Store 7 bits of hash code in the least significant bits
+
+**If** a slot is full, the first bit will be 0 followed by the hash value:
+`0b0xxxxxxx`
+
+**Else if** a slot is not full but was never occupied, then the value is
+`kEmpty = -128` or `0b10000000`
+
+**Else if** a slot is not full but was once occupied and deleted, then it is a tombstone with a value
+`kDeleted = -2` or `0b11111110`
+
+**Else** the slot is a padding, allowing us to stop scanning metadata for table scan and uses
+`kSentinel = -1` or `0b11111111`
+
+### the hash value is thus divided into two
+
+Every time we hash a key, we divide the hash value into two parts:
+- **H1** - 57 bits and determines the position in the array
+- **H2** - 7 bits and is used in the metadata
+
+:::note Entropy
+Since we split the hash value into two distinct parts we need a hash function that distributes entropy evenly. This prevents collisions in either H1 or H2 since unevenly distributed entropy makes one of those two collision-prone.
+:::
+
+**Implementation**
+
+For H1 we just shift 7 bits, leaving the 57 msb bits. For H2 we filter out the msb bits with `01111111` AND operation, leaving us with 7 lsb. 
+
+```cpp
+size_t H1(size_t hash) { return hash >> 7; }
+ctrl_t H2(size_t hash) { return hash & 0x7F; }
+```
+
+### find operation
+
+**Sequential**
+
+- when looking for a key in the table we first compute the hash value of the key
+- the hash value is then split into H1 and H2
+- H1 is ran through modulo `num_groups` to find the index of the group it should fall into
+- sequentially iterate over all elements in the group
+- **if is full**: compare H2 hash value
+    - **if same**: hit
+    - **if not same**: move to the next slot
+- **if is not full**: move to the next slot
+
+**SIMD-based**
+
+- find the group index
+- compare ALL H2 entries in metadata
+- jump to the matching element
+
+**Implementation**
+
+The 16 slot group allows us to compute the H2 values extremely fast.
+
+:::note SSE
+Streaming SIMD Extensions (SSE) is a single instruction, multiple data (SIMD) instruction set extension to the x86 architecture.
+:::
+
+The `find` function is:
+
+```cpp
+iterator find(const K& key, size_t hash) const {
+    size_t group = H1(hash) % num_groups_;
+    while (true) {
+        Group g{ctrl_ + group * 16};
+        for (int i : g.Match(h2)) {
+            if (key == slots[group * 16 + i])
+                return iterator_at(group * 16 + i);
+        }
+        if (g.MatchEmpty()) return end();
+        group = (group + 1) % num_groups_;
+    }
 }
+```
 
-/* style block math */
-.katex-display {
-  margin: 1.8em 0;
+:::note Compiler Details
+The `if (key == slots[group * 16 + i])` equality operator is ALMOST always true at least once, since we already know the kay should fall into that group as we are comparing the H2 hashes. This allows for `predict true`.
+:::
+
+:::note Full Groups
+If `(g.MatchEmpty()) return end();` is false, we hit an empty, never filled slot and the search may stop since it means no other collisions and potential matches occur after that. If it is true for the whole group we must probe to the next group. This almost never happens pre Matt Kulukundis.
+:::
+
+The SIMD `match` function is:
+
+```cpp
+BitMask<unit32_t> Match(h2_t hash) const {
+    auto match = _mm_set1_epi8(hash);
+    return BitMask <uint32_t>(
+        _mm_movemask_epi8(_mm_cmpeq_epi8(match, crtl))
+    );
 }
+```
 
-.has-arrow {
-  background-color: rgb(255, 0, 0);
+Where:
+
+- `_mm_set1_epi8(arg)` initializes array of 16 elements each of size one byte with value of argument
+- `_mm_cmpeq_epi8(arg1, arg2)` compares the arguments byte wise and returns `FF` in place of match and `00` otherwise
+- `_mm_movemask_epi8(arg)` takes 16 byte array and squished it into 16 bits (according to the msb of the array)
+
+### some naming
+
+A group consists of the backing array and the metadata array. A position in the backing array is slot and position in the metadata is called **control**. A table has $N$ groups.
+
+### erasing is easy
+
+```cpp
+void erase(iterator it) {
+    --size_;
+    Group g{(it.ctrl_ - ctrl_) / 16 * 16 + crtl_};
+    *it.ctrl_ = g.MatchEmpty() ? kEmpty : kDeleted;
+    it.slot_.~K()
 }
+```
 
-/* for now like this, but later maybe not for all img */
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+# ======================
+# File: articles\ds\hashing.md
+# ======================
 
-FULL CSS OF LIGHT MARKDOWN GITHUB STYLE NOT INCLUDED TO SAVE ON CONTEXT TOKENS
+---
+title: "Hashing"
+layout: "articles/article_ds.njk"
+homeTag: "ds"
+tags: "datastructures"
+order : 2
+---
 
-<rest of css...>
+## Hashing
+
+Hashing is a process during which an input, called the **key**, gets transformed into a fixed-size output, a **hash value** using a **hash function**.
+
+### Compression of Information
+
+Information theory treats a hash function as a function that compresses information into fewer bits.
+
+- SHA-256 maps to 256 bits
+- a typical hash table maps to 32 or 64 bits
+- bucket hash table maps to a few bits after modulo
+
+Since this hash mapping reduce the number of bits, information is necessarily lost. This causes an events called **collisions** where two keys map to the same hash value.
+
+### Good Hash Function
+
+A good hash function exhibits high level of randomness.
+
+- every bit of the output depends on each bit of the input
+- output bits behave statistically independently
+- for any two keys, the probability they map to the same hash value is small, ideally uniform
+
+### Data Hashing
+
+The goal of hashing in computer science applications is to place data into a fixed-sized structure efficiently. This includes:
+
+- hash tables
+- bloom filters
+- hash-based file systems
+- symbol tables
+- caches
+- cryptography
+
+This is achieved by interpreting the hash value of a piece of data as the index in that data structure. 
+
+```python
+h = hash(key)
+index = h mod table_size
+```
+
+### The Need for Speed
+
+For arbitrary data, hashing is the only known practical method to achieve constant time lookup. This means that hash tables allow us to access and element in expected constant time.
+
+- modern workloads require billions of lookups per second (google)
+
+### Distributed Systems
+
+Having a consistent hashing system allows distributed systems to unify in data storage and handle requests among clusters. Hashing eliminates the need for central command unifying local data storage systems.
+
+
+
+
+
+
+# ======================
+# File: articles\ds\hash_functions.md
+# ======================
+
+---
+title: "Hash Functions"
+layout: "articles/article_ds.njk"
+homeTag: "ds"
+tags: "datastructures"
+order : 3
+---
+
+## Hash Functions
+
+> TODO: remove nutshell
+
+::: note In a Nutshell
+Put this key into a slot X.
+:::
+
+A hash function is a deterministic mapping:
+
+$$
+h:U \to [0, m-1]
+$$
+
+Where:
+- **U** is the universe of possible key
+- **m** is the number of slots in a hash table (buckets)
+- the functional value **h(k)** is the chosen index from $[0,m-1]$
+
+### Universe of Keys
+
+The universe of key is everything we could ever hash. For example
+
+- all possible 64-bit ints
+- all possible strings
+- all possible memory addresses
+
+The problem in reality is that the universe is way bigger than the hash table. This means collisions are inevitable. This plays a role in choosing the right hash function.
+
+### Choosing the Hash Function
+
+- if hashing behaves unevenly $\implies$ some slots get overloaded
+- overloading $\implies$ lookup costs rise
+- potentially: lookup costs rise $\implies$ attacker can force $O(n)$ times
+
+So we want the hash function to at least *look* random.
+
+> TODO hash function families
+
+
+# ======================
+# File: articles\ds\hash_tables.md
+# ======================
+
+---
+title: "Hash Tables"
+layout: "articles/article_ds.njk"
+homeTag: "ds"
+tags: "datastructures"
+order : 4
+---
+
+## Hash Tables
+
+::: note In a Nutshell
+Hash tables are space-time tradeoff. Infinite memory means the entire key can be used directly as an index. Infinite time means values can be stored without regard for their keys.
+:::
+
+Hash tables are the way to implement the associative array abstract data structure. A key is hashed using a hash function. The hash value is used to index the key in a memory. The key may be associated with a value (maps) or may not (sets).
+
+- `len(table)` is small relative to `len(hashable_keys)` $\implies$ collisions are inevitable
+
+The art of hash tables is the art of collision resolution.
+
+- pointer solution: chaining
+- index computing solution: probing
+
+### Chaining Hash Tables
+
+Each slot contains a list of items.
+
+- C++ `std::unordered_map`
+- Java `HashMap`
+
+### Probing
+
+The chaining hash table solves collisions by introducing pointers. The hash table slot points to the start of the list containing all the collided keys. Additionally, to be able to grow the slot at the start, we need to keep a dummy.
+
+> TODO why not vectors for locality?
+
+Pointers are an enemy of cache-friendliness. We want to make sure cache lines contain the collided sequence of keys. This also allows for SIMD-ing the probing.
+
+A collision triggers a computation of new index:
+
+- linear probing: the new index is the collided one incremented by 1
+```mathematica
+h, h+1, h+2, h+3, ...
+```
+- quadratic probing
+```mathematica
+h, h+1^2, h+2^2, h+3^2, ...
+```
+- double hashing
+```mathematica
+h + i * h2(key)
+```
+
+The con of probing is the difficulty when deleting an entry.
+
+### Modern Probing
+
+- Google SwissTable / Abseil `flat_hash_map` (metadata + SIMD acceleration)
+- Rust `HashMap` (SwissTable)
+- Robin Hood hashing (balances probe lengths)
+
+
 
 
 # ======================
 # File: css\homepage.css
 # ======================
 
-.construction-banner {
-  width: 100%;
-  background-color: #FFD54F; /* Material amber */
-  color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+/* =========================================
+   1. CSS VARIABLES (THEME CONFIGURATION)
+   ========================================= */
+:root {
+    /* Sidebar Dimensions */
+    --sidebar-width-collapsed: 20px;
+    --sidebar-width-expanded: 220px;
+    
+    /* Sidebar Colors */
+    --sidebar-bg: #333333;
+    --sidebar-item-bg: #444444;
+    --sidebar-item-hover: #555555;
+    --sidebar-text: #ffffff;
+    --sidebar-highlight: #007bff;      /* Primary Action Color */
+    --sidebar-highlight-hover: #0056b3;
+    
+    /* Construction Banner */
+    --banner-bg: #FFD54F;
+    --banner-text: #000000;
+
+    /* Transitions */
+    --transition-speed: 0.25s;
 }
 
-.construction-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-body {
-  padding-top: 50px; /* prevent content from hiding under the banner */
+/* =========================================
+   2. SIDEBAR CONTAINER & LAYOUT
+   ========================================= */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-width-collapsed);
+    background: var(--sidebar-bg);
+    z-index: 9998;
+    overflow: hidden; /* Hides internal content when collapsed */
+    transition: width var(--transition-speed) ease;
+    
+    /* FLEXBOX SETTINGS (Scrollable Top + Fixed Bottom) */
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
 }
 
-.construction-banner img {
-  height: 35px;
-  margin-right: 10px;
+/* Hover expansion */
+.sidebar:hover {
+    width: var(--sidebar-width-expanded);
 }
 
-.construction-banner span {
-  font-weight: 500;
+/* =========================================
+   3. SIDEBAR SECTIONS
+   ========================================= */
+
+/* --- A. The Scrollable Top Area --- */
+.sidebar-scroll-area {
+    flex-grow: 1;      /* Takes up all available space */
+    overflow-y: auto;  /* Adds scrollbar only if needed */
+    overflow-x: hidden;
+    padding-top: 40px; /* Space for the "MENU" label at the top */
+    
+    /* Firefox Scrollbar Styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--sidebar-item-hover) var(--sidebar-bg);
 }
 
+/* Webkit Scrollbar Styling (Chrome/Safari/Edge) */
+.sidebar-scroll-area::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar-scroll-area::-webkit-scrollbar-track {
+    background: var(--sidebar-bg);
+}
+.sidebar-scroll-area::-webkit-scrollbar-thumb {
+    background-color: var(--sidebar-item-hover);
+    border-radius: 3px;
+}
 
-/* Simple CSS for centering */
+/* --- B. The Fixed Bottom Section --- */
+.sidebar-bottom-action {
+    flex-shrink: 0; /* Prevents this section from shrinking */
+    padding-bottom: 20px;
+    background: var(--sidebar-bg); /* Ensures it covers scrolling content behind it */
+    border-top: 1px solid var(--sidebar-item-bg); /* Optional separator */
+    margin-top: auto;
+}
+
+/* =========================================
+   4. SIDEBAR ELEMENTS (LABELS & LINKS)
+   ========================================= */
+
+/* Vertical label shown only when collapsed */
+.sidebar-label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: rotate(-90deg) translate(-50%);
+    transform-origin: left top;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--sidebar-text);
+    letter-spacing: 2px;
+    opacity: 1;
+    pointer-events: none;      /* Don’t block hover */
+    transition: opacity 0.2s ease;
+}
+
+/* Hide the label when expanded */
+.sidebar:hover .sidebar-label {
+    opacity: 0;
+}
+
+/* General list styling */
+.sidebar ul {
+    list-style: none;
+    padding: 0; 
+    margin: 0;
+}
+
+.sidebar li {
+    margin: 16px 0;
+}
+
+/* Link Text Styling */
+.sidebar a {
+    text-decoration: none;
+    color: var(--sidebar-text);
+    font-size: 1rem;
+    opacity: 0;                         /* Hidden when collapsed */
+    white-space: nowrap;
+    transition: opacity 0.2s ease 0.1s;
+}
+
+/* When expanded, make links visible */
+.sidebar:hover a {
+    opacity: 1;
+}
+
+/* Box Styling (The clickable buttons) */
+.sidebar-box {
+    display: block;
+    padding: 10px 12px;
+    margin: 6px 14px;
+    background: var(--sidebar-item-bg);
+    border-radius: 6px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition:
+        opacity 0.2s ease,
+        transform var(--transition-speed) ease,
+        background 0.2s ease;
+}
+
+/* Show + animate boxes when expanded */
+.sidebar:hover .sidebar-box {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hover highlight */
+.sidebar-box:hover {
+    background: var(--sidebar-item-hover);
+}
+
+/* Active State (Add this class to your active link in HTML) */
+.sidebar-box.active {
+    border-left: 3px solid var(--sidebar-highlight);
+    background: #222; 
+}
+
+/* Special Button (LLM Chats) */
+.special-action {
+    background-color: var(--sidebar-highlight);
+    font-weight: bold;
+    text-align: center;
+}
+.special-action:hover {
+    background-color: var(--sidebar-highlight-hover);
+}
+
+/* =========================================
+   5. GENERAL PAGE LAYOUT & TYPOGRAPHY
+   ========================================= */
+
 body {
     font-family: sans-serif;
     display: flex;
@@ -570,7 +1484,80 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding-top: 50px; /* prevent content from hiding under the banner */
 }
+
+/* Construction Banner */
+.construction-banner {
+    width: 100%;
+    background-color: var(--banner-bg);
+    color: var(--banner-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    
+    /* Positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.construction-banner img {
+    height: 35px;
+    margin-right: 10px;
+}
+
+.construction-banner span {
+    font-weight: 500;
+}
+
+/* Link Lists (Homepage Content) */
+.link-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+.link-list li {
+    margin: 15px 0;
+}
+.link-list a {
+    font-size: 1.5em;
+    color: var(--sidebar-highlight);
+    text-decoration: none;
+}
+.link-list a:hover {
+    text-decoration: underline;
+}
+
+/* Text Utilities */
+.centered-text {
+    display: block;          
+    text-align: center;      
+    white-space: normal;     
+    word-wrap: break-word;   
+    max-width: 100%;         
+    overflow-wrap: anywhere; 
+}
+
+.links-line {
+    border: 3px solid gray;
+    width: 150px;
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+/* =========================================
+   6. ANIMATIONS & DECORATIONS
+   ========================================= */
+
+/* Bouncing Arrow */
 body::after {
     content: "";
     position: fixed;
@@ -585,7 +1572,7 @@ body::after {
 }   
 
 body.arrow-stopped::after {
-animation: none; /* stops the bounce */
+    animation: none; /* stops the bounce */
 }
 
 @keyframes bounce {
@@ -593,46 +1580,48 @@ animation: none; /* stops the bounce */
     50% { transform: translateY(-10px); }
 }
 
-.link-list {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-.link-list li {
-    margin: 15px 0;
-}
-.link-list a {
-    font-size: 1.5em;
-    color: #007bff; /* Blue link color */
+/* =========================================
+   7. FLOATING ELEMENTS
+   ========================================= */
+
+.floating-home-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Box Model */
+    padding: 8px 14px;
+    border-radius: 6px;
+    
+    /* Visuals */
+    background-color: var(--sidebar-highlight); /* #007bff */
+    color: #ffffff;
     text-decoration: none;
-}
-.link-list a:hover {
-    text-decoration: underline;
-}
-
-.centered-text {
-display: block;          /* Makes the <i> element behave like a block element */
-text-align: center;      /* Centers text horizontally */
-white-space: normal;     /* Allows text to wrap to next line */
-word-wrap: break-word;   /* Breaks long words that overflow */
-max-width: 100%;         /* Ensures it doesn't exceed parent width */
-overflow-wrap: anywhere; /* Handles extremely long words without spaces */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    opacity: 0.7;
+    z-index: 9999;
+    
+    /* Typography */
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+    
+    /* Transitions */
+    transition: opacity 0.3s, background-color 0.2s;
 }
 
-.links-line {
-border: 3px solid gray;
-width: 150px;
-margin: 20px auto;
-border-radius: 2px;
+.floating-home-btn:hover {
+    opacity: 1;
+    background-color: var(--sidebar-highlight-hover);
 }
 
 # ======================
-# File: pages\homepage_supp_blog\p_0_radiancefields.md
+# File: pages\supp_blog\p_0_radiancefields.md
 # ======================
 
 ---
 title: "Radiance Fields"
-layout: "supp_article.njk"
+layout: "articles/article_supp.njk"
 tags: "physics"
 order : 0
 ---
@@ -703,7 +1692,7 @@ ASD
 # ======================
 
 console.log(document.getElementById("submitButton"));
-PATH_DIPL = "/homepages/homepage_1/index.html"
+PATH_DIPL = "/homepages/homepage_dipl/index.html"
 PATH_COMPBIO = "/homepages/homepage_compbio/index.html"
 
 document.getElementById("submitButton").addEventListener("click", checkPassword);
@@ -800,6 +1789,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 # ======================
+# File: scripts\homebutton_ds.js
+# ======================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.createElement("a");
+  btn.href = "/homepages/homepage_ds/index.html";
+  btn.textContent = "Home";
+
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "8px 14px",
+    background: "#007bff",
+    color: "#fff",
+    "border-radius": "6px",
+    "text-decoration": "none",
+    "font-size": "14px",
+    "font-family": "'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif",
+    "box-shadow": "0 2px 6px rgba(0,0,0,0.2)",
+    "z-index": 9999,
+    "opacity": 0.7,
+    "transition": "opacity 0.3s",
+  });
+
+  // Fade effect on hover
+  btn.addEventListener("mouseenter", () => (btn.style.opacity = 1));
+  btn.addEventListener("mouseleave", () => (btn.style.opacity = 0.7));
+
+  document.body.appendChild(btn);
+});
+
+
+# ======================
 # File: scripts\stop_arrow.js
 # ======================
 
@@ -849,3 +1873,2944 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.body.appendChild(btn);
 });
+
+
+# ======================
+# File: _data\navigation.json
+# ======================
+
+[
+  {
+    "label": "Thesis Home",
+    "url": "/homepages/homepage_dipl/",
+    "id": "dipl",
+    "chatUrl": "/chats/dipl_chats/"
+  },
+  {
+    "label": "Supplementary Blog",
+    "url": "/homepages/homepage_supp_blog/",
+    "id": "supp",
+    "chatUrl": "/chats/supp_chats/"
+  },
+  {
+    "label": "Data Structures",
+    "url": "/homepages/homepage_ds/",
+    "id": "ds",
+    "chatUrl": "/chats/ds_chats/"
+  },
+  {
+    "label": "Computational Biology",
+    "url": "/homepages/homepage_compbio/",
+    "id": "compbio",
+    "chatUrl": "/chats/compbio_chats/"
+  },
+  {
+    "label": "DL: Computer Vision",
+    "url": "/homepages/homepage_dlcv/",
+    "id": "dlcv",
+    "chatUrl": "/chats/dlcv_chats/"
+  }
+]
+
+# ======================
+# File: _site\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization</title>
+    <link rel="icon" type="image/x-icon" href="/images/uk_logo.ico">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: grid;
+            place-items: center;
+            min-height: 80vh;
+            background-color: #f4f4f4;
+        }
+        #auth-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        input {
+            font-size: 1rem;
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            margin-top: 1rem;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="auth-box">
+        <h2>Authorization</h2>
+        <input type="password" id="passwordInput" placeholder="Password...">
+        <button id="submitButton">Go</button>
+        <p id="message"></p>
+    </div>
+    <script src = "/scripts/auth_simple.js"></script>
+</body>
+</html>
+
+
+# ======================
+# File: _site\articles\compbio\intro_article\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <p>ASDASD</p>
+
+  </article>
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_compbio" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\compbio\pipeline\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pipeline | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <p>ASDASD</p>
+
+  </article>
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_compbio" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dipl\0_abstract\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Abstract | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h1>Abstract</h1>
+<p>Volumetric data from medical scans (e.g. CT, MRI) is essential for clinical analysis, medical education, and patient communication. However, achieving photorealistic rendering of this data using traditional methods often either compromises real-time rendering times or requires expensive hardware, limiting its accessibility.</p>
+<p>This thesis proposes a novel rendering framework to address this limitation. We will investigate the use of path tracing combined with splatting methods to render medical volumetric data. Together with targeted performance optimizations, we aim to achieve photorealistic and real-time results on consumer-grade GPUs.</p>
+<p>The efficacy of the proposed method will be evaluated through its performance and visual fidelity will be benchmarked against traditional volume rendering techniques. The diagnostic quality of the resulting visualizations will be qualitatively assessed in consultation with medical professionals.</p>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dipl" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dipl\0_details\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Details | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h1>Details</h1>
+<h2>Master's Thesis</h2>
+<dl>
+<dt>Department - Faculty  - Institute</dt>
+<dd>
+<p>Faculty of Mathematics, Physics and Informatics - Department of Computer Science - Comenius University Bratislava</p>
+</dd>
+<dt>Supervisor</dt>
+<dd>
+<p>doc. RNDr. Pavel Chalmovianský, PhD.</p>
+</dd>
+<dt>Title</dt>
+<dd>
+<p>Modern Techniques for Medical Data Imaging on Consumer-Grade Hardware</p>
+</dd>
+<dt>Abstract</dt>
+<dd>
+<p>Volumetric data from medical scans (e.g. CT, MRI) is essential for clinical analysis, medical education, and patient communication. However, achieving photorealistic rendering of this data using traditional methods often either compromises real-time rendering times or requires expensive hardware, limiting its accessibility.</p>
+</dd>
+<dd>
+<p>This thesis proposes a novel rendering framework to address this limitation. We will investigate the use of path tracing combined with splatting methods to render medical volumetric data. Together with targeted performance optimizations, we aim to achieve photorealistic and real-time results on consumer-grade GPUs.</p>
+</dd>
+<dd>
+<p>The efficacy of the proposed method will be evaluated through its performance and visual fidelity will be benchmarked against traditional volume rendering techniques. The diagnostic quality of the resulting visualizations will be qualitatively assessed in consultation with medical professionals.</p>
+</dd>
+</dl>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dipl" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dipl\0_introduction\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h1>Introduction</h1>
+<p>TODO</p>
+<p>intoroduction to the problem, possible solutions and current ideas of how to proceed</p>
+<p>TODO</p>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dipl" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dipl\0_literature\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Literature | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h1>Literature</h1>
+<h2>Primary Literature</h2>
+<dl>
+<dt>Optical properties of biological tissues: a review</dt>
+<dd><a href="https://doi.org/10.1088/0031-9155/58/11/r37">https://doi.org/10.1088/0031-9155/58/11/r37</a></dd>
+</dl>
+<pre><code>@article{Jacques_2013,
+doi = {10.1088/0031-9155/58/11/R37},
+url = {https://doi.org/10.1088/0031-9155/58/11/R37},
+year = {2013},
+month = {may},
+publisher = {IOP Publishing},
+volume = {58},
+number = {11},
+pages = {R37},
+author = {Jacques, Steven L},
+title = {Optical properties of biological tissues: a review},
+journal = {Physics in Medicine &amp; Biology},
+}
+</code></pre>
+<dl>
+<dt>3D Gaussian Splatting for Real-Time Radiance Field Rendering</dt>
+<dd><a href="https://doi.org/10.48550/arXiv.2308.04079">https://doi.org/10.48550/arXiv.2308.04079</a></dd>
+</dl>
+<pre><code>@misc{kerbl20233dgaussiansplattingrealtime,
+      title={3D Gaussian Splatting for Real-Time Radiance Field Rendering}, 
+      author={Bernhard Kerbl and Georgios Kopanas and Thomas Leimkühler and George Drettakis},
+      year={2023},
+      eprint={2308.04079},
+      archivePrefix={arXiv},
+      primaryClass={cs.GR},
+      url={https://arxiv.org/abs/2308.04079}, 
+}
+</code></pre>
+<dl>
+<dt>Real-Time Monte-Carlo Path Tracing of Medical Volume Data</dt>
+<dd><a href="/resources/papers/orig_cr_mc.pdf">Local Copy</a></dd>
+</dl>
+<pre><code>@inproceedings{Engel2016,
+  author    = {Engel, Klaus},
+  title     = {Real-Time Monte-Carlo Path Tracing of Medical Volume Data},
+  booktitle = {Proceedings of the GPU Technology Conference (GTC)},
+  year      = {2016},
+  address   = {San Jose Convention Center, San Jose, CA, USA},
+  month     = {April 4--7},
+  note      = {GPU Technology Conference},
+}
+</code></pre>
+<dl>
+<dt>Physically Based Rendering: From Theory to Implementation</dt>
+<dd><a href="https://www.pbrt.org/">https://www.pbrt.org/</a></dd>
+</dl>
+<pre><code>@book{Pharr2023,
+  author    = {Pharr, Matt and Jakob, Wenzel and Humphreys, Greg},
+  title     = {Physically Based Rendering: From Theory to Implementation},
+  edition   = {4th},
+  year      = {2023},
+  publisher = {MIT Press},
+  address   = {Cambridge, MA, USA},
+  isbn      = {9780262048026},
+  url       = {https://pbrt.org/}
+}
+</code></pre>
+<h2>Other Literature</h2>
+<p><em>(Subject to change)</em></p>
+<h3>Direct Volume Rendering</h3>
+<h4>Articles</h4>
+<ul>
+<li><a href="https://cgl.ethz.ch/teaching/former/scivis_07/Notes/stuff/StuttgartCourse/VIS-Modules-06-Direct_Volume_Rendering.pdf">https://cgl.ethz.ch/teaching/former/scivis_07/Notes/stuff/StuttgartCourse/VIS-Modules-06-Direct_Volume_Rendering.pdf</a></li>
+</ul>
+<h3>General Rendering</h3>
+<h4>Books</h4>
+<ul>
+<li>Physically Based Rendering (PBR),</li>
+<li>Real-Time Rendering, CRC</li>
+</ul>
+<h3>Monte Carlo Path Tracing</h3>
+<h4>Papers</h4>
+<ul>
+<li>Mathematical Basics of Monte Carlo Rendering Algorithms</li>
+</ul>
+<h3>3D Gaussian Splatting</h3>
+<ul>
+<li><a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting">https://github.com/MrNeRF/awesome-3D-gaussian-splatting</a> - Curated list of resources on 3DGS</li>
+</ul>
+<h4>Papers</h4>
+<ul>
+<li><a href="https://arxiv.org/pdf/2308.04079">https://arxiv.org/pdf/2308.04079</a> - Original 3DGS paper</li>
+<li><a href="https://arxiv.org/pdf/2311.16043">https://arxiv.org/pdf/2311.16043</a> - Original Relightable 3D Gaussians</li>
+<li><a href="https://arxiv.org/pdf/2311.17977">https://arxiv.org/pdf/2311.17977</a> - 3DGS with shading functions</li>
+<li><a href="https://arxiv.org/pdf/2311.16473">https://arxiv.org/pdf/2311.16473</a> - Another Relightable 3DGS</li>
+<li><a href="https://arxiv.org/pdf/2507.20512">https://arxiv.org/pdf/2507.20512</a> - Complex 3DGS shadowing</li>
+<li><a href="https://arxiv.org/pdf/2412.19282">https://arxiv.org/pdf/2412.19282</a> - Reflective 3DGS</li>
+</ul>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dipl" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dipl\0_motivation\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motivation | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h1>Motivation</h1>
+<p><em>(where i talk about why is something like this even needed)</em></p>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dipl" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dipl\0_roadmap\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roadmap | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h1>Roadmap</h1>
+<p><img src="/images/roadmap.svg" alt=""></p>
+<p><em>(PLACEHOLDER MD TEST)</em></p>
+<h2>Castle Building Roadmap</h2>
+<h2>Overview</h2>
+<p>A high-level, phase-driven roadmap for planning and executing a castle construction project. Adapt the timelines, resources and deliverables to your scope (historical reconstruction, fantasy build, real-world fortified manor, etc.).</p>
+<h2>Vision &amp; Objectives</h2>
+<ul>
+<li>Primary vision: Build a durable, functional castle that meets safety, aesthetic and program requirements.</li>
+<li>Objectives:
+<ul>
+<li>Structural integrity and longevity</li>
+<li>Defensible layout (if applicable)</li>
+<li>Period-appropriate aesthetics / chosen style</li>
+<li>Visitor access and safety</li>
+<li>Budget and schedule adherence</li>
+</ul>
+</li>
+</ul>
+<h2>Success Criteria</h2>
+<ul>
+<li>Structural inspection passed</li>
+<li>Key spaces (keep, great hall, gatehouse, towers) functional and approved</li>
+<li>Systems (water, drainage, basic utilities) operational</li>
+<li>Final budget within agreed variance</li>
+<li>Handover documentation and maintenance plan complete</li>
+</ul>
+<hr>
+<h2>Phases &amp; High-Level Timeline</h2>
+<ol>
+<li>Concept &amp; Feasibility — 2–6 weeks</li>
+<li>Site Survey &amp; Permits — 4–12 weeks (parallel tasks possible)</li>
+<li>Schematic &amp; Detailed Design — 8–16 weeks</li>
+<li>Site Preparation &amp; Foundations — 4–12 weeks</li>
+<li>Superstructure (walls, towers) — 12–36 weeks</li>
+<li>Roof, Floors &amp; Openings — 8–20 weeks</li>
+<li>Interiors &amp; Systems — 8–20 weeks</li>
+<li>Defenses, Landscaping &amp; External Works — 6–16 weeks</li>
+<li>Commissioning &amp; Inspections — 2–6 weeks</li>
+<li>Handover &amp; Maintenance Setup — 2–4 weeks</li>
+</ol>
+<p>(Adjust durations according to scale and resources.)</p>
+<hr>
+<h2>Example Milestones</h2>
+<ul>
+<li>M1: Feasibility report approved</li>
+<li>M2: Planning permission granted</li>
+<li>M3: Foundation completed and inspected</li>
+<li>M4: External walls closed / weather-tight</li>
+<li>M5: Roof complete</li>
+<li>M6: Systems commissioned</li>
+<li>M7: Final inspection passed</li>
+<li>M8: Handover complete</li>
+</ul>
+<p>Each milestone should include acceptance criteria, owner, target date, and required documents.</p>
+<hr>
+<h2>Roles &amp; Responsibilities</h2>
+<ul>
+<li>Project Sponsor — funding and strategic decisions</li>
+<li>Project Manager — schedule, budget, coordination</li>
+<li>Lead Architect / Historian — design and authenticity</li>
+<li>Structural Engineer — foundations and load-bearing elements</li>
+<li>Site Manager / Contractor — daily site operations</li>
+<li>MEP Engineer — utilities and systems</li>
+<li>Safety Officer — site safety and compliance</li>
+<li>QA / Inspector — quality checks and sign-offs</li>
+</ul>
+<hr>
+<h2>Resource Plan</h2>
+<ul>
+<li>Materials: stone/brick, lime mortar, timber, metalwork, roofing materials</li>
+<li>Equipment: excavation, scaffolding, lifting equipment</li>
+<li>Labor: masons, carpenters, laborers, specialists</li>
+<li>Consultants: archaeologist (if needed), conservation specialist, planners</li>
+<li>Budget categories: design, permits, materials, labor, contingencies, professional fees</li>
+</ul>
+<hr>
+<h2>Risk Register (sample entries)</h2>
+<ul>
+<li>Ground conditions worse than expected — mitigant: pre-construction geotechnical survey, contingency budget</li>
+<li>Permit delays — mitigant: early engagement with authorities, buffer in schedule</li>
+<li>Material shortages / price increases — mitigant: early procurement, alternate suppliers</li>
+<li>Weather impacts — mitigant: phased scheduling, temporary weather protection</li>
+</ul>
+<hr>
+<h2>Deliverables per Phase</h2>
+<ul>
+<li>Concept: vision statement, feasibility study, preliminary cost estimate</li>
+<li>Design: schematic plans, detailed drawings, structural calculations, specification</li>
+<li>Construction: daily logs, inspection reports, material certificates</li>
+<li>Commissioning: system test reports, safety certificates</li>
+<li>Handover: as-built drawings, O&amp;M manuals, maintenance schedule</li>
+</ul>
+<hr>
+<h2>Communication Plan</h2>
+<ul>
+<li>Weekly site report (to stakeholders)</li>
+<li>Bi-weekly progress meeting (project team)</li>
+<li>Monthly executive summary (sponsor)</li>
+<li>Change control process: log changes, impact assessment, formal approval</li>
+</ul>
+<hr>
+<h2>Acceptance Checklist (before Handover)</h2>
+<ul>
+<li>Structural certificate obtained</li>
+<li>Fire &amp; life-safety checks passed</li>
+<li>Utilities functional (water, power where applicable)</li>
+<li>Drainage and erosion control verified</li>
+<li>Accessibility / paths inspected</li>
+<li>As-built drawings and documentation delivered</li>
+</ul>
+<hr>
+<h2>Maintenance &amp; Lifecycle</h2>
+<ul>
+<li>Routine inspections (annual)</li>
+<li>Masonry repointing schedule (as required)</li>
+<li>Roof and drainage maintenance (bi-annual)</li>
+<li>Record-keeping for repairs and conservation</li>
+</ul>
+<hr>
+<h2>Templates &amp; Notes</h2>
+<ul>
+<li>Milestone template: Title, Owner, Target date, Acceptance criteria, Status</li>
+<li>Task template: ID, Description, Assignee, Start/End, Dependencies, Estimate, Status</li>
+<li>Change request template: ID, Description, Impact (schedule/budget/scope), Decision</li>
+</ul>
+<hr>
+<h2>Appendix</h2>
+<ul>
+<li>Glossary of terms</li>
+<li>Reference standards and local regulations</li>
+<li>Contact list (authorities, suppliers, consultants)</li>
+</ul>
+<p>Customize this roadmap to your project's scale, style and legal context. Use the milestones and templates to convert the plan into a detailed project schedule and task list.</p>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dipl" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dipl\0_thoughts\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thoughts | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h1>Thoughts</h1>
+<p><em>(30.10.2025)</em></p>
+<p>will contain a dynamically growing collection of thoughts with dates to track mental process and progress throughout the writing</p>
+<p><em>(1.11.2025)</em><br>
+<img src="/images/thoughts_1.svg" alt=""></p>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dipl" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dipl\1_medical_scans\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medical Scans | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <p><em>(30.10 - )</em></p>
+<h1>Medical Scans</h1>
+<p>This chapter serves as a introduction to the concepts of medical scans. The bread and butter of our thesis as the source of input data.</p>
+<h2>CT Scans</h2>
+<dl>
+<dt>CT scan</dt>
+<dd>computed tomography scan</dd>
+</dl>
+<p>In this section we will look at the fundamentals of ct scans. As our primary source of data it is important to get a sense of the historical motivation behind the technology and the science that drove it.</p>
+<p>We will briefly cover its beginnings, advances and the current state-of-art solutions that maximize the quality of the resulting scan but at the same time minimize the exposure to radiation. Then, briefly, we will examine the physics and mathematics behind the process of acquiring and processing ct scans so that a full and informative picture can be made as to where our sources come from.</p>
+<p><img src="/images/1_1.svg" alt="Alt text"></p>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dipl" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dipl\1_volume_reconstruction\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Volume Reconstruction | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dipl" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\dlcv\homework1\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homework 1 | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h1>Homework 1: Cifar10 CNN</h1>
+<h2>Assignment</h2>
+<p>The goal of this homework is to:</p>
+<ul>
+<li>Design a basic CNN and train on Cifar10 dataset</li>
+<li>Improve the model iteratively and benchmark each iteration</li>
+</ul>
+<h3>What is Cifar10</h3>
+<p>CIFAR-10 is a collection of 60,000 32x32 <strong>color images</strong> divided into 10 mutually exclusive classes. The dataset is split into a training set of 50,000 images and a test set of 10,000 images. The 10 classes are: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, and truck.</p>
+<h2>Solution</h2>
+<h3>Setting</h3>
+<p>For this project, we will also try to learn how to use Google Cloud virtual machine for compute. Because the virtual machine uses os image with <code>python 3.12</code> and <code>pytorch 2.7.</code> we will be using those versions.</p>
+<p>We will be using uv for project management.</p>
+<p>The package name of our project will be <code>cifar10_cnn</code> and the structure is:</p>
+<ul>
+<li>Core package contains the training module</li>
+<li>Subpackage <code>models</code> contains the base model and every upgrade iteration</li>
+<li>Subpackage <code>tests</code> contains testing</li>
+<li>Subpackage <code>utils</code> contains data loaders</li>
+</ul>
+<h3>Dataset Loaders</h3>
+<p>Function <code>get_loaders(batch_size, augment=False, first_1000=False)</code> returns <code>DataLoader</code> objects from <code>torch.utils.data</code>:</p>
+<ul>
+<li>the <code>train_loader</code> filled with training data</li>
+<li>the <code>val_loader</code> filled with validation data</li>
+</ul>
+<p>The data can be transformed between loading from builtin Cifar10 object to the loaders:</p>
+<ul>
+<li><code>batch_size</code> - self explaining</li>
+<li><code>augment</code> - image augmentation is handled trough tensor transformation by <code>CIFAR10</code> object</li>
+<li><code>first_1000</code> - allows for fast prototyping via <code>Subset</code> object</li>
+</ul>
+<h3>Input data</h3>
+<p>Images with resolution of 32x32 and 3 channels. 10 classes. <code>(image, class)</code></p>
+<h3>Training</h3>
+<p>The training loop is classic pytorch template loop:</p>
+<ul>
+<li><strong>For all epochs do</strong>
+<ul>
+<li>Train one epoch on training data</li>
+<li>Evaluate the epoch on validation data</li>
+</ul>
+</li>
+<li><strong>For each epoch do</strong>
+<ul>
+<li>Set model to training mode - <code>model.train()</code></li>
+<li><strong>For each batch in loader do</strong> (e.g. <code>torch.Size([64, 3, 32, 32])</code>)
+<ul>
+<li>Send the data to available device (CPU, GPU if CUDA)</li>
+<li>Do one forward pass on the data</li>
+<li>Calculate loss</li>
+<li>Compute statistics</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Base Model</h3>
+<p>The base model <code>class Cifar10_CNN_Base(nn.Module):</code> uses the Adam optimizer and ReLU activations per the assignment.</p>
+<p>The model consists of 3 feature-extraction layers with kernel size 3 and standard padding of 1:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Layer</th>
+<th style="text-align:center">InOut / Size</th>
+<th style="text-align:right">Result Data Dimension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Input</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>3x32x32</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Convolutional</td>
+<td style="text-align:center"><code>3, 32</code></td>
+<td style="text-align:right"><code>32x32x32</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Max Pool</td>
+<td style="text-align:center"><code>2</code></td>
+<td style="text-align:right"><code>32x16x16</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Convolutional</td>
+<td style="text-align:center"><code>32, 64</code></td>
+<td style="text-align:right"><code>64x16x16</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Max Pool</td>
+<td style="text-align:center"><code>2</code></td>
+<td style="text-align:right"><code>64x8x8</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Convolutional</td>
+<td style="text-align:center"><code>64, 128</code></td>
+<td style="text-align:right"><code>128x8x8</code></td>
+</tr>
+<tr>
+<td style="text-align:left">2D Max Pool</td>
+<td style="text-align:center"><code>2</code></td>
+<td style="text-align:right"><code>128x4x4</code></td>
+</tr>
+</tbody>
+</table>
+<p>And of two classification layers that take in flattened output of the convolution module:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Layer</th>
+<th style="text-align:center">InOut / Act</th>
+<th style="text-align:right">Result Data Dimension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Input</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>128x4x4</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Flatten</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>2048</code></td>
+</tr>
+<tr>
+<td style="text-align:left">---</td>
+<td style="text-align:center">---</td>
+<td style="text-align:right">---</td>
+</tr>
+<tr>
+<td style="text-align:left">Input</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>2048</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Linear</td>
+<td style="text-align:center">ReLU</td>
+<td style="text-align:right"><code>2048x256</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Linear</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right"><code>256x10</code></td>
+</tr>
+</tbody>
+</table>
+<p>The output is raw logit representation of the classes logistic distribution.</p>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_dlcv" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\ds\cache\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cache | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h3>CPU cache</h3>
+<p>CPU cache is a small, high-speed memory that is physically located near the CPU. It sotred frequently used data and instructions to reduce the time it takes the processor to access them from other memory, like the main memory (RAM).</p>
+<p>Modern processors have multiple cache levels. These levels interact with each other and with the CPU based on the specific CPU architecture.</p>
+<p>The main properties of cache are</p>
+<ul>
+<li>cache size</li>
+<li>cache block size</li>
+<li>the number of blocks in a set</li>
+<li>the cache set replacement policy</li>
+<li>the cache write policy</li>
+</ul>
+<h3>Cache Loading</h3>
+<p>When a CPU wants to access a data stored in the main memory it first loads the data into the cache. This loading, however, only happens in chunks called <strong>cache lines</strong>. Typical cache line is 64 bytes (on modern x86-64 CPUs). This means that the cpu loads the amount of data it wants to access and the next however bytes to load full 64 bytes.</p>
+<p>This also means that we may get unrelated memory in the cache to our interest. This is normal since cache behavior is not observable at the semantic level, it happens automatically and we need to work with it in order to maximize the performance of our program.</p>
+<ul>
+<li>L1 cache access: ~0.5ns</li>
+<li>L2 cache access: ~3ns</li>
+<li>L3 cache access: ~15ns</li>
+<li>RAM access: ~100ns</li>
+<li>SSD access: ~10ms (10000ns)</li>
+</ul>
+<h3>Cache-Friendliness</h3>
+<p>Even a single trip to DRAM is about 200 CPU cycles. We want our programs to work with the CPU's natural prefetching and caching mechanism. Once the data is in cache, the operations are extremely fast so we want to design our algorithms so that we minimize:</p>
+<h4>Cache misses</h4>
+<p>Cpu fails to find the data it needs in cache and has to load another cache line. We minimize this waste by designing layouts so that elements of the data structure fit inside the cache lines.</p>
+<ul>
+<li>grouping 'hot' (frequently accessed) fields together</li>
+<li>using structs of arrays instead of arrays of structs</li>
+<li><em>not</em> placing rarely used fields next to hot data</li>
+<li><em>not</em> storing 32-byte pointers next to 8-byte ints</li>
+</ul>
+<h4>Pointer chasing</h4>
+<p>Every pointer-following step risks crossing to a new cache line. Meaning:</p>
+<ul>
+<li>hash maps with chained buckets perform poorly</li>
+<li>tree structures are slow</li>
+<li><code>absl::flat_hash_map</code> hash maps put keys and values contiguously in arrays and are <em>fast</em></li>
+</ul>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_ds" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\ds\flat_hash_map\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>flat_hash_map | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <p><em>Based on: CppCon 2017: Matt Kulukundis “Designing a Fast, Efficient, Cache-friendly Hash Table, Step by Step”</em></p>
+<h2>Designing and Implementing flat_hash_map</h2>
+<p>The hash table described by Matt Kulukundis in his presentation at CppCon 2017 is a <strong>swiss table</strong> (designed in Zürich by Abseil) family of hash tables design. They are meant to replace <code>std::unordered_set</code> and <code>std::unordered_map</code>.</p>
+<p>The <strong>flat</strong> variant of the swiss table is a open-addressed hash table with extra metadata to hold information about the slots, allowing for fast lookup, delete and insert times.</p>
+<h3>all items are stored in a single backing array</h3>
+<dl>
+<dt>items:</dt>
+<dd>the values distributed according to the hash values of their keys modulo table size</dd>
+</dl>
+<p>In <code>flat_hash_map</code> all items are stored in a single array, also called <strong>backing array</strong>. We call each location in the array a <strong>slot</strong>. This sets the scene for cache-friendliness.</p>
+<h3>the backing array is divided into groups of 16 slots</h3>
+<p>The defining feature of swiss tables is that it utilizes SIMD to effectively compare metadata when performing an operation on the table. The result of such comparison is a 16-bit long word that acts as a mask for our 16 slots in a group.</p>
+<h3>metadata is tightly packed</h3>
+<p>The metadata uses 8 bits (a WHOLE BYTE) for each element and is tightly packed in memory. This means we have 16 bytes of tightly packed metadata.</p>
+<ul>
+<li>Store 1 bit (msb) as a flag:
+<ul>
+<li>0 - full slot, follows by 7 bits of hash</li>
+<li>1 - non-full slot</li>
+</ul>
+</li>
+<li>Store 7 bits of hash code in the least significant bits</li>
+</ul>
+<p><strong>If</strong> a slot is full, the first bit will be 0 followed by the hash value:<br>
+<code>0b0xxxxxxx</code></p>
+<p><strong>Else if</strong> a slot is not full but was never occupied, then the value is<br>
+<code>kEmpty = -128</code> or <code>0b10000000</code></p>
+<p><strong>Else if</strong> a slot is not full but was once occupied and deleted, then it is a tombstone with a value<br>
+<code>kDeleted = -2</code> or <code>0b11111110</code></p>
+<p><strong>Else</strong> the slot is a padding, allowing us to stop scanning metadata for table scan and uses<br>
+<code>kSentinel = -1</code> or <code>0b11111111</code></p>
+<h3>the hash value is thus divided into two</h3>
+<p>Every time we hash a key, we divide the hash value into two parts:</p>
+<ul>
+<li><strong>H1</strong> - 57 bits and determines the position in the array</li>
+<li><strong>H2</strong> - 7 bits and is used in the metadata</li>
+</ul>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">Entropy</p>
+<p>Since we split the hash value into two distinct parts we need a hash function that distributes entropy evenly. This prevents collisions in either H1 or H2 since unevenly distributed entropy makes one of those two collision-prone.</p>
+</div>
+<p><strong>Implementation</strong></p>
+<p>For H1 we just shift 7 bits, leaving the 57 msb bits. For H2 we filter out the msb bits with <code>01111111</code> AND operation, leaving us with 7 lsb.</p>
+<pre class="language-cpp"><code class="language-cpp">size_t <span class="token function">H1</span><span class="token punctuation">(</span>size_t hash<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> hash <span class="token operator">>></span> <span class="token number">7</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+ctrl_t <span class="token function">H2</span><span class="token punctuation">(</span>size_t hash<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> hash <span class="token operator">&amp;</span> <span class="token number">0x7F</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
+<h3>find operation</h3>
+<p><strong>Sequential</strong></p>
+<ul>
+<li>when looking for a key in the table we first compute the hash value of the key</li>
+<li>the hash value is then split into H1 and H2</li>
+<li>H1 is ran through modulo <code>num_groups</code> to find the index of the group it should fall into</li>
+<li>sequentially iterate over all elements in the group</li>
+<li><strong>if is full</strong>: compare H2 hash value
+<ul>
+<li><strong>if same</strong>: hit</li>
+<li><strong>if not same</strong>: move to the next slot</li>
+</ul>
+</li>
+<li><strong>if is not full</strong>: move to the next slot</li>
+</ul>
+<p><strong>SIMD-based</strong></p>
+<ul>
+<li>find the group index</li>
+<li>compare ALL H2 entries in metadata</li>
+<li>jump to the matching element</li>
+</ul>
+<p><strong>Implementation</strong></p>
+<p>The 16 slot group allows us to compute the H2 values extremely fast.</p>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">SSE</p>
+<p>Streaming SIMD Extensions (SSE) is a single instruction, multiple data (SIMD) instruction set extension to the x86 architecture.</p>
+</div>
+<p>The <code>find</code> function is:</p>
+<pre class="language-cpp"><code class="language-cpp">iterator <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">const</span> K<span class="token operator">&amp;</span> key<span class="token punctuation">,</span> size_t hash<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    size_t group <span class="token operator">=</span> <span class="token function">H1</span><span class="token punctuation">(</span>hash<span class="token punctuation">)</span> <span class="token operator">%</span> num_groups_<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Group g<span class="token punctuation">{</span>ctrl_ <span class="token operator">+</span> group <span class="token operator">*</span> <span class="token number">16</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">:</span> g<span class="token punctuation">.</span><span class="token function">Match</span><span class="token punctuation">(</span>h2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> slots<span class="token punctuation">[</span>group <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">+</span> i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> <span class="token function">iterator_at</span><span class="token punctuation">(</span>group <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>g<span class="token punctuation">.</span><span class="token function">MatchEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        group <span class="token operator">=</span> <span class="token punctuation">(</span>group <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> num_groups_<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">Compiler Details</p>
+<p>The <code>if (key == slots[group * 16 + i])</code> equality operator is ALMOST always true at least once, since we already know the kay should fall into that group as we are comparing the H2 hashes. This allows for <code>predict true</code>.</p>
+</div>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">Full Groups</p>
+<p>If <code>(g.MatchEmpty()) return end();</code> is false, we hit an empty, never filled slot and the search may stop since it means no other collisions and potential matches occur after that. If it is true for the whole group we must probe to the next group. This almost never happens pre Matt Kulukundis.</p>
+</div>
+<p>The SIMD <code>match</code> function is:</p>
+<pre class="language-cpp"><code class="language-cpp">BitMask<span class="token operator">&lt;</span>unit32_t<span class="token operator">></span> <span class="token function">Match</span><span class="token punctuation">(</span>h2_t hash<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    <span class="token keyword">auto</span> match <span class="token operator">=</span> <span class="token function">_mm_set1_epi8</span><span class="token punctuation">(</span>hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token generic-function"><span class="token function">BitMask</span> <span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">uint32_t</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>
+        <span class="token function">_mm_movemask_epi8</span><span class="token punctuation">(</span><span class="token function">_mm_cmpeq_epi8</span><span class="token punctuation">(</span>match<span class="token punctuation">,</span> crtl<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Where:</p>
+<ul>
+<li><code>_mm_set1_epi8(arg)</code> initializes array of 16 elements each of size one byte with value of argument</li>
+<li><code>_mm_cmpeq_epi8(arg1, arg2)</code> compares the arguments byte wise and returns <code>FF</code> in place of match and <code>00</code> otherwise</li>
+<li><code>_mm_movemask_epi8(arg)</code> takes 16 byte array and squished it into 16 bits (according to the msb of the array)</li>
+</ul>
+<h3>some naming</h3>
+<p>A group consists of the backing array and the metadata array. A position in the backing array is slot and position in the metadata is called <strong>control</strong>. A table has <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> groups.</p>
+<h3>erasing is easy</h3>
+<pre class="language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">erase</span><span class="token punctuation">(</span>iterator it<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">--</span>size_<span class="token punctuation">;</span>
+    Group g<span class="token punctuation">{</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>ctrl_ <span class="token operator">-</span> ctrl_<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">16</span> <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">+</span> crtl_<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>it<span class="token punctuation">.</span>ctrl_ <span class="token operator">=</span> g<span class="token punctuation">.</span><span class="token function">MatchEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> kEmpty <span class="token operator">:</span> kDeleted<span class="token punctuation">;</span>
+    it<span class="token punctuation">.</span>slot_<span class="token punctuation">.</span><span class="token operator">~</span><span class="token function">K</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_ds" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\ds\hashing\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hashing | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h2>Hashing</h2>
+<p>Hashing is a process during which an input, called the <strong>key</strong>, gets transformed into a fixed-size output, a <strong>hash value</strong> using a <strong>hash function</strong>.</p>
+<h3>Compression of Information</h3>
+<p>Information theory treats a hash function as a function that compresses information into fewer bits.</p>
+<ul>
+<li>SHA-256 maps to 256 bits</li>
+<li>a typical hash table maps to 32 or 64 bits</li>
+<li>bucket hash table maps to a few bits after modulo</li>
+</ul>
+<p>Since this hash mapping reduce the number of bits, information is necessarily lost. This causes an events called <strong>collisions</strong> where two keys map to the same hash value.</p>
+<h3>Good Hash Function</h3>
+<p>A good hash function exhibits high level of randomness.</p>
+<ul>
+<li>every bit of the output depends on each bit of the input</li>
+<li>output bits behave statistically independently</li>
+<li>for any two keys, the probability they map to the same hash value is small, ideally uniform</li>
+</ul>
+<h3>Data Hashing</h3>
+<p>The goal of hashing in computer science applications is to place data into a fixed-sized structure efficiently. This includes:</p>
+<ul>
+<li>hash tables</li>
+<li>bloom filters</li>
+<li>hash-based file systems</li>
+<li>symbol tables</li>
+<li>caches</li>
+<li>cryptography</li>
+</ul>
+<p>This is achieved by interpreting the hash value of a piece of data as the index in that data structure.</p>
+<pre class="language-python"><code class="language-python">h <span class="token operator">=</span> <span class="token builtin">hash</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+index <span class="token operator">=</span> h mod table_size</code></pre>
+<h3>The Need for Speed</h3>
+<p>For arbitrary data, hashing is the only known practical method to achieve constant time lookup. This means that hash tables allow us to access and element in expected constant time.</p>
+<ul>
+<li>modern workloads require billions of lookups per second (google)</li>
+</ul>
+<h3>Distributed Systems</h3>
+<p>Having a consistent hashing system allows distributed systems to unify in data storage and handle requests among clusters. Hashing eliminates the need for central command unifying local data storage systems.</p>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_ds" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\ds\hash_functions\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hash Functions | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h2>Hash Functions</h2>
+<blockquote>
+<p>TODO: remove nutshell</p>
+</blockquote>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">In a Nutshell</p>
+<p>Put this key into a slot X.</p>
+</div>
+<p>A hash function is a deterministic mapping:</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>h</mi><mo>:</mo><mi>U</mi><mo>→</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mi>m</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">h:U \to [0, m-1]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></span></p>
+<p>Where:</p>
+<ul>
+<li><strong>U</strong> is the universe of possible key</li>
+<li><strong>m</strong> is the number of slots in a hash table (buckets)</li>
+<li>the functional value <strong>h(k)</strong> is the chosen index from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mi>m</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,m-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></li>
+</ul>
+<h3>Universe of Keys</h3>
+<p>The universe of key is everything we could ever hash. For example</p>
+<ul>
+<li>all possible 64-bit ints</li>
+<li>all possible strings</li>
+<li>all possible memory addresses</li>
+</ul>
+<p>The problem in reality is that the universe is way bigger than the hash table. This means collisions are inevitable. This plays a role in choosing the right hash function.</p>
+<h3>Choosing the Hash Function</h3>
+<ul>
+<li>if hashing behaves unevenly <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext></mrow><annotation encoding="application/x-tex">\implies</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span> some slots get overloaded</li>
+<li>overloading <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext></mrow><annotation encoding="application/x-tex">\implies</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span> lookup costs rise</li>
+<li>potentially: lookup costs rise <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext></mrow><annotation encoding="application/x-tex">\implies</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span> attacker can force <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> times</li>
+</ul>
+<p>So we want the hash function to at least <em>look</em> random.</p>
+<blockquote>
+<p>TODO hash function families</p>
+</blockquote>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_ds" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\articles\ds\hash_tables\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hash Tables | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <h2>Hash Tables</h2>
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title">In a Nutshell</p>
+<p>Hash tables are space-time tradeoff. Infinite memory means the entire key can be used directly as an index. Infinite time means values can be stored without regard for their keys.</p>
+</div>
+<p>Hash tables are the way to implement the associative array abstract data structure. A key is hashed using a hash function. The hash value is used to index the key in a memory. The key may be associated with a value (maps) or may not (sets).</p>
+<ul>
+<li><code>len(table)</code> is small relative to <code>len(hashable_keys)</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext></mrow><annotation encoding="application/x-tex">\implies</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span> collisions are inevitable</li>
+</ul>
+<p>The art of hash tables is the art of collision resolution.</p>
+<ul>
+<li>pointer solution: chaining</li>
+<li>index computing solution: probing</li>
+</ul>
+<h3>Chaining Hash Tables</h3>
+<p>Each slot contains a list of items.</p>
+<ul>
+<li>C++ <code>std::unordered_map</code></li>
+<li>Java <code>HashMap</code></li>
+</ul>
+<h3>Probing</h3>
+<p>The chaining hash table solves collisions by introducing pointers. The hash table slot points to the start of the list containing all the collided keys. Additionally, to be able to grow the slot at the start, we need to keep a dummy.</p>
+<blockquote>
+<p>TODO why not vectors for locality?</p>
+</blockquote>
+<p>Pointers are an enemy of cache-friendliness. We want to make sure cache lines contain the collided sequence of keys. This also allows for SIMD-ing the probing.</p>
+<p>A collision triggers a computation of new index:</p>
+<ul>
+<li>linear probing: the new index is the collided one incremented by 1</li>
+</ul>
+<pre class="language-mathematica"><code class="language-mathematica">h<span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre>
+<ul>
+<li>quadratic probing</li>
+</ul>
+<pre class="language-mathematica"><code class="language-mathematica">h<span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">1</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">,</span> h<span class="token operator">+</span><span class="token number">3</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre>
+<ul>
+<li>double hashing</li>
+</ul>
+<pre class="language-mathematica"><code class="language-mathematica">h <span class="token operator">+</span> i <span class="token operator">*</span> h2<span class="token punctuation">(</span>key<span class="token punctuation">)</span></code></pre>
+<p>The con of probing is the difficulty when deleting an entry.</p>
+<h3>Modern Probing</h3>
+<ul>
+<li>Google SwissTable / Abseil <code>flat_hash_map</code> (metadata + SIMD acceleration)</li>
+<li>Rust <code>HashMap</code> (SwissTable)</li>
+<li>Robin Hood hashing (balances probe lengths)</li>
+</ul>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_ds" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\css\homepage.css
+# ======================
+
+/* =========================================
+   1. CSS VARIABLES (THEME CONFIGURATION)
+   ========================================= */
+:root {
+    /* Sidebar Dimensions */
+    --sidebar-width-collapsed: 20px;
+    --sidebar-width-expanded: 220px;
+    
+    /* Sidebar Colors */
+    --sidebar-bg: #333333;
+    --sidebar-item-bg: #444444;
+    --sidebar-item-hover: #555555;
+    --sidebar-text: #ffffff;
+    --sidebar-highlight: #007bff;      /* Primary Action Color */
+    --sidebar-highlight-hover: #0056b3;
+    
+    /* Construction Banner */
+    --banner-bg: #FFD54F;
+    --banner-text: #000000;
+
+    /* Transitions */
+    --transition-speed: 0.25s;
+}
+
+/* =========================================
+   2. SIDEBAR CONTAINER & LAYOUT
+   ========================================= */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-width-collapsed);
+    background: var(--sidebar-bg);
+    z-index: 9998;
+    overflow: hidden; /* Hides internal content when collapsed */
+    transition: width var(--transition-speed) ease;
+    
+    /* FLEXBOX SETTINGS (Scrollable Top + Fixed Bottom) */
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
+}
+
+/* Hover expansion */
+.sidebar:hover {
+    width: var(--sidebar-width-expanded);
+}
+
+/* =========================================
+   3. SIDEBAR SECTIONS
+   ========================================= */
+
+/* --- A. The Scrollable Top Area --- */
+.sidebar-scroll-area {
+    flex-grow: 1;      /* Takes up all available space */
+    overflow-y: auto;  /* Adds scrollbar only if needed */
+    overflow-x: hidden;
+    padding-top: 40px; /* Space for the "MENU" label at the top */
+    
+    /* Firefox Scrollbar Styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--sidebar-item-hover) var(--sidebar-bg);
+}
+
+/* Webkit Scrollbar Styling (Chrome/Safari/Edge) */
+.sidebar-scroll-area::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar-scroll-area::-webkit-scrollbar-track {
+    background: var(--sidebar-bg);
+}
+.sidebar-scroll-area::-webkit-scrollbar-thumb {
+    background-color: var(--sidebar-item-hover);
+    border-radius: 3px;
+}
+
+/* --- B. The Fixed Bottom Section --- */
+.sidebar-bottom-action {
+    flex-shrink: 0; /* Prevents this section from shrinking */
+    padding-bottom: 20px;
+    background: var(--sidebar-bg); /* Ensures it covers scrolling content behind it */
+    border-top: 1px solid var(--sidebar-item-bg); /* Optional separator */
+    margin-top: auto;
+}
+
+/* =========================================
+   4. SIDEBAR ELEMENTS (LABELS & LINKS)
+   ========================================= */
+
+/* Vertical label shown only when collapsed */
+.sidebar-label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: rotate(-90deg) translate(-50%);
+    transform-origin: left top;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--sidebar-text);
+    letter-spacing: 2px;
+    opacity: 1;
+    pointer-events: none;      /* Don’t block hover */
+    transition: opacity 0.2s ease;
+}
+
+/* Hide the label when expanded */
+.sidebar:hover .sidebar-label {
+    opacity: 0;
+}
+
+/* General list styling */
+.sidebar ul {
+    list-style: none;
+    padding: 0; 
+    margin: 0;
+}
+
+.sidebar li {
+    margin: 16px 0;
+}
+
+/* Link Text Styling */
+.sidebar a {
+    text-decoration: none;
+    color: var(--sidebar-text);
+    font-size: 1rem;
+    opacity: 0;                         /* Hidden when collapsed */
+    white-space: nowrap;
+    transition: opacity 0.2s ease 0.1s;
+}
+
+/* When expanded, make links visible */
+.sidebar:hover a {
+    opacity: 1;
+}
+
+/* Box Styling (The clickable buttons) */
+.sidebar-box {
+    display: block;
+    padding: 10px 12px;
+    margin: 6px 14px;
+    background: var(--sidebar-item-bg);
+    border-radius: 6px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition:
+        opacity 0.2s ease,
+        transform var(--transition-speed) ease,
+        background 0.2s ease;
+}
+
+/* Show + animate boxes when expanded */
+.sidebar:hover .sidebar-box {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hover highlight */
+.sidebar-box:hover {
+    background: var(--sidebar-item-hover);
+}
+
+/* Active State (Add this class to your active link in HTML) */
+.sidebar-box.active {
+    border-left: 3px solid var(--sidebar-highlight);
+    background: #222; 
+}
+
+/* Special Button (LLM Chats) */
+.special-action {
+    background-color: var(--sidebar-highlight);
+    font-weight: bold;
+    text-align: center;
+}
+.special-action:hover {
+    background-color: var(--sidebar-highlight-hover);
+}
+
+/* =========================================
+   5. GENERAL PAGE LAYOUT & TYPOGRAPHY
+   ========================================= */
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 50px; /* prevent content from hiding under the banner */
+}
+
+/* Construction Banner */
+.construction-banner {
+    width: 100%;
+    background-color: var(--banner-bg);
+    color: var(--banner-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    
+    /* Positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.construction-banner img {
+    height: 35px;
+    margin-right: 10px;
+}
+
+.construction-banner span {
+    font-weight: 500;
+}
+
+/* Link Lists (Homepage Content) */
+.link-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+.link-list li {
+    margin: 15px 0;
+}
+.link-list a {
+    font-size: 1.5em;
+    color: var(--sidebar-highlight);
+    text-decoration: none;
+}
+.link-list a:hover {
+    text-decoration: underline;
+}
+
+/* Text Utilities */
+.centered-text {
+    display: block;          
+    text-align: center;      
+    white-space: normal;     
+    word-wrap: break-word;   
+    max-width: 100%;         
+    overflow-wrap: anywhere; 
+}
+
+.links-line {
+    border: 3px solid gray;
+    width: 150px;
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+/* =========================================
+   6. ANIMATIONS & DECORATIONS
+   ========================================= */
+
+/* Bouncing Arrow */
+body::after {
+    content: "";
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: gray;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    z-index: 9999;
+    animation: bounce 1.2s infinite;
+}   
+
+body.arrow-stopped::after {
+    animation: none; /* stops the bounce */
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* =========================================
+   7. FLOATING ELEMENTS
+   ========================================= */
+
+.floating-home-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Box Model */
+    padding: 8px 14px;
+    border-radius: 6px;
+    
+    /* Visuals */
+    background-color: var(--sidebar-highlight); /* #007bff */
+    color: #ffffff;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    opacity: 0.7;
+    z-index: 9999;
+    
+    /* Typography */
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+    
+    /* Transitions */
+    transition: opacity 0.3s, background-color 0.2s;
+}
+
+.floating-home-btn:hover {
+    opacity: 1;
+    background-color: var(--sidebar-highlight-hover);
+}
+
+# ======================
+# File: _site\homepages\homepage_compbio\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matej Lorinc</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-label">MENU</div>
+
+    <div class="sidebar-scroll-area">
+        <ul>
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_dipl/">
+                    Thesis Home
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_supp_blog/">
+                    Supplementary Blog
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_ds/">
+                    Data Structures
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box active" href="/homepages/homepage_compbio/">
+                    Computational Biology
+                </a>
+            </li>
+
+            
+                
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_dlcv/">
+                    DL: Computer Vision
+                </a>
+            </li>
+
+            
+        
+        </ul>
+    </div>
+
+    <div class="sidebar-bottom-action">
+        <a class="sidebar-box special-action" href="/chats/">
+            LLM Chats
+        </a>
+    </div>
+</div>
+
+    <br/><br/><br/>
+    
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+  <span>This website is currently under heavy construction</span>
+</div>
+
+    <h1>Computational Biology Journal</h1>
+    <i>Emu: species-level microbial community profiling of full-length 16S rRNA Oxford Nanopore sequencing data
+</i>
+<br/><br/>
+
+
+<ul class="link-list">
+<a href=https://pubmed.ncbi.nlm.nih.gov/35773532/>Paper Link</a><li><a href="/articles/compbio/intro_article/">Introduction</a></li><ul class="link-list">
+<hr class="links-line">
+<h3> Journal Blog </h3>
+<i> (18.11 - 25.11.2025) </i><li><a href="/articles/compbio/pipeline/">Pipeline</a></li></ul>
+    <br/><br/><br/>
+
+    <script src="/scripts/stop_arrow.js"></script>
+
+</body>
+</html>>
+</html>>
+</html>
+</html>
+
+# ======================
+# File: _site\homepages\homepage_dipl\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matej Lorinc</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-label">MENU</div>
+
+    <div class="sidebar-scroll-area">
+        <ul>
+        
+            
+            
+            <li>
+                <a class="sidebar-box active" href="/homepages/homepage_dipl/">
+                    Thesis Home
+                </a>
+            </li>
+
+            
+                
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_supp_blog/">
+                    Supplementary Blog
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_ds/">
+                    Data Structures
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_compbio/">
+                    Computational Biology
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_dlcv/">
+                    DL: Computer Vision
+                </a>
+            </li>
+
+            
+        
+        </ul>
+    </div>
+
+    <div class="sidebar-bottom-action">
+        <a class="sidebar-box special-action" href="/chats/">
+            LLM Chats
+        </a>
+    </div>
+</div>
+
+    <br/><br/><br/>
+    
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+  <span>This website is currently under heavy construction</span>
+</div>
+
+    <h1>Matej L&ouml;rinc</h1>
+    Comenius University Bratislava
+    <img src="/images/uk_logo.png" style="display: block; margin: auto; width: 100px; padding: 15px 10px 10px 10px;;">
+<hr style="border: none; height: 2px; background-color: black; width: 50%; margin-top: 15px;">
+    <h2> Master's Thesis </h2>
+    <i class="centered-text"> Modern Techniques for Medical Data Imaging on Consumer-Grade Hardware</i>
+
+<br/><br/>
+
+<ul class="link-list">
+<hr class="links-line"><li><a href="/articles/dipl/0_abstract/">Abstract</a></li><li><a href="/articles/dipl/0_details/">Details</a></li><li><a href="/articles/dipl/0_literature/">Literature</a></li><hr class="links-line"><li><a href="/articles/dipl/0_motivation/">Motivation</a></li><li><a href="/articles/dipl/0_introduction/">Introduction</a></li><li><a href="/articles/dipl/0_roadmap/">Roadmap</a></li><li><a href="/articles/dipl/0_thoughts/">Thoughts</a></li>
+<hr class="links-line">
+  <li><a href="/homepages/homepage_supp_blog/index.html">Supplementary Blog</a></li>
+
+<hr class="links-line">
+<h3> Main Blog </h3><li><a href="/articles/dipl/1_medical_scans/">1. Medical Scans</a></li><li><a href="/articles/dipl/1_volume_reconstruction/">2. Volume Reconstruction</a></li></ul>
+    <br/><br/><br/>
+
+    <script src="/scripts/stop_arrow.js"></script>
+
+</body>
+</html>>
+</html>>
+</html>
+</html>
+
+# ======================
+# File: _site\homepages\homepage_dlcv\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matej Lorinc</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-label">MENU</div>
+
+    <div class="sidebar-scroll-area">
+        <ul>
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_dipl/">
+                    Thesis Home
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_supp_blog/">
+                    Supplementary Blog
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_ds/">
+                    Data Structures
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_compbio/">
+                    Computational Biology
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box active" href="/homepages/homepage_dlcv/">
+                    DL: Computer Vision
+                </a>
+            </li>
+
+            
+                
+            
+        
+        </ul>
+    </div>
+
+    <div class="sidebar-bottom-action">
+        <a class="sidebar-box special-action" href="/chats/">
+            LLM Chats
+        </a>
+    </div>
+</div>
+
+    <br/><br/><br/>
+    
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+  <span>This website is currently under heavy construction</span>
+</div>
+
+    <h1>Course Blog:</h1>
+    <h2>Deep Learning: Computer Vision</h2>
+<hr style="border: none; height: 2px; background-color: black; width: 50%; margin-top: 15px;">
+
+<ul class="link-list"><li><a href="/articles/dlcv/homework1/">Homework 1</a></li></ul>
+    <br/><br/><br/>
+
+    <script src="/scripts/stop_arrow.js"></script>
+
+</body>
+</html>>
+</html>>
+</html>
+</html>
+
+# ======================
+# File: _site\homepages\homepage_ds\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matej Lorinc</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-label">MENU</div>
+
+    <div class="sidebar-scroll-area">
+        <ul>
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_dipl/">
+                    Thesis Home
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_supp_blog/">
+                    Supplementary Blog
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box active" href="/homepages/homepage_ds/">
+                    Data Structures
+                </a>
+            </li>
+
+            
+                
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_compbio/">
+                    Computational Biology
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_dlcv/">
+                    DL: Computer Vision
+                </a>
+            </li>
+
+            
+        
+        </ul>
+    </div>
+
+    <div class="sidebar-bottom-action">
+        <a class="sidebar-box special-action" href="/chats/">
+            LLM Chats
+        </a>
+    </div>
+</div>
+
+    <br/><br/><br/>
+    
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+  <span>This website is currently under heavy construction</span>
+</div>
+
+    <h1>Course Blog:</h1>
+    <h2>Data Structures</h2>
+<hr style="border: none; height: 2px; background-color: black; width: 50%; margin-top: 15px;">
+
+<ul class="link-list"><li><a href="/articles/ds/cache/">Cache</a></li><li><a href="/articles/ds/hashing/">Hashing</a></li><li><a href="/articles/ds/hash_functions/">Hash Functions</a></li><li><a href="/articles/ds/hash_tables/">Hash Tables</a></li><li><a href="/articles/ds/flat_hash_map/">flat_hash_map</a></li></ul>
+    <br/><br/><br/>
+
+    <script src="/scripts/stop_arrow.js"></script>
+
+</body>
+</html>>
+</html>>
+</html>
+</html>
+
+# ======================
+# File: _site\homepages\homepage_supp_blog\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matej Lorinc</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-label">MENU</div>
+
+    <div class="sidebar-scroll-area">
+        <ul>
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_dipl/">
+                    Thesis Home
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box active" href="/homepages/homepage_supp_blog/">
+                    Supplementary Blog
+                </a>
+            </li>
+
+            
+                
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_ds/">
+                    Data Structures
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_compbio/">
+                    Computational Biology
+                </a>
+            </li>
+
+            
+        
+            
+            
+            <li>
+                <a class="sidebar-box " href="/homepages/homepage_dlcv/">
+                    DL: Computer Vision
+                </a>
+            </li>
+
+            
+        
+        </ul>
+    </div>
+
+    <div class="sidebar-bottom-action">
+        <a class="sidebar-box special-action" href="/chats/">
+            LLM Chats
+        </a>
+    </div>
+</div>
+
+    <br/><br/><br/>
+    
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+</div>
+
+<h1> Supplementary Blog </h1>
+
+Place for stuff that is needed to be written about and read in order understand the concepts of the main blog.
+
+<ul class="link-list">
+
+<hr class="links-line">
+<h3> Up To Date Literature </h3>
+
+<hr class="links-line">
+<h3> Literature </h3>
+
+<hr class="links-line">
+<h3> Mathematics </h3>
+
+<hr class="links-line">
+<h3> Computer Science </h3>
+
+<hr class="links-line">
+<h3> Physics </h3><li><a href="/pages/supp_blog/p_0_radiancefields/">1. Radiance Fields</a></li><script src="/scripts/homebutton.js"></script>
+
+</ul>
+    <br/><br/><br/>
+
+    <script src="/scripts/stop_arrow.js"></script>
+
+</body>
+</html>>
+</html>>
+</html>
+</html>
+
+# ======================
+# File: _site\pages\supp_blog\p_0_radiancefields\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radiance Fields | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    <p>ASD</p>
+
+  </article>
+
+  <br/><br/><br/>
+
+
+<a href="/homepages/homepage_undefined" class="floating-home-btn">Home</a>
+
+</body>
+</html>
+
+# ======================
+# File: _site\readme\index.html
+# ======================
+
+<h3>For loops - blog lists</h3>
+<p>Every nunjucks tag ends with 's'. The for cycle in template uses:</p>
+<ul>
+<li><code>tagname</code> for <code>tagnames</code>.</li>
+<li>example: <code>dlcv for dlcvs</code></li>
+</ul>
+
+
+# ======================
+# File: _site\scripts\auth_hash.js
+# ======================
+
+        const CORRECT_HASH = "b2581e1bdbe7c3fdcbe6814978fcce82fc76a8ed3ccc2ab69717f91be294df98";
+        const XOR_CONSTANT_B64 = "HgECVgICU2kIWVYAHUteWQcEHUpfRwlc";
+        document.getElementById("submitButton").addEventListener("click", checkPassword);
+        document.getElementById("passwordInput").addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+
+        async function checkPassword() {
+            const input = document.getElementById("passwordInput").value;
+            const messageEl = document.getElementById("message");
+            
+            const inputHash = await hashString(input);
+        
+            if (inputHash === CORRECT_HASH) {
+                messageEl.textContent = "";
+        
+                const XOR_CONSTANT = atob(XOR_CONSTANT_B64); 
+        
+                const salt = await hashString(input + input);
+                const saltedInput = input + salt;
+                const secondHash = await hashString(saltedInput);
+        
+                const key = secondHash.substring(0, XOR_CONSTANT.length);
+                const path = xorStrings(key, XOR_CONSTANT);
+        
+                console.log("Access granted. Redirecting to:", path);
+                window.location.href = path;
+        
+            } else {
+                messageEl.textContent = "Access Denied";
+            }
+        }
+
+        async function hashString(str) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(str);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hexHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hexHash;
+        }
+
+        function xorStrings(s1, s2) {
+            let result = '';
+            const length = Math.min(s1.length, s2.length);
+
+            for (let i = 0; i < length; i++) {
+                result += String.fromCharCode(s1.charCodeAt(i) ^ s2.charCodeAt(i));
+            }
+            return result;
+        }
+
+# ======================
+# File: _site\scripts\auth_simple.js
+# ======================
+
+console.log(document.getElementById("submitButton"));
+PATH_DIPL = "/homepages/homepage_dipl/index.html"
+PATH_COMPBIO = "/homepages/homepage_compbio/index.html"
+
+document.getElementById("submitButton").addEventListener("click", checkPassword);
+document.getElementById("passwordInput").addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+        checkPassword();
+    }
+});
+
+async function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    const messageEl = document.getElementById("message");
+    
+    messageEl.textContent = "";
+
+    if (input === "dipl") {
+        window.location.href = PATH_DIPL;
+    } else if (input === "compbio") {
+        window.location.href = PATH_COMPBIO;
+    } else {
+        messageEl.textContent = "Access Denied";
+    }
+}
+
+
+# ======================
+# File: _site\scripts\compbio_homebutton.js
+# ======================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.createElement("a");
+  btn.href = "/homepages/homepage_compbio/index.html";
+  btn.textContent = "Home";
+
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "8px 14px",
+    background: "#007bff",
+    color: "#fff",
+    "border-radius": "6px",
+    "text-decoration": "none",
+    "font-size": "14px",
+    "font-family": "'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif",
+    "box-shadow": "0 2px 6px rgba(0,0,0,0.2)",
+    "z-index": 9999,
+    "opacity": 0.7,
+    "transition": "opacity 0.3s",
+  });
+
+  // Fade effect on hover
+  btn.addEventListener("mouseenter", () => (btn.style.opacity = 1));
+  btn.addEventListener("mouseleave", () => (btn.style.opacity = 0.7));
+
+  document.body.appendChild(btn);
+});
+
+
+# ======================
+# File: _site\scripts\homebutton.js
+# ======================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.createElement("a");
+  btn.href = "/homepages/homepage_1/index.html";
+  btn.textContent = "Home";
+
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "8px 14px",
+    background: "#007bff",
+    color: "#fff",
+    "border-radius": "6px",
+    "text-decoration": "none",
+    "font-size": "14px",
+    "font-family": "'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif",
+    "box-shadow": "0 2px 6px rgba(0,0,0,0.2)",
+    "z-index": 9999,
+    "opacity": 0.7,
+    "transition": "opacity 0.3s",
+  });
+
+  // Fade effect on hover
+  btn.addEventListener("mouseenter", () => (btn.style.opacity = 1));
+  btn.addEventListener("mouseleave", () => (btn.style.opacity = 0.7));
+
+  document.body.appendChild(btn);
+});
+
+
+# ======================
+# File: _site\scripts\homebutton_ds.js
+# ======================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.createElement("a");
+  btn.href = "/homepages/homepage_ds/index.html";
+  btn.textContent = "Home";
+
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "8px 14px",
+    background: "#007bff",
+    color: "#fff",
+    "border-radius": "6px",
+    "text-decoration": "none",
+    "font-size": "14px",
+    "font-family": "'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif",
+    "box-shadow": "0 2px 6px rgba(0,0,0,0.2)",
+    "z-index": 9999,
+    "opacity": 0.7,
+    "transition": "opacity 0.3s",
+  });
+
+  // Fade effect on hover
+  btn.addEventListener("mouseenter", () => (btn.style.opacity = 1));
+  btn.addEventListener("mouseleave", () => (btn.style.opacity = 0.7));
+
+  document.body.appendChild(btn);
+});
+
+
+# ======================
+# File: _site\scripts\stop_arrow.js
+# ======================
+
+let arrowStopped = false;
+function stopArrowAnimation() {
+    if (!arrowStopped) {
+        document.body.classList.add('arrow-stopped');
+        arrowStopped = true;
+    }
+}
+
+window.addEventListener('scroll', stopArrowAnimation, { once: true });
+window.addEventListener('wheel', stopArrowAnimation, { once: true });
+window.addEventListener('touchmove', stopArrowAnimation, { once: true });
+
+
+# ======================
+# File: _site\scripts\supphomebutton.js
+# ======================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.createElement("a");
+  btn.href = "/homepages/homepage_supp_blog/index.html";
+  btn.textContent = "Supp Blog";
+
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "8px 14px",
+    background: "#007bff",
+    color: "#fff",
+    "border-radius": "6px",
+    "text-decoration": "none",
+    "font-size": "14px",
+    "font-family": "'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif",
+    "box-shadow": "0 2px 6px rgba(0,0,0,0.2)",
+    "z-index": 9999,
+    "opacity": 0.7,
+    "transition": "opacity 0.3s",
+  });
+
+  // Fade effect on hover
+  btn.addEventListener("mouseenter", () => (btn.style.opacity = 1));
+  btn.addEventListener("mouseleave", () => (btn.style.opacity = 0.7));
+
+  document.body.appendChild(btn);
+});
+
+
+# ======================
+# File: _site\_includes\articles\article_dlcv\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    
+  </article>
+
+  <br/><br/><br/>
+  <script src="/scripts/homebutton_ds.js"></script>
+
+</body>
+</html>
+
+# ======================
+# File: _site\_includes\articles\article_ds\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <article class="markdown-body"> 
+    
+  </article>
+
+  <br/><br/><br/>
+  <script src="/scripts/homebutton_ds.js"></script>
+
+</body>
+</html>
+
+# ======================
+# File: _site\_includes\base\base_article\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+    
+</body>
+</html>
+
+# ======================
+# File: _site\_includes\base_article\index.html
+# ======================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> | Matej Lorinc</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/github-markdown-light.css">
+  
+  <style>
+    /* The theme requires content to be in a box */
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+    
+</body>
+</html>

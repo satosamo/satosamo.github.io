@@ -1,9 +1,9 @@
 ---
 title: "Computational Biology"
-layout: "homepage.njk"
-showArrow: true
+orderMenu: 4
+layout: "base/base_homepage.njk"
+showScrollArrow: true
 tags: "homepages"
-
 ---
 
 <!-- Under Construction Banner -->
@@ -12,25 +12,14 @@ tags: "homepages"
   <span>This website is currently under heavy construction</span>
 </div>
 
-    <h1>Computational Biology Journal</h1>
-    <i>Emu: species-level microbial community profiling of full-length 16S rRNA Oxford Nanopore sequencing data
-</i>
-<br/><br/>
+{% block content %}
 
+  {% include "homepage_sections/compbio/course.njk" %}
+  <hr style="border: none; height: 2px; background-color: black; width: 75%; margin-top: 50px; margin-bottom: 50px;">
+  {% include "homepage_sections/compbio/journal.njk" %}
 
-<ul class="link-list">
-<a href=https://pubmed.ncbi.nlm.nih.gov/35773532/>Paper Link</a>
-  {%- for intro in collections.compbio_intros | sort(attribute="data.order") -%}
-    <li><a href="{{ intro.url }}">{{ intro.data.title }}</a></li>
-  {%- endfor -%}
+{% endblock %}
 
-<ul class="link-list">
-<hr class="links-line">
-<h3> Journal Blog </h3>
-<i> (18.11 - 25.11.2025) </i>
-  {%- for blog in collections.blogs | sort(attribute="data.order") -%}
-    <li><a href="{{ blog.url }}">{{ blog.data.title }}</a></li>
-  {%- endfor -%}
 
 
 </ul>

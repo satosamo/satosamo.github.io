@@ -1,8 +1,9 @@
 ---
 title: "flat_hash_map"
-layout: "article_ds.njk"
+layout: "articles/article_ds.njk"
+homeTag: "ds"
 tags: "datastructures"
-order : 4
+order : 5
 ---
 
 *Based on: CppCon 2017: Matt Kulukundis “Designing a Fast, Efficient, Cache-friendly Hash Table, Step by Step”*
@@ -82,6 +83,10 @@ ctrl_t H2(size_t hash) { return hash & 0x7F; }
 - find the group index
 - compare ALL H2 entries in metadata
 - jump to the matching element
+
+::: idea
+**SIMD Filtering** is the key to performance here. We check 16 slots at once rather than iterating one by one.
+:::
 
 **Implementation**
 

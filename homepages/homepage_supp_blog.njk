@@ -1,9 +1,9 @@
 ---
 title: "Supplementary Blog"
-layout: "homepage.njk"
-showArrow: true
+layout: "base/base_homepage.njk"
+showScrollArrow: true
+homeTag: "dipl"
 tags: "homepages"
-
 ---
 
 <!-- Under Construction Banner -->
@@ -34,7 +34,4 @@ Place for stuff that is needed to be written about and read in order understand 
   {%- for phys in collections.physics | sort(attribute="data.order") -%}
     <li><a href="{{ phys.url }}">{{ loop.index }}. {{ phys.data.title }}</a></li>
   {%- endfor -%}
-
-<script src="/scripts/homebutton.js"></script>
-
 </ul>

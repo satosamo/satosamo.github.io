@@ -1,0 +1,7 @@
+<h1>Course Blog:</h1>
+<h2>Computational Biology</h2>
+
+<ul class="link-list">
+  {%- for intro in collections.course_compbio | sort(attribute="data.order") -%}
+    <li><a href="{{ intro.url }}">{{ intro.data.title }}</a></li>
+  {%- endfor -%}

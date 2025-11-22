@@ -1,6 +1,7 @@
 ---
 title: "Volume Reconstruction"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "chapters"
 order : 2
 ---

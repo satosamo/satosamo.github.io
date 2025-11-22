@@ -1,6 +1,7 @@
 ---
 title: "Thoughts"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "miscs"
 order : 4
 ---

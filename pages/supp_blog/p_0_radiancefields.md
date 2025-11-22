@@ -1,6 +1,6 @@
 ---
 title: "Radiance Fields"
-layout: "supp_article.njk"
+layout: "articles/article_supp.njk"
 tags: "physics"
 order : 0
 ---

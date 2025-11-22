@@ -4,39 +4,58 @@ const mk = require("@vscode/markdown-it-katex").default;
 const container = require("markdown-it-container");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
-
-const callout = (name, title) => [
-  container,
-  name,
-  {
-    render: (tokens, idx) => {
-      const token = tokens[idx];
-      if (token.nesting === 1) {
-        return `<div class="markdown-alert markdown-alert-${name}">
-  <p class="markdown-alert-title">${title}</p>\n`;
-      } else {
-        return `</div>\n`;
-      }
-    },
-  },
+// 1. Define Custom Blocks
+const customBlocks = [
+  { name: "note", title: "Note" },
+  { name: "tip", title: "Tip" },
+  { name: "warning", title: "Warning" },
+  { name: "important", title: "Important" },
+  { name: "caution", title: "Caution" },
+  // New custom blocks:
+  { name: "math", title: "Definition" }, 
+  { name: "concept", title: "Concept" },
+  { name: "idea", title: "Core Idea" }
 ];
 
-function calloutPlugin(md, name, defaultTitle) {
-  md.use(container, name, {
-    render: (tokens, idx) => {
-      const token = tokens[idx];
+// 2. Configure Containers
+function configureContainers(md) {
+  customBlocks.forEach(block => {
+    md.use(container, block.name, {
+      render: function (tokens, idx) {
+        const token = tokens[idx];
+        if (token.nesting === 1) {
+          // Get the text after ::: blockname
+          const rawInfo = token.info.trim().slice(block.name.length).trim();
+          
+          let displayTitle = "";
 
-      if (token.nesting === 1) {
-        // extract custom title (everything after the name)
-        const info = token.info.trim().slice(name.length).trim();
-        const title = info || defaultTitle;
+          if (!rawInfo) {
+            // OPTION 1: No custom text -> Use Default Title
+            // Example: ::: idea
+            // Result: "Core Idea"
+            displayTitle = block.title;
+          } 
+          else if (rawInfo.startsWith("_")) {
+            // OPTION 3: Underscore detected -> Default Title + Custom Text
+            // Example: ::: concept _Potential Energy
+            // Result: "Concept: Potential Energy"
+            const customText = rawInfo.slice(1).trim(); // Remove the underscore
+            displayTitle = `${block.title}: ${customText}`;
+          } 
+          else {
+            // OPTION 2: Custom text present -> Full Override
+            // Example: ::: idea My Special Title
+            // Result: "My Special Title"
+            displayTitle = rawInfo;
+          }
 
-        return `<div class="markdown-alert markdown-alert-${name}">
-  <p class="markdown-alert-title">${md.utils.escapeHtml(title)}</p>\n`;
-      } else {
-        return `</div>\n`;
+          return `<div class="callout callout-${block.name}">
+                    <p class="callout-title">${md.utils.escapeHtml(displayTitle)}</p>\n`;
+        } else {
+          return `</div>\n`;
+        }
       }
-    }
+    });
   });
 }
 
@@ -51,23 +70,14 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   let md = markdownIt({
-  html: true,
-  breaks: true,
-  linkify: true
+    html: true,
+    breaks: true,
+    linkify: true
   })
   .use(markdownItDeflist)
-  .use(mk)
-  .use(...callout("note", "Note"))
-  .use(...callout("tip", "Tip"))
-  .use(...callout("warning", "Warning"))
-  .use(...callout("important", "Important"))
-  .use(...callout("caution", "Caution"));
+  .use(mk);
 
-  calloutPlugin(md, "note", "Note");
-  calloutPlugin(md, "tip", "Tip");
-  calloutPlugin(md, "warning", "Warning");
-  calloutPlugin(md, "important", "Important");
-  calloutPlugin(md, "caution", "Caution");
+  configureContainers(md);
 
   eleventyConfig.setLibrary("md", md);
 

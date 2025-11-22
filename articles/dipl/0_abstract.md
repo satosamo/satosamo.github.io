@@ -1,6 +1,7 @@
 ---
 title: "Abstract"
-layout: "article.njk"
+layout: "articles/article_dipl.njk"
+homeTag: "dipl"
 tags: "infos"
 order : 1
 ---

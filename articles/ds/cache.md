@@ -1,6 +1,7 @@
 ---
 title: "Cache"
-layout: "article_ds.njk"
+layout: "articles/article_ds.njk"
+homeTag: "ds"
 tags: "datastructures"
 order : 1
 ---
