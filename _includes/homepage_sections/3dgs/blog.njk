@@ -1,0 +1,8 @@
+<h1>Blog:</h1>
+<h2>3D Gaussian Splatting</h2>
+
+<ul class="link-list">
+  {%- for page in collections.3dgs | sort(attribute="data.order") -%}
+    <li><a href="{{ page.url }}">{{ page.data.title }}</a></li>
+  {%- endfor -%}
+</ul>

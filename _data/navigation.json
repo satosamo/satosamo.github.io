@@ -12,6 +12,12 @@
     "chatUrl": "/chats/supp_chats/"
   },
   {
+    "label": "3D Gaussian Splatting",
+    "url": "/homepages/homepage_3dgs/",
+    "id": "3dgs",
+    "chatUrl": "/chats/chats_3dgs/"
+  },
+  {
     "label": "Data Structures",
     "url": "/homepages/homepage_ds/",
     "id": "ds",
