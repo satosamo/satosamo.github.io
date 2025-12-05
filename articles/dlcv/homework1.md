@@ -1,6 +1,6 @@
 ---
 title: "Homework 1"
-layout: "articles/article_dlcv.njk"
+layout: "base/base_article.njk"
 homeTag: "dlcv"
 tags: "dlcvs"
 order : 1

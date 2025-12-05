@@ -1,0 +1,5 @@
+<!-- No numbering -->
+<i> Probability and Statistics </i>
+{%- for page in collections.mathematics_prob | sort(attribute="data.order") -%}
+    <li><a href="{{ page.url }}">{{ page.data.title }}</a></li>
+{%- endfor -%}

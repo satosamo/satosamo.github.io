@@ -1,6 +1,6 @@
 ---
 title: "Motivation"
-layout: "articles/article_dipl.njk"
+layout: "base/base_article.njk"
 homeTag: "dipl"
 tags: "miscs"
 order : 1

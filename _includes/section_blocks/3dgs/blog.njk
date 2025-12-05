@@ -1,0 +1,5 @@
+<ul class="link-list">
+  {%- for page in collections.3dgs | sort(attribute="data.order") -%}
+    <li><a href="{{ page.url }}">{{ page.data.title }}</a></li>
+  {%- endfor -%}
+</ul>

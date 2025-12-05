@@ -1,0 +1,30 @@
+<!-- Left Sidebar Menu -->
+<div class="sidebar">
+    <div class="sidebar-label">
+        MENU
+    </div>
+
+    <div class="sidebar-scroll-area">
+        <ul>
+            {% for item in navigation %}
+                {% set isActive = (item.url == page.url) %}
+                
+                    <li>
+                        <a class="sidebar-box {% if isActive %}active{% endif %}" href="{{ item.url }}">
+                            {{ item.label }}
+                        </a>
+                    </li>
+
+                {% if item.url in page.url or page.url in item.url %}
+                    {% set currentChatUrl = item.chatUrl %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="sidebar-bottom-action">
+        <a class="sidebar-box special-action" href="{{ currentChatUrl | default('/chats/') }}">
+            LLM Chats
+        </a>
+    </div>
+</div>

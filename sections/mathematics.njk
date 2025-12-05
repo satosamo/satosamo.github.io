@@ -1,0 +1,25 @@
+---
+title: "Mathematics"
+orderMenu: 3
+layout: "base/base_section.njk"
+showScrollArrow: true
+homeTag: "mathematics"
+tags: "sections"
+---
+
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+</div>
+
+<h1> Topic: </h1>
+<h2> Mathematics </h2>
+
+<hr style="border: none; height: 2px; background-color: black; width: 50%; margin-top: 15px;">
+
+<ul class="link-list">
+    {% block content %}
+        {% include "section_blocks/mathematics/probstat.njk" %}
+        <hr class="links-line">
+    {% endblock %}
+</ul>

@@ -1,6 +1,6 @@
 ---
 title: "Medical Scans"
-layout: "articles/article_dipl.njk"
+layout: "base/base_article.njk"
 homeTag: "dipl"
 tags: "chapters"
 order : 1

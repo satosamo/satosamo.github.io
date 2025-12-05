@@ -1,0 +1,27 @@
+---
+title: "Deep Learning: Computer Vision"
+titleMenu: "DL: Computer Vision"
+orderMenu: 5
+layout: "base/base_section.njk"
+showScrollArrow: true
+tags: "sections"
+---
+
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+  <span>This website is currently under heavy construction</span>
+</div>
+
+<h1>Course Blog:</h1>
+  <h2>Deep Learning: Computer Vision</h2>
+  
+<hr style="border: none; height: 2px; background-color: black; width: 50%; margin-top: 15px;">
+
+<ul class="link-list">
+  {%- for dlcv in collections.dlcvs | sort(attribute="data.order") -%}
+    <li><a href="{{ dlcv.url }}">{{ dlcv.data.title }}</a></li>
+  {%- endfor -%}
+
+
+</ul>

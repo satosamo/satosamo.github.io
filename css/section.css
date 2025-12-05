@@ -1,0 +1,83 @@
+/* =========================================
+   1. CSS VARIABLES (THEME CONFIGURATION)
+   ========================================= */
+:root {
+    /* Sidebar Dimensions */
+    --sidebar-width-collapsed: 20px;
+    --sidebar-width-expanded: 220px;
+    
+    /* Sidebar Colors */
+    --sidebar-bg: #333333;
+    --sidebar-item-bg: #444444;
+    --sidebar-item-hover: #555555;
+    --sidebar-text: #ffffff;
+    --sidebar-highlight: #007bff;      /* Primary Action Color */
+    --sidebar-highlight-hover: #0056b3;
+
+
+    /* Transitions */
+    --transition-speed: 0.25s;
+}
+
+/* =========================================
+   2. SIDEBAR CONTAINER & LAYOUT
+   ========================================= */
+
+
+/* =========================================
+   5. GENERAL PAGE LAYOUT & TYPOGRAPHY
+   ========================================= */
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 50px; /* prevent content from hiding under the banner */
+}
+
+main { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Link Lists (section Content) */
+.link-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+.link-list li {
+    margin: 15px 0;
+}
+.link-list a {
+    font-size: 1.5em;
+    color: var(--sidebar-highlight);
+    text-decoration: none;
+}
+.link-list a:hover {
+    text-decoration: underline;
+}
+
+/* Text Utilities */
+.centered-text {
+    display: block;          
+    text-align: center;      
+    white-space: normal;     
+    word-wrap: break-word;   
+    max-width: 100%;         
+    overflow-wrap: anywhere; 
+}
+
+.links-line {
+    border: 3px solid gray;
+    width: 150px;
+    margin: 20px auto;
+    border-radius: 2px;
+}
+

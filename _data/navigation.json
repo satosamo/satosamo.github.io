@@ -1,37 +1,43 @@
 [
   {
     "label": "Thesis Home",
-    "url": "/homepages/homepage_dipl/",
+    "url": "/sections/dipl/",
     "id": "dipl",
     "chatUrl": "/chats/dipl_chats/"
   },
   {
     "label": "Supplementary Blog",
-    "url": "/homepages/homepage_supp_blog/",
+    "url": "/sections/supp_blog/",
     "id": "supp",
     "chatUrl": "/chats/supp_chats/"
   },
   {
+    "label": "Mathematics",
+    "url": "/sections/mathematics/",
+    "id": "mathematics",
+    "chatUrl": "/chats/chats_mathematics/"
+  },
+  {
     "label": "3D Gaussian Splatting",
-    "url": "/homepages/homepage_3dgs/",
+    "url": "/sections/3dgs/",
     "id": "3dgs",
     "chatUrl": "/chats/chats_3dgs/"
   },
   {
     "label": "Data Structures",
-    "url": "/homepages/homepage_ds/",
+    "url": "/sections/ds/",
     "id": "ds",
     "chatUrl": "/chats/ds_chats/"
   },
   {
     "label": "Computational Biology",
-    "url": "/homepages/homepage_compbio/",
+    "url": "/sections/compbio/",
     "id": "compbio",
     "chatUrl": "/chats/compbio_chats/"
   },
   {
     "label": "DL: Computer Vision",
-    "url": "/homepages/homepage_dlcv/",
+    "url": "/sections/dlcv/",
     "id": "dlcv",
     "chatUrl": "/chats/dlcv_chats/"
   }

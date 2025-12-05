@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-layout: "articles/article_compbio.njk"
+layout: "base/base_article.njk"
 homeTag: "compbio"
 tags: "compbio_intros"
 order : 1

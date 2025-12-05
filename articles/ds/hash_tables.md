@@ -1,6 +1,6 @@
 ---
 title: "Hash Tables"
-layout: "articles/article_ds.njk"
+layout: "base/base_article.njk"
 homeTag: "ds"
 tags: "datastructures"
 order : 4

@@ -32,6 +32,8 @@ EXCLUDE_EXTENSIONS = set()  # User-defined extensions to exclude
 
 # Define programming-related file extensions (removed '.json' and '.md')
 PROGRAMMING_EXTENSIONS = {
+    # custom website
+    ".njk"
     # General Programming Languages
     ".py",
     ".java",

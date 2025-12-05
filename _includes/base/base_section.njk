@@ -1,0 +1,12 @@
+{% extends "base/base.njk" %}
+
+{% block beforeContent %}
+    {{ super() }}
+    {% include "partials/banner.njk" %}
+{% endblock %}
+
+{% block afterContent %}
+    {% if showScrollArrow %}
+        {% include "partials/scrollarrow.njk" %}
+    {% endif %}
+{% endblock %}

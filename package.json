@@ -2,7 +2,7 @@
   "name": "satosamo.github.io-main",
   "version": "1.0.0",
   "description": "",
-  "main": "common.js",
+  "main": "eleventy.config.js",
   "scripts": {
     "build": "eleventy",
     "start": "eleventy --serve",
@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2"
   },

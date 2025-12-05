@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+
+    <!-- Global styles -->
+    <link rel="stylesheet" href="/css/section.css">
+    <link rel="stylesheet" href="/css/banner.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    {% endblock %}
+
+</head>
+
+<body>
+
+    {% block beforeContent %}
+        {% include "partials/sidebar.njk" %}
+    {% endblock %}
+    
+    <main>
+        <br/><br/><br/>
+            {% block content %}
+                {{ content | safe }}   {# this is the page body #}
+            {% endblock %}
+        <br/><br/><br/>
+    </main>
+
+    {% block afterContent %}
+    {% endblock %}
+
+</body>
+
+</html>

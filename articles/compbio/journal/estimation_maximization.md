@@ -1,8 +1,8 @@
 ---
 title: "Estimation-Maximization"
-layout: "articles/article_compbio.njk"
+layout: "base/base_article.njk"
 homeTag: "compbio"
-tags: "blogs"
+tags: "compbio_blog_2"
 order : 2
 ---
 

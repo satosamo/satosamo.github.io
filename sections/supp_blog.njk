@@ -1,0 +1,37 @@
+---
+title: "Supplementary Blog"
+layout: "base/base_section.njk"
+showScrollArrow: true
+homeTag: "dipl"
+tags: "sections"
+---
+
+<!-- Under Construction Banner -->
+<div class="construction-banner">
+  <img src="/images/construction.jpg" alt="Under Construction">
+</div>
+
+<h1> Supplementary Blog </h1>
+
+Place for stuff that is needed to be written about and read in order understand the concepts of the main blog.
+
+<ul class="link-list">
+
+<hr class="links-line">
+<h3> Up To Date Literature </h3>
+
+<hr class="links-line">
+<h3> Literature </h3>
+
+<hr class="links-line">
+<h3> Mathematics </h3>
+
+<hr class="links-line">
+<h3> Computer Science </h3>
+
+<hr class="links-line">
+<h3> Physics </h3>
+  {%- for phys in collections.physics | sort(attribute="data.order") -%}
+    <li><a href="{{ phys.url }}">{{ loop.index }}. {{ phys.data.title }}</a></li>
+  {%- endfor -%}
+</ul>

@@ -1,8 +1,8 @@
 ---
 title: "Pipeline"
-layout: "articles/article_compbio.njk"
+layout: "base/base_article.njk"
 homeTag: "compbio"
-tags: "blogs"
+tags: "compbio_blog_1"
 order : 1
 ---
 
@@ -46,13 +46,13 @@ Along with the alignments, we also receive the CIGAR string for each alignment. 
 
 ### Initial probabilities
 
-EMU now takes the numerical values for each alignment type and determines the initial likelihoods for them. This is simply:
+EMU takes the numerical values for each alignment type and determines the initial likelihoods for them. This is simply:
 
 $$
-P(c) =\sum_{c\in C}\frac{n_c}{n_c}
+P(c) =\frac{n_c}{\sum_{c\in C}n_c}
 $$
 
-where $P(c)$ is the likelihood for alignment type event, $n_c$ is the amount of events of alignment type $c$.
+where $P(c)$ is the likelihood for alignment type event, $n_c$ is the amount of events of alignment type $c$ amongst all the primary alignments:
 
 <center>
 
@@ -74,6 +74,11 @@ The normalization of $n'_{(r,s)}$ is done as the length of the longest alignment
 $$
 n'_{(r,s)} = n_{(r,s)} \frac{\max_{s'\in S}{\text{len}(r, s')}}{\text{len}(r,s)}
 $$
+
+::: note Probability & Likelihood
+Probability is about data given a model. We talk about the probability of an *outcome*.
+Likelihood is about the model given data. We talk about the likelihood of a *parameter*.
+:::
 
 If for specific pair no alignment is made, we set $P(r|s)=0$.
 

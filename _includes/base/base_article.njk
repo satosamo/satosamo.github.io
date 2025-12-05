@@ -1,37 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }} | Matej Lorinc</title>
+{% extends "base/base.njk" %}
+
+{% block head %}
+  {{ super() }}  {# keep global CSS #}
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
   <link href="https://unpkg.com/prismjs@1.20.0/themes/prism.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="/css/github-markdown-light.css">
-  <link rel="stylesheet" href="/css/homepage.css">
-  
-  <style>
-    /* The theme requires content to be in a box */
-    .markdown-body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-    }
-    
-    @media (max-width: 767px) {
-      .markdown-body {
-        padding: 15px;
-      }
-    }
-  </style>
-</head>
-<body>
+  <link rel="stylesheet" href="/css/article.css">
+  <link rel="stylesheet" href="/css/widgets.css">
+  <link rel="stylesheet" href="/css/markdown-containers.css">
 
-{% block content %}
+  <style>
+  /* The theme requires content to be in a box */
+  .markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  }
+
+  @media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+  }
+  </style>
+
 {% endblock %}
 
-<a href="{{ '/homepages/homepage_' + (homeTag) }}" class="floating-home-btn">Home</a>
+{% block beforeContent %}
+    {% include "partials/sidebar.njk" %}
+{% endblock %}
 
-</body>
-</html>
+{% block content %}
+  <div class="markdown-body">
+    {{ super() }}
+  </div>
+{% endblock %}
+
+{% block afterContent %}
+    {% if showScrollArrow %}
+        {% include "partials/scrollarrow.njk" %}
+    {% endif %}
+
+    {% include "partials/homebutton.njk" %}
+{% endblock %}

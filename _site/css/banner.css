@@ -1,0 +1,35 @@
+:root {
+    --banner-bg: #FFD54F;
+    --banner-text: #000000;
+}
+
+/* Construction Banner */
+.construction-banner {
+    width: 100%;
+    background-color: var(--banner-bg);
+    color: var(--banner-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    
+    /* Positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.construction-banner img {
+    height: 35px;
+    margin-right: 10px;
+}
+
+.construction-banner span {
+    font-weight: 500;
+}

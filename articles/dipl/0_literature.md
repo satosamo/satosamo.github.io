@@ -1,6 +1,6 @@
 ---
 title: "Literature"
-layout: "articles/article_dipl.njk"
+layout: "base/base_article.njk"
 homeTag: "dipl"
 tags: "infos"
 order : 3
