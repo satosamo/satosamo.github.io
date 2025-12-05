@@ -1,0 +1,167 @@
+:root {
+    /* Sidebar Dimensions */
+    --sidebar-width-collapsed: 20px;
+    --sidebar-width-expanded: 220px;
+    
+    /* Sidebar Colors */
+    --sidebar-bg: #333333;
+    --sidebar-item-bg: #444444;
+    --sidebar-item-hover: #555555;
+    --sidebar-text: #ffffff;
+    --sidebar-highlight: #007bff;      /* Primary Action Color */
+    --sidebar-highlight-hover: #0056b3;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-width-collapsed);
+    background: var(--sidebar-bg);
+    z-index: 9998;
+    overflow: hidden; /* Hides internal content when collapsed */
+    transition: width var(--transition-speed) ease;
+    
+    /* FLEXBOX SETTINGS (Scrollable Top + Fixed Bottom) */
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
+}
+
+/* Hover expansion */
+.sidebar:hover {
+    width: var(--sidebar-width-expanded);
+}
+
+/* =========================================
+   3. SIDEBAR SECTIONS
+   ========================================= */
+
+/* --- A. The Scrollable Top Area --- */
+.sidebar-scroll-area {
+    flex-grow: 1;      /* Takes up all available space */
+    overflow-y: auto;  /* Adds scrollbar only if needed */
+    overflow-x: hidden;
+    padding-top: 40px; /* Space for the "MENU" label at the top */
+    
+    /* Firefox Scrollbar Styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--sidebar-item-hover) var(--sidebar-bg);
+}
+
+/* Webkit Scrollbar Styling (Chrome/Safari/Edge) */
+.sidebar-scroll-area::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar-scroll-area::-webkit-scrollbar-track {
+    background: var(--sidebar-bg);
+}
+.sidebar-scroll-area::-webkit-scrollbar-thumb {
+    background-color: var(--sidebar-item-hover);
+    border-radius: 3px;
+}
+
+/* --- B. The Fixed Bottom Section --- */
+.sidebar-bottom-action {
+    flex-shrink: 0; /* Prevents this section from shrinking */
+    padding-bottom: 20px;
+    background: var(--sidebar-bg); /* Ensures it covers scrolling content behind it */
+    border-top: 1px solid var(--sidebar-item-bg); /* Optional separator */
+    margin-top: auto;
+}
+
+/* =========================================
+   4. SIDEBAR ELEMENTS (LABELS & LINKS)
+   ========================================= */
+
+/* Vertical label shown only when collapsed */
+.sidebar-label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: rotate(-90deg) translate(-50%);
+    transform-origin: left top;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--sidebar-text);
+    letter-spacing: 2px;
+    opacity: 1;
+    pointer-events: none;      /* Don’t block hover */
+    transition: opacity 0.2s ease;
+}
+
+/* Hide the label when expanded */
+.sidebar:hover .sidebar-label {
+    opacity: 0;
+}
+
+/* General list styling */
+.sidebar ul {
+    list-style: none;
+    padding: 0; 
+    margin: 0;
+}
+
+.sidebar li {
+    margin: 16px 0;
+}
+
+/* Link Text Styling */
+.sidebar a {
+    text-decoration: none;
+    color: var(--sidebar-text);
+    font-size: 1rem;
+    opacity: 0;                         /* Hidden when collapsed */
+    white-space: nowrap;
+    transition: opacity 0.2s ease 0.1s;
+}
+
+/* When expanded, make links visible */
+.sidebar:hover a {
+    opacity: 1;
+}
+
+/* Box Styling (The clickable buttons) */
+.sidebar-box {
+    display: block;
+    padding: 10px 12px;
+    margin: 6px 14px;
+    background: var(--sidebar-item-bg);
+    border-radius: 6px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition:
+        opacity 0.2s ease,
+        transform var(--transition-speed) ease,
+        background 0.2s ease;
+}
+
+/* Show + animate boxes when expanded */
+.sidebar:hover .sidebar-box {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hover highlight */
+.sidebar-box:hover {
+    background: var(--sidebar-item-hover);
+}
+
+/* Active State (Add this class to your active link in HTML) */
+.sidebar-box.active {
+    border-left: 3px solid var(--sidebar-highlight);
+    background: #222; 
+}
+
+/* Special Button (LLM Chats) */
+.special-action {
+    background-color: var(--sidebar-highlight);
+    font-weight: bold;
+    text-align: center;
+}
+.special-action:hover {
+    background-color: var(--sidebar-highlight-hover);
+}

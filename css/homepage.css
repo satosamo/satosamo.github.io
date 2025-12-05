@@ -194,6 +194,13 @@ body {
     padding-top: 50px; /* prevent content from hiding under the banner */
 }
 
+main { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Construction Banner */
 .construction-banner {
     width: 100%;
@@ -225,7 +232,7 @@ body {
     font-weight: 500;
 }
 
-/* Link Lists (Homepage Content) */
+/* Link Lists (section Content) */
 .link-list {
     list-style: none;
     padding: 0;
@@ -260,75 +267,3 @@ body {
     border-radius: 2px;
 }
 
-/* =========================================
-   6. ANIMATIONS & DECORATIONS
-   ========================================= */
-
-.scroll-arrow {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: gray;
-    /* Keeps your existing triangle shape */
-    clip-path: polygon(50% 100%, 0 0, 100% 0); 
-    z-index: 9999;
-    
-    /* Animation Definition */
-    animation: bounce 1.2s infinite;
-    
-    /* Transition for the fade out effect */
-    opacity: 1;
-    transition: opacity 0.5s ease;
-    cursor: pointer; /* Optional: indicates it's interactive */
-}
-
-/* The class added by JS to hide it */
-.scroll-arrow.fade-out {
-    opacity: 0;
-    animation: none; /* Stop bouncing while fading */
-    pointer-events: none; /* Prevent clicking while invisible */
-}
-
-/* Reuse your existing keyframes */
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-
-/* =========================================
-   7. FLOATING ELEMENTS
-   ========================================= */
-
-.floating-home-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    /* Box Model */
-    padding: 8px 14px;
-    border-radius: 6px;
-    
-    /* Visuals */
-    background-color: var(--sidebar-highlight); /* #007bff */
-    color: #ffffff;
-    text-decoration: none;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    opacity: 0.7;
-    z-index: 9999;
-    
-    /* Typography */
-    font-size: 14px;
-    font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
-    
-    /* Transitions */
-    transition: opacity 0.3s, background-color 0.2s;
-}
-
-.floating-home-btn:hover {
-    opacity: 1;
-    background-color: var(--sidebar-highlight-hover);
-}

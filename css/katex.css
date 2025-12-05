@@ -1,0 +1,8 @@
+.katex {
+  font-size: 1.4em;
+}
+
+/* style block math */
+.katex-display {
+  margin: 1.8em 0;
+}
