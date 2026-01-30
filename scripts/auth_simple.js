@@ -1,6 +1,6 @@
 console.log(document.getElementById("submitButton"));
-PATH_DIPL = "/sections/section_dipl/index.html"
-PATH_COMPBIO = "/sections/section_compbio/index.html"
+PATH_DIPL = "/sections/dipl/index.html"
+PATH_COMPBIO = "/sections/compbio/index.html"
 
 document.getElementById("submitButton").addEventListener("click", checkPassword);
 document.getElementById("passwordInput").addEventListener("keyup", (event) => {

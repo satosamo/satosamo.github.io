@@ -1,0 +1,878 @@
+Directory Tree:
+satosamo.github.io/
+│   ├── eleventy.config.js
+│   ├── full_code.txt
+│   ├── index.html
+│   ├── readme.md
+│   ├── .git/ [EXCLUDED]
+│   ├── .github/ [EXCLUDED]
+│   ├── .vscode/
+│   │   ├── settings.json
+│   ├── articles/
+│   │   ├── 3dgs/
+│   │   │   ├── intro.md
+│   │   │   ├── original_paper.md
+│   │   ├── compbio/
+│   │   │   ├── course/
+│   │   │   │   ├── cigar_strings.md
+│   │   │   │   ├── intro.md
+│   │   │   ├── journal/
+│   │   │   │   ├── estimation_maximization.md
+│   │   │   │   ├── intro_emu.md
+│   │   │   │   ├── pipeline.md
+│   │   │   │   ├── qna.md
+│   │   ├── dipl/
+│   │   │   ├── 0_abstract.md
+│   │   │   ├── 0_details.md
+│   │   │   ├── 0_introduction.md
+│   │   │   ├── 0_literature.md
+│   │   │   ├── 0_motivation.md
+│   │   │   ├── 0_roadmap.md
+│   │   │   ├── 0_thoughts.md
+│   │   │   ├── 1_medical_scans.md
+│   │   │   ├── 1_volume_reconstruction.md
+│   │   ├── dlcv/
+│   │   │   ├── homework1.md
+│   │   ├── ds/
+│   │   │   ├── cache.md
+│   │   │   ├── flat_hash_map.md
+│   │   │   ├── hashing.md
+│   │   │   ├── hash_functions.md
+│   │   │   ├── hash_tables.md
+│   │   ├── mathematics/
+│   │   │   ├── probstat/
+│   │   │   │   ├── conditional_probability.md
+│   │   │   │   ├── foundations.md
+│   ├── css/
+│   │   ├── banner.css
+│   │   ├── katex.css
+│   │   ├── markdown-containers.css
+│   │   ├── page.css
+│   │   ├── section.css
+│   │   ├── sidebar.css
+│   │   ├── widgets.css
+│   ├── images/
+│   │   ├── 1_1.svg
+│   │   ├── construction.jpg
+│   │   ├── roadmap.svg
+│   │   ├── thoughts_1.svg
+│   │   ├── uk_logo.ico
+│   │   ├── uk_logo.jpg
+│   │   ├── uk_logo.png
+│   ├── node_modules/ [EXCLUDED]
+│   ├── pages/
+│   │   ├── supp_blog/
+│   │   │   ├── p_0_radiancefields.md
+│   ├── plugins/
+│   │   ├── markdown-containers.js
+│   ├── resources/
+│   │   ├── papers/
+│   │   │   ├── orig_cr_mc.pdf
+│   ├── scripts/
+│   │   ├── auth_hash.js
+│   │   ├── auth_simple.js
+│   │   ├── scrollarrow.js
+│   │   ├── inertia_simulator/
+│   │   │   ├── inertia_simulator.js
+│   ├── sections/
+│   │   ├── 3dgs.njk
+│   │   ├── compbio.njk
+│   │   ├── dipl.njk
+│   │   ├── dlcv.njk
+│   │   ├── ds.njk
+│   │   ├── mathematics.njk
+│   │   ├── supp_blog.njk
+│   ├── unreleased/
+│   │   ├── pointers_references.md
+│   ├── _data/
+│   │   ├── navigation.json
+│   ├── _includes/
+│   │   ├── base/
+│   │   │   ├── base.njk
+│   │   │   ├── base_article.njk
+│   │   │   ├── base_section.njk
+│   │   ├── partials/
+│   │   │   ├── banner.njk
+│   │   │   ├── homebutton.njk
+│   │   │   ├── scrollarrow.njk
+│   │   │   ├── sidebar.njk
+│   │   ├── section_blocks/
+│   │   │   ├── 3dgs/
+│   │   │   │   ├── 3dgs_breakdown.njk
+│   │   │   │   ├── blog.njk
+│   │   │   ├── compbio/
+│   │   │   │   ├── course.njk
+│   │   │   │   ├── journal.njk
+│   │   │   ├── mathematics/
+│   │   │   │   ├── probstat.njk
+# ======================
+# File: eleventy.config.js
+# ======================
+// eleventy.config.js (ESM)
+import markdownIt from "markdown-it";
+import markdownItDeflist from "markdown-it-deflist";
+import mk from "@vscode/markdown-it-katex";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import configureContainers from "./plugins/markdown-containers.js";
+export default function(eleventyConfig) {
+  // Pass through static files
+  eleventyConfig.addPassthroughCopy("index.html");
+  eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("resources");
+  eleventyConfig.addPassthroughCopy("scripts");
+  eleventyConfig.addPlugin(syntaxHighlight);
+  const md = markdownIt({
+    html: true,
+    breaks: true,
+    linkify: true,
+  })
+    .use(markdownItDeflist)
+    .use(mk.default);
+  configureContainers(md);
+  eleventyConfig.setLibrary("md", md);
+  // Process files from the 'articles' directory
+  return {
+    dir: {
+      input: ".",
+      output: "_site", // Final site build location
+      includes: "_includes",
+    },
+  };
+}
+# ======================
+# File: index.html
+# ======================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization</title>
+    <link rel="icon" type="image/x-icon" href="/images/uk_logo.ico">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: grid;
+            place-items: center;
+            min-height: 80vh;
+            background-color: #f4f4f4;
+        }
+        #auth-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        input {
+            font-size: 1rem;
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            margin-top: 1rem;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="auth-box">
+        <h2>Authorization</h2>
+        <input type="password" id="passwordInput" placeholder="Password...">
+        <button id="submitButton">Go</button>
+        <p id="message"></p>
+    </div>
+    <script src = "/scripts/auth_simple.js"></script>
+</body>
+</html>
+# ======================
+# File: readme.md
+# ======================
+### For loops - blog lists
+Every nunjucks tag ends with 's'. The for cycle in template uses:
+- `tagname` for `tagnames`.
+- example: `dlcv for dlcvs`
+# ======================
+# File: .vscode\settings.json
+# ======================
+{
+    "chatgpt.commentCodeLensEnabled": false
+}
+# ======================
+# File: articles\3dgs\intro.md
+# ======================
+---
+title: "Introduction"
+layout: "base/base_article.njk"
+homeTag: "3dgs"
+tags: "3dgs"
+order : 1
+---
+# Introduction
+TODO
+# ======================
+# File: articles\3dgs\original_paper.md
+# ======================
+---
+title: "Breakdown of the Paper"
+layout: "base/base_article.njk"
+homeTag: "3dgs"
+tags: "3dgs_breakdown"
+order : 1
+---
+# Introduction
+TODO
+asddasasd
+# ======================
+# File: articles\compbio\course\cigar_strings.md
+# ======================
+---
+title: "CIGAR strings"
+layout: "base/base_article.njk"
+homeTag: "compbio"
+tags: "course_compbio"
+order : 2
+---
+# CIGAR strings
+The ‘CIGAR’ (Compact Idiosyncratic Gapped Alignment Report) string is how the SAM/BAM format represents spliced alignments.
+CIGAR strings have a number of operators:
+- $M$ - Match - Exact match of x positions
+- $N$ - Alignment gap - Next x positions on ref don’t match
+- $D$ - Deletion - Next x positions on ref don’t match
+- $I$ - Insertion - Next x positions on query don’t match
+**Example:**
+```
+CIGAR=3M2I3M:
+0123456789
+AAGTC  TAGAA (ref) 
+  GTCGATAG (query)
+```
+# ======================
+# File: articles\compbio\course\intro.md
+# ======================
+---
+title: "Introduction"
+layout: "base/base_article.njk"
+homeTag: "compbio"
+tags: "course_compbio"
+order : 1
+---
+# Introduction
+This blog accompanies the course, which covers fundamental concepts in molecular biology, algorithms, and machine learning relevant to computational biology. The course includes topics such as genome sequencing and assembly, gene finding, sequence alignment, evolutionary models, phylogenetic trees, comparative and population genomics, RNA structure, motif discovery, gene expression analysis, and protein structure and function. Selected current topics in the field are also included.
+Students in computer science–oriented study programs will focus primarily on computational methods and mathematical modeling of these problems.
+The purpose of this blog is to provide basic information, summaries, and supporting materials related to the topics discussed in the course.
+# ======================
+# File: articles\compbio\journal\estimation_maximization.md
+# ======================
+---
+title: "Estimation-Maximization"
+layout: "base/base_article.njk"
+homeTag: "compbio"
+tags: "compbio_blog_2"
+order : 2
+---
+# Estimation-Maximization Algorithm
+# ======================
+# File: articles\compbio\journal\intro_emu.md
+# ======================
+---
+title: "Introduction"
+layout: "base/base_article.njk"
+homeTag: "compbio"
+tags: "compbio_intros"
+order : 1
+---
+# Introduction to EMU
+The paper we are studying presents a software tool called **Emu.** This tool was developed to generate accurate taxonomic abundance profiles from full-length 16s rRNA reads obtained by nanopore sequencing (ONT).
+::: concept _Species
+Taxon is any rank in the biological taxonomy system:
+Domain -> Phylum -> Class -> Order -> Family -> Genus -> Species -> Lower
+A species is the finest standard rank. In sequencing-based classification, it refers to organisms whose genomes differ enough that they can be considered distinct biological units. A genus-level classification is usually done by 16S short-read sequencing. A species-level classification is dependent on enough variable positions to tell apart species.
+:::
+Short reads coming from many different species at once are not assembled to contigs because it is not possible without creating chimeric, incorrect sequences. And since short reads only cover a small part of the 16S gene, they don’t observe enough species-specific differences and can't be used to reliably differentiate between them.
+A long read, full-length 16S sequencing (the read cover the entire 16S gene) has the potential to allow species-level resolution. This is because full-length read aligns to the full-length reference which exposes the true mismatches at many distinct positions. However, full-length nanopore reads tend to have high error rates.
+::: idea _Error rates
+A nanopore measures ionic current as DNA passes through. Each 5-6-mer produces a characteristic current distribution. This is a indirect, hard inverse problem. Consequently, the signal for one base overlaps with the next because multiple consecutive bases are inside the pore simultaneously. At the same time, the motor protein does not pull DNA through at a perfectly constant rate. So the DNA can pause, jump or skip or accelerate and jitter because of thermal fluctuations.
+:::
+Emu solves this problem by using an **Expectation-Maximization algorithm** (EM) to distinguish between true biological differences and sequencing errors.
+# ======================
+# File: articles\compbio\journal\pipeline.md
+# ======================
+---
+title: "Pipeline"
+layout: "base/base_article.njk"
+homeTag: "compbio"
+tags: "compbio_blog_1"
+order : 1
+---
+# Overview
+Emu method distinguishes itself from other methods by not requiring consensus sequences but rather uses the information from the entire community (all the reads) to statistically correct abundance. This smooths-out sequencing noise. By re-estimating probabilities, Emu reduces false positives significantly compared to raw proper alignments.
+::: concept Consensus Sequences
+Multiple reads of the same molecule.
+:::
+Emu's algorithm is a two-stage process:
+1. Classic proper alignments are generated between reads and the reference database
+2. EM-based error-correction step is performed to iteratively refine species-level relative
+abundances based on total read-mapping counts
+### Notation
+- $R$ - the set of reads
+- we denote a single specific read as $r$
+- $S$ - the set of references (the reference database)
+- we denote a single specific sequence in the database as $s$
+- $T$ - the set of all taxonomy identifications in $S$
+- $F$ - **prior sample composition** the vector of probabilities (entries of the vector map one-to-one to species)
+- the vector $F$ initially starts with uniformly distributed elements:
+$$F(t)_{t\in T} = \frac{1}{|T|}$$
+- $C$ - the set of all alignment types (e.g. mismatch, deletion)
+- the alignment type event is denoted $c$
+- $P(r | s)$ - the probability that (by nanopore sequencing) we get a read $r$ given we are sequencing a reference $s$, in other words the probability the a read $r$ aligns to reference sequence $s$
+- $P(r | t)$ - the probability that (by nanopore sequencing) we get a read $r$ given the sequence comes from $t$
+- $P(t | r)$ - the probability $t$ is the true taxon for read $r$
+## Emu Pipeline
+### Mapping
+The EMU pipeline starts by taking the input reads $R$ and mapping them to the reference database $S$ using **minimap2**. This step generates the primary proper alignments.
+Along with the alignments, we also receive the CIGAR string for each alignment. This supplies us with the information on all differences between the read and references they were aligned against also called the nucleotide **alignment type**.
+### Initial probabilities
+EMU takes the numerical values for each alignment type and determines the initial likelihoods for them. This is simply:
+$$
+P(c) =\frac{n_c}{\sum_{c\in C}n_c}
+$$
+where $P(c)$ is the likelihood for alignment type event, $n_c$ is the amount of events of alignment type $c$ amongst all the primary alignments:
+<center>
+| $X$ - mismatch | $I$ - insertion | $D$ - deletion | $S$ - softclip |
+| :---: | :----: | :---: | :---: |
+</center>
+Similarly, EMU calculates the likelihood for each pairwise sequence alignment:
+$$
+P(r | s) = \prod_{c\in C} P(c) ^{n'_{c(r,s)}}
+$$
+where $n'_{(r,s)}$ is the normalized number of alignment type $c$ observed between alignment of $r$ and $s$.
+The normalization of $n'_{(r,s)}$ is done as the length of the longest alignment for read $r$ divided by the length of the alignment:
+$$
+n'_{(r,s)} = n_{(r,s)} \frac{\max_{s'\in S}{\text{len}(r, s')}}{\text{len}(r,s)}
+$$
+::: note Probability & Likelihood
+Probability is about data given a model. We talk about the probability of an *outcome*.
+Likelihood is about the model given data. We talk about the likelihood of a *parameter*.
+:::
+If for specific pair no alignment is made, we set $P(r|s)=0$.
+Since we are interested in the most-likely taxonomy of $r$ rather than the most-similar sequence $s$, we keep only the highest $P(r|s)$ for any $s$ with species-level taxonomy identification $t$. Thus, the alignment probability between each read $r$ and species-level taxonomy $t$ is calculated with 
+$$
+P(r|t) = \max_{s\in t}(\prod_{c\in C}P(c)^{n'_{c(r,s)}})
+$$
+where $s\in t$ represents all $s$ with taxonomy id $t$.
+We also set initially
+$$F(t)_{t\in T} := \frac{1}{|T|}$$
+### 1. Expectation step (E-step)
+Now, using Bayes' Theorem we can flip the conditional relation in probability $P(r|t)$ that we get a read $r$ given the sequence comes from $t$ to $P(t|r)$, the probability $t$ is the true taxon for read $r$:
+$$
+P(t|r) = \frac{P(r|t)P(t)}{P(r)} = \frac{P(r|t)F(t)}{\sum_{t\in T}P(r|t)F(t)}
+$$
+where we used the fact that $F(t)\equiv P(t)$ and $P(r)=\sum_{t\in T}P(r|t)F(t)$.
+::: idea
+This step down-weights alignments to species that are currently estimated to be rare in the sample. 
+With error-prone Oxford Nanopore reads, a single read often looks like several different species. To fix this, the algorithm introduces and uses $F(t)$, the prior sample composition which represents the estimated relative abundance of species $t$ in the entire sample. (*"How likely is it to find this species in the sample at all?"*)
+The "flip" calculates $P(t|r)$ (the probability the read actually belongs to species $t$) by multiplying the alignment score by the species abundance:
+$$
+P(t|r) \propto P(r|t) \times F(t)
+$$
+By flipping the probability, Emu penalizes the rare species. It assumes that an any random read is statistically much more likely to come from the "soup" of species we already know exists in the sample, rather than a species that is barely present.
+:::
+### 2. Maximization step (M-step)
+Redistribute the sample composition $F$ based on the probabilities calculated in the E-step:
+$$
+L(R) = \sum_{r \in R} \log \left[ \sum_{s \in S} P(r|t) \cdot F(t) \right]
+$$
+::: idea
+In many regression problems (like standard linear regression), we can invert a matrix and solve for the optimal weights *analytically* in a single step. This is not done in practice however as inverting matrix is a harder problem. 
+The goal of Emu is to find the abundance profile $F$ that maximizes the **total log likelihood** of observing all reads $R$. The equation provided in the paper is:
+$$L(R) = \sum_{r \in R} \log \left[ \sum_{s \in S} P(r|t) \cdot F(t) \right]$$
+To solve this *analytically*, we would normally take the derivative of $L(R)$ with respect to $F(t)$, set it to zero, and solve for $F(t)$.
+The problem, however, arises when we take the derivative of log of sums and we end up with:
+$$
+\frac{\partial L}{\partial F(t)}
+= \sum_{r\in R} \frac{P(r\mid t)}{\sum_{s\in S} P(r\mid t)F(t)} = 0
+$$
+This is a set of non-linear equations that cannot be isolated algebraically. Since we cannot jump to the peak of the mountain (analytical solution) because the map is too complex (coupled non-linear equations), we use the Expectation-Maximization (EM) algorithm to climb the hill one step at a time.
+- Step 1 (Expectation): Pretend we know the abundance $F$. Use it to softly assign reads to species.
+- Step 2 (Maximization): Pretend these assignments are hard facts. Just count the reads to update $F$.
+:::
+### 3. Convergence step
+To check for convergence we calculate the total log-likelihood $L(R)$ of the data given the model:
+$$
+L(R) = \sum_{r \in R} \log \left[ \sum_{s \in S} P(r|t) \cdot F(t) \right]
+$$
+If the increase in $L(R)$ compared to the previous iteration is greater than $0.01$ (is substantial), the loop repeats with updated $F$. Otherwise the redistribution is complete and we move on to the next step.
+### Noise trimming
+The probabilistic nature of the algorithm causes the vector $F$ to contain a tail of entries (but not in entry position meaning of the word) with small probabilities. This tail of false positives can be removed by setting a threshold under which any abundance will be set to $0$. The threshold is set so that if the probability $F(t)$ is calculated as 
+$$
+\frac{\text{\#reads from t}}{\text{\#total reads}}
+$$
+then the threshold is
+- $1$ read from $t$ for small samples
+- $10$ reads from $t$ for samples of $ >1000$
+### Final pass
+Emu performs one final round of abundance redistribution with the trimmed vector to produce the final community profile. In the software the resulting $F$ is exposed as the final sample composition estimation.
+# ======================
+# File: articles\compbio\journal\qna.md
+# ======================
+---
+title: "Q&A"
+layout: "base/base_article.njk"
+homeTag: "compbio"
+tags: "compbio_blog_2"
+order : 1
+---
+# 1
+Question: Why use the word 'taxonomy' when EMU specifically talks about the resolution of single species.
+Answer: Because a reference genome in the database can be identified with higher level taxonomical classification than species, e.g. a genus.
+2. what is the function len (of the alignment)
+3\. why logarithm
+# ======================
+# File: articles\dipl\0_abstract.md
+# ======================
+---
+title: "Abstract"
+layout: "base/base_article.njk"
+homeTag: "dipl"
+tags: "infos"
+order : 1
+---
+# Abstract
+Volumetric data from medical scans (e.g. CT, MRI) is essential for clinical analysis, medical education, and patient communication. However, achieving photorealistic rendering of this data using traditional methods often either compromises real-time rendering times or requires expensive hardware, limiting its accessibility.
+This thesis proposes a novel rendering framework to address this limitation. We will investigate the use of path tracing combined with splatting methods to render medical volumetric data. Together with targeted performance optimizations, we aim to achieve photorealistic and real-time results on consumer-grade GPUs.
+The efficacy of the proposed method will be evaluated through its performance and visual fidelity will be benchmarked against traditional volume rendering techniques. The diagnostic quality of the resulting visualizations will be qualitatively assessed in consultation with medical professionals.
+# ======================
+# File: articles\dipl\0_details.md
+# ======================
+---
+title: "Details"
+layout: "base/base_article.njk"
+homeTag: "dipl"
+tags: "infos"
+order : 2
+---
+# Details
+## Master's Thesis
+Department - Faculty  - Institute
+: Faculty of Mathematics, Physics and Informatics - Department of Computer Science - Comenius University Bratislava
+Supervisor
+: doc. RNDr. Pavel Chalmovianský, PhD.
+Title
+: Modern Techniques for Medical Data Imaging on Consumer-Grade Hardware
+Abstract
+: Volumetric data from medical scans (e.g. CT, MRI) is essential for clinical analysis, medical education, and patient communication. However, achieving photorealistic rendering of this data using traditional methods often either compromises real-time rendering times or requires expensive hardware, limiting its accessibility.
+: This thesis proposes a novel rendering framework to address this limitation. We will investigate the use of path tracing combined with splatting methods to render medical volumetric data. Together with targeted performance optimizations, we aim to achieve photorealistic and real-time results on consumer-grade GPUs.
+: The efficacy of the proposed method will be evaluated through its performance and visual fidelity will be benchmarked against traditional volume rendering techniques. The diagnostic quality of the resulting visualizations will be qualitatively assessed in consultation with medical professionals.
+# ======================
+# File: articles\dipl\0_introduction.md
+# ======================
+---
+title: "Introduction"
+layout: "base/base_article.njk"
+homeTag: "dipl"
+tags: "miscs"
+order : 2
+---
+# Introduction
+TODO
+intoroduction to the problem, possible solutions and current ideas of how to proceed
+TODO
+# ======================
+# File: articles\dipl\0_literature.md
+# ======================
+---
+title: "Literature"
+layout: "base/base_article.njk"
+homeTag: "dipl"
+tags: "infos"
+order : 3
+---
+# Literature
+## Primary Literature
+Optical properties of biological tissues: a review
+: https://doi.org/10.1088/0031-9155/58/11/r37
+```
+@article{Jacques_2013,
+doi = {10.1088/0031-9155/58/11/R37},
+url = {https://doi.org/10.1088/0031-9155/58/11/R37},
+year = {2013},
+month = {may},
+publisher = {IOP Publishing},
+volume = {58},
+number = {11},
+pages = {R37},
+author = {Jacques, Steven L},
+title = {Optical properties of biological tissues: a review},
+journal = {Physics in Medicine & Biology},
+}
+```
+3D Gaussian Splatting for Real-Time Radiance Field Rendering
+: https://doi.org/10.48550/arXiv.2308.04079
+```
+@misc{kerbl20233dgaussiansplattingrealtime,
+      title={3D Gaussian Splatting for Real-Time Radiance Field Rendering}, 
+      author={Bernhard Kerbl and Georgios Kopanas and Thomas Leimkühler and George Drettakis},
+      year={2023},
+      eprint={2308.04079},
+      archivePrefix={arXiv},
+      primaryClass={cs.GR},
+      url={https://arxiv.org/abs/2308.04079}, 
+}
+```
+Real-Time Monte-Carlo Path Tracing of Medical Volume Data
+: [Local Copy](/resources/papers/orig_cr_mc.pdf)
+```
+@inproceedings{Engel2016,
+  author    = {Engel, Klaus},
+  title     = {Real-Time Monte-Carlo Path Tracing of Medical Volume Data},
+  booktitle = {Proceedings of the GPU Technology Conference (GTC)},
+  year      = {2016},
+  address   = {San Jose Convention Center, San Jose, CA, USA},
+  month     = {April 4--7},
+  note      = {GPU Technology Conference},
+}
+```
+Physically Based Rendering: From Theory to Implementation
+: https://www.pbrt.org/
+```
+@book{Pharr2023,
+  author    = {Pharr, Matt and Jakob, Wenzel and Humphreys, Greg},
+  title     = {Physically Based Rendering: From Theory to Implementation},
+  edition   = {4th},
+  year      = {2023},
+  publisher = {MIT Press},
+  address   = {Cambridge, MA, USA},
+  isbn      = {9780262048026},
+  url       = {https://pbrt.org/}
+}
+```
+## Other Literature
+*(Subject to change)*
+### Direct Volume Rendering
+#### Articles
+*   [https://cgl.ethz.ch/teaching/former/scivis\_07/Notes/stuff/StuttgartCourse/VIS-Modules-06-Direct\_Volume\_Rendering.pdf](https://cgl.ethz.ch/teaching/former/scivis_07/Notes/stuff/StuttgartCourse/VIS-Modules-06-Direct_Volume_Rendering.pdf)
+### General Rendering
+#### Books
+*   Physically Based Rendering (PBR),
+*   Real-Time Rendering, CRC
+### Monte Carlo Path Tracing
+#### Papers
+*   Mathematical Basics of Monte Carlo Rendering Algorithms
+### 3D Gaussian Splatting
+*   [https://github.com/MrNeRF/awesome-3D-gaussian-splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) - Curated list of resources on 3DGS
+#### Papers
+*   [https://arxiv.org/pdf/2308.04079](https://arxiv.org/pdf/2308.04079) - Original 3DGS paper
+*   [https://arxiv.org/pdf/2311.16043](https://arxiv.org/pdf/2311.16043) - Original Relightable 3D Gaussians
+*   [https://arxiv.org/pdf/2311.17977](https://arxiv.org/pdf/2311.17977) - 3DGS with shading functions
+*   [https://arxiv.org/pdf/2311.16473](https://arxiv.org/pdf/2311.16473) - Another Relightable 3DGS
+*   [https://arxiv.org/pdf/2507.20512](https://arxiv.org/pdf/2507.20512) - Complex 3DGS shadowing
+*   [https://arxiv.org/pdf/2412.19282](https://arxiv.org/pdf/2412.19282) - Reflective 3DGS
+# ======================
+# File: articles\dipl\0_motivation.md
+# ======================
+---
+title: "Motivation"
+layout: "base/base_article.njk"
+homeTag: "dipl"
+tags: "miscs"
+order : 1
+---
+# Motivation
+*(where i talk about why is something like this even needed)*
+# ======================
+# File: articles\dipl\0_roadmap.md
+# ======================
+---
+title: "Roadmap"
+layout: "base/base_article.njk"
+homeTag: "dipl"
+tags: "miscs"
+order : 3
+---
+# Roadmap
+![](/images/roadmap.svg)
+*(PLACEHOLDER MD TEST)*
+## Castle Building Roadmap
+## Overview
+A high-level, phase-driven roadmap for planning and executing a castle construction project. Adapt the timelines, resources and deliverables to your scope (historical reconstruction, fantasy build, real-world fortified manor, etc.).
+## Vision & Objectives
+- Primary vision: Build a durable, functional castle that meets safety, aesthetic and program requirements.
+- Objectives:
+    - Structural integrity and longevity
+    - Defensible layout (if applicable)
+    - Period-appropriate aesthetics / chosen style
+    - Visitor access and safety
+    - Budget and schedule adherence
+## Success Criteria
+- Structural inspection passed
+- Key spaces (keep, great hall, gatehouse, towers) functional and approved
+- Systems (water, drainage, basic utilities) operational
+- Final budget within agreed variance
+- Handover documentation and maintenance plan complete
+---
+## Phases & High-Level Timeline
+1. Concept & Feasibility — 2–6 weeks
+2. Site Survey & Permits — 4–12 weeks (parallel tasks possible)
+3. Schematic & Detailed Design — 8–16 weeks
+4. Site Preparation & Foundations — 4–12 weeks
+5. Superstructure (walls, towers) — 12–36 weeks
+6. Roof, Floors & Openings — 8–20 weeks
+7. Interiors & Systems — 8–20 weeks
+8. Defenses, Landscaping & External Works — 6–16 weeks
+9. Commissioning & Inspections — 2–6 weeks
+10. Handover & Maintenance Setup — 2–4 weeks
+(Adjust durations according to scale and resources.)
+---
+## Example Milestones
+- M1: Feasibility report approved
+- M2: Planning permission granted
+- M3: Foundation completed and inspected
+- M4: External walls closed / weather-tight
+- M5: Roof complete
+- M6: Systems commissioned
+- M7: Final inspection passed
+- M8: Handover complete
+Each milestone should include acceptance criteria, owner, target date, and required documents.
+---
+## Roles & Responsibilities
+- Project Sponsor — funding and strategic decisions
+- Project Manager — schedule, budget, coordination
+- Lead Architect / Historian — design and authenticity
+- Structural Engineer — foundations and load-bearing elements
+- Site Manager / Contractor — daily site operations
+- MEP Engineer — utilities and systems
+- Safety Officer — site safety and compliance
+- QA / Inspector — quality checks and sign-offs
+---
+## Resource Plan
+- Materials: stone/brick, lime mortar, timber, metalwork, roofing materials
+- Equipment: excavation, scaffolding, lifting equipment
+- Labor: masons, carpenters, laborers, specialists
+- Consultants: archaeologist (if needed), conservation specialist, planners
+- Budget categories: design, permits, materials, labor, contingencies, professional fees
+---
+## Risk Register (sample entries)
+- Ground conditions worse than expected — mitigant: pre-construction geotechnical survey, contingency budget
+- Permit delays — mitigant: early engagement with authorities, buffer in schedule
+- Material shortages / price increases — mitigant: early procurement, alternate suppliers
+- Weather impacts — mitigant: phased scheduling, temporary weather protection
+---
+## Deliverables per Phase
+- Concept: vision statement, feasibility study, preliminary cost estimate
+- Design: schematic plans, detailed drawings, structural calculations, specification
+- Construction: daily logs, inspection reports, material certificates
+- Commissioning: system test reports, safety certificates
+- Handover: as-built drawings, O&M manuals, maintenance schedule
+---
+## Communication Plan
+- Weekly site report (to stakeholders)
+- Bi-weekly progress meeting (project team)
+- Monthly executive summary (sponsor)
+- Change control process: log changes, impact assessment, formal approval
+---
+## Acceptance Checklist (before Handover)
+- Structural certificate obtained
+- Fire & life-safety checks passed
+- Utilities functional (water, power where applicable)
+- Drainage and erosion control verified
+- Accessibility / paths inspected
+- As-built drawings and documentation delivered
+---
+## Maintenance & Lifecycle
+- Routine inspections (annual)
+- Masonry repointing schedule (as required)
+- Roof and drainage maintenance (bi-annual)
+- Record-keeping for repairs and conservation
+---
+## Templates & Notes
+- Milestone template: Title, Owner, Target date, Acceptance criteria, Status
+- Task template: ID, Description, Assignee, Start/End, Dependencies, Estimate, Status
+- Change request template: ID, Description, Impact (schedule/budget/scope), Decision
+---
+## Appendix
+- Glossary of terms
+- Reference standards and local regulations
+- Contact list (authorities, suppliers, consultants)
+Customize this roadmap to your project's scale, style and legal context. Use the milestones and templates to convert the plan into a detailed project schedule and task list.
+# ======================
+# File: articles\dipl\0_thoughts.md
+# ======================
+---
+title: "Thoughts"
+layout: "base/base_article.njk"
+homeTag: "dipl"
+tags: "miscs"
+order : 4
+---
+# Thoughts
+*(30.10.2025)*
+will contain a dynamically growing collection of thoughts with dates to track mental process and progress throughout the writing
+*(1.11.2025)*
+![](/images/thoughts_1.svg)
+# ======================
+# File: articles\dipl\1_medical_scans.md
+# ======================
+---
+title: "Medical Scans"
+layout: "base/base_article.njk"
+homeTag: "dipl"
+tags: "chapters"
+order : 1
+---
+*(30.10 - )*
+# Medical Scans
+This chapter serves as a introduction to the concepts of medical scans. The bread and butter of our thesis as the source of input data.
+## CT Scans
+CT scan
+: computed tomography scan
+In this section we will look at the fundamentals of ct scans. As our primary source of data it is important to get a sense of the historical motivation behind the technology and the science that drove it.
+We will briefly cover its beginnings, advances and the current state-of-art solutions that maximize the quality of the resulting scan but at the same time minimize the exposure to radiation. Then, briefly, we will examine the physics and mathematics behind the process of acquiring and processing ct scans so that a full and informative picture can be made as to where our sources come from.
+![Alt text](/images/1_1.svg)
+# ======================
+# File: articles\dipl\1_volume_reconstruction.md
+# ======================
+---
+title: "Volume Reconstruction"
+layout: "base/base_article.njk"
+homeTag: "dipl"
+tags: "chapters"
+order : 2
+---
+# ======================
+# File: articles\dlcv\homework1.md
+# ======================
+---
+title: "Homework 1"
+layout: "base/base_article.njk"
+homeTag: "dlcv"
+tags: "dlcvs"
+order : 1
+---
+# Homework 1: Cifar10 CNN
+## Assignment
+The goal of this homework is to:
+- Design a basic CNN and train on Cifar10 dataset
+- Improve the model iteratively and benchmark each iteration
+### What is Cifar10
+CIFAR-10 is a collection of 60,000 32x32 **color images** divided into 10 mutually exclusive classes. The dataset is split into a training set of 50,000 images and a test set of 10,000 images. The 10 classes are: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, and truck.
+## Solution
+### Setting
+For this project, we will also try to learn how to use Google Cloud virtual machine for compute. Because the virtual machine uses os image with `python 3.12` and `pytorch 2.7.` we will be using those versions.
+We will be using uv for project management.
+The package name of our project will be `cifar10_cnn` and the structure is:
+- Core package contains the training module
+- Subpackage `models` contains the base model and every upgrade iteration
+- Subpackage `tests` contains testing
+- Subpackage `utils` contains data loaders
+### Dataset Loaders
+Function `get_loaders(batch_size, augment=False, first_1000=False)` returns `DataLoader` objects from `torch.utils.data`:
+- the `train_loader` filled with training data
+- the `val_loader` filled with validation data
+The data can be transformed between loading from builtin Cifar10 object to the loaders:
+- `batch_size` - self explaining
+- `augment` - image augmentation is handled trough tensor transformation by `CIFAR10` object
+- `first_1000` - allows for fast prototyping via `Subset` object
+### Input data
+Images with resolution of 32x32 and 3 channels. 10 classes. `(image, class)`
+### Training
+The training loop is classic pytorch template loop:
+- **For all epochs do**
+    - Train one epoch on training data
+    - Evaluate the epoch on validation data
+- **For each epoch do**
+    - Set model to training mode - `model.train()`
+    - **For each batch in loader do** (e.g. `torch.Size([64, 3, 32, 32])`)
+        - Send the data to available device (CPU, GPU if CUDA)
+        - Do one forward pass on the data
+        - Calculate loss
+        - Compute statistics
+### Base Model
+The base model `class Cifar10_CNN_Base(nn.Module):` uses the Adam optimizer and ReLU activations per the assignment.
+The model consists of 3 feature-extraction layers with kernel size 3 and standard padding of 1:
+| Layer | InOut / Size | Result Data Dimension |
+| :---        |    :----:   |          ---: |
+| Input | - | `3x32x32` |
+| 2D Convolutional | `3, 32` | `32x32x32` |
+| 2D Max Pool | `2` | `32x16x16` |
+| 2D Convolutional | `32, 64` | `64x16x16` |
+| 2D Max Pool | `2` | `64x8x8` |
+| 2D Convolutional | `64, 128` | `128x8x8` |
+| 2D Max Pool | `2` | `128x4x4` |
+And of two classification layers that take in flattened output of the convolution module:
+| Layer | InOut / Act | Result Data Dimension |
+| :---        |    :----:   |          ---: |
+| Input | - | `128x4x4` |
+| Flatten | - | `2048` |
+| ---        |    ---   |          --- |
+| Input | - | `2048` |
+| Linear | ReLU | `2048x256` |
+| Linear | - | `256x10` |
+The output is raw logit representation of the classes logistic distribution.
+# ======================
+# File: articles\ds\cache.md
+# ======================
+---
+title: "Cache"
+layout: "base/base_article.njk"
+homeTag: "ds"
+tags: "datastructures"
+order : 1
+---
+### CPU cache
+CPU cache is a small, high-speed memory that is physically located near the CPU. It sotred frequently used data and instructions to reduce the time it takes the processor to access them from other memory, like the main memory (RAM).
+Modern processors have multiple cache levels. These levels interact with each other and with the CPU based on the specific CPU architecture.
+The main properties of cache are
+- cache size
+- cache block size
+- the number of blocks in a set
+- the cache set replacement policy
+- the cache write policy
+### Cache Loading
+When a CPU wants to access a data stored in the main memory it first loads the data into the cache. This loading, however, only happens in chunks called **cache lines**. Typical cache line is 64 bytes (on modern x86-64 CPUs). This means that the cpu loads the amount of data it wants to access and the next however bytes to load full 64 bytes.
+This also means that we may get unrelated memory in the cache to our interest. This is normal since cache behavior is not observable at the semantic level, it happens automatically and we need to work with it in order to maximize the performance of our program.
+- L1 cache access: ~0.5ns
+- L2 cache access: ~3ns
+- L3 cache access: ~15ns
+- RAM access: ~100ns
+- SSD access: ~10ms (10000ns)
+### Cache-Friendliness
+Even a single trip to DRAM is about 200 CPU cycles. We want our programs to work with the CPU's natural prefetching and caching mechanism. Once the data is in cache, the operations are extremely fast so we want to design our algorithms so that we minimize:
+#### Cache misses
+Cpu fails to find the data it needs in cache and has to load another cache line. We minimize this waste by designing layouts so that elements of the data structure fit inside the cache lines.
+- grouping 'hot' (frequently accessed) fields together
+- using structs of arrays instead of arrays of structs
+- *not* placing rarely used fields next to hot data
+- *not* storing 32-byte pointers next to 8-byte ints
+#### Pointer chasing
+Every pointer-following step risks crossing to a new cache line. Meaning:
+- hash maps with chained buckets perform poorly
+- tree structures are slow
+- `absl::flat_hash_map` hash maps put keys and values contiguously in arrays and are *fast*
+# ======================
+# File: articles\ds\flat_hash_map.md
+# ======================
+---
+title: "flat_hash_map"
+layout: "base/base_article.njk"
+homeTag: "ds"
+tags: "datastructures"
+order : 5
+---
