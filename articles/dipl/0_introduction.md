@@ -6,43 +6,135 @@ tags: "miscs"
 order : 2
 ---
 
-# Motivation and Overview
+# Introduction
 
-The visualization of animal, particularly human, anatomy through non-invasive means remains one of the most significant achievements in modern medicine. Medical scans have changed the way clinicians understand pathology, allowing for gathering knowledge about the internal state of an animal body without making a single incision. However, as data acquisition hardware improves, it produces higher resolution and more complex datasets and the challenge moves from the question of how we capture data to how we display it effectively.
+## Motivation and Overview
 
-The primary motivation of this thesis lies in bridging the gap between raw volumetric data and human understandable visual information. [PO]A lesson at a medical school may start with the list of bones and the pairs in which ligaments interface with them but ultimately students must visualize the spatial relationships, get a feel for the textures and contextualize the scales involved themselves.
+The visualization of animal, particularly human, anatomy through non-invasive means is one of the most significant achievements in modern medicine.
 
-An important note to make here is that there is a difference between the requirement of precise display of only a subset of information and a relaxed condition that allows for inclusion of any kind of information or of some to a varying degree. 
+> **Note:** Or rather we should say one of the most significant accidental gifts of physics to modern medicine.
 
-As an example take dental surgery. A surgeon might at first want to see the bones as close to anatomically precise as possible, as they would appear if all other tissue became transparent. Here we would require the rendering algorithm to simulate light entering all the openings and dents of the bone, interacting on inside of that porous material and exiting back coherently, or diffusing trough the material. On the other hand, when deciding on the precise cuts to be made, a surgeon might want to switch to less realistic model, opting for to anchor the cutting curves on rough anatomical landmarks and working only with the geometry of surfaces lightly shadowed by an ambient light.
+**Medical scans** allow clinicians to understand pathology and enable them to gather knowledge about the internal state of a human body without making a single incision. However, as data acquisition hardware has improved, it has begun producing increasingly complex datasets with higher resolution and the challenge has shifted from the question of how we capture data to how do we display it effectively.
 
-[PO]The question of what detail and to what degree realistic, in other words to what degree anatomically correct, the visualization should be, is a partly of this thesis to answer. A survey of clinical practitioners should be included... [TODO AND CLARIFY]
+The oldest technique for imaging the internal human body is projectional radiography, commonly known as X-ray. To image a common pathology, such as a **broken bone**, a subject is placed between a source of electromagnetic radiation and a detector. As radiation passes through the body, it is attenuated by various **tissues**, losing intensity. This results in a non-uniform intensity distribution on the detecting plane, allowing **internal structures** and **organs** to be distinguished.
 
-Currently, the field [WHAT FIELD EXACTLY] stands at a crossroads between two competing requirements:
+A different approach, sonography, utilizes sound waves. A transducer emits high-frequency sound waves through contact with the skin. These waves travel into the body, where they are either scattered or reflected. The reflected waves are detected as echoes and algorithmically interpreted. To reconstruct an image, the scanner determines how long did the echo take to return and how strong the echo was. These two variables determine the spatial location and brightness of the corresponding pixels in the resulting visual.
 
-- The need for high-fidelity, physically accurate visualization, asking "How to make it nice?".
-- The need for real-time performance, asking "How to make it fast?".
+Not all medical scans are equivalent, and the choice which to use depends on the needs of the clinician and on the availability of the given technology. Different scanning techniques produce distinct types of output data.
 
-This thesis explores the pipeline from data creation to interactive on-screen pixel generation. We aim to propose a hybrid approach that leverages modern hardware, algorithms, and possibly rapidly improving implementation of neural networks to solve the computational expense of [PHYSICALLY BASED RENDERING METHODS] Monte Carlo path tracing in medical volume rendering.
+This thesis focuses on scans that produce spatially complete **volumetric data**.
 
-# Data Acquisition
+> **Note:** Such that it covers the whole volume uniformly.
 
-To understand what constitutes the challenges of rendering, we must first understand the nature of the input data. Medical scans are not standard photographs but rather they are mappings between the space of physical properties and the space of data points.
+The availability of 3D spatial information provides the freedom to project the data at arbitrary orientations and scales onto a **2D monitor**, or even view it through **virtual reality** systems. This unlocks the full potential of human visual perception and allows for real-time interaction, creating an ideal environment for both **education** and **clinical analysis**.
 
-In Computed Tomography (CT), the input data is created through the measurement of X-ray attenuation. As photons pass through the body, they are absorbed at different rates depending on tissue density (e.g., bone versus soft tissue). The mathematical reconstruction of this data relies heavily on the Radon transform, an integral transform which reconstructs a function from its line integrals. This results in a scalar field of attenuation coefficients that must be interpreted by the rendering algorithm.
+Specifically, we are interested in those methods, where the body is mapped onto an euclidean space of data points, each containing sufficient information to determine the **optical properties** of that physical location.
 
-Magnetic Resonance Imaging (MRI) utilizes nuclear magnetic resonance principles. Here, the input data is derived from the relaxation times of hydrogen nuclei in a magnetic field. The reconstruction of these spatial frequencies into an image is performed via the Fourier transform.
+In Computed Tomography (CT), the output data is created by the measurement of X-ray attenuation from multiple angles. The mathematical reconstruction of this data relies on the Radon transform, an integral transform which reconstructs a function from its line integrals.
 
-Both techniques result in volumetric grids of data. The challenge for this thesis is translating these data sets into an optical model that mimics the behavior of light, creating a result picture that doctors can understand.
+> **Note:** An integral transform  where  is some function defined on a plane and  is a function defined on a space of line in the plane whose values are defined as the line integral of that function over that line. The reconstruction of the original object is then achieved by taking the inverse of this transform.
 
-Our thesis will cover the means of acquiring data only as a means to understand what information is available to us given the technology used to obtain the input data. 
+This results in a scalar field of attenuation coefficients that must be interpreted by the rendering algorithm.
 
+Magnetic Resonance Imaging (MRI) utilizes nuclear magnetic resonance principles. Here, the output data is derived from the relaxation times of hydrogen nuclei in a magnetic field. The reconstruction of these spatial frequencies into an image is performed via the Fourier transform.
 
+Both techniques result in **volumetric grids** of datapoints. The challenge of this thesis lies in translating these datasets into a physically based optical model that simulates the behavior of light and subsequently, after defining the lighting conditions, projecting the resulting light transport onto a viewing plane. This requires establishing a correlation between each data point and the tissue it represents. Modern approaches may utilize transformer-based neural networks for this task. Tissues can be classified using the global context of the data point’s position, geometric flow, or state-of-the-art pretrained segmentation models.
 
-# Rendering
+Once the biological tissue represented by a data point is identified, we can proceed to model its specific optical properties (Jacques, 2013).
 
-Historically, computer graphics systems have relied on traditional rendering techniques, primarily rasterization. Rasterization is a computationally efficient algorithm that projects 3D geometry onto a 2D plane followed by a number of steps that add color according to various textures that mimic the desired imagined reality. However, in the context of medical volume rendering, rasterization often struggles with complex light interactions, such as semi-transparency and subsurface scattering, which are critical for distinguishing organic tissues. [WHAT ARE THE STRUGGLES] Rasterization requires each spatial data point to contain all the information needed for synthesis of the final pixel. Calculating the respective data is expensive and would be reduced to the same computational problem as physically-based rendering.
+---
 
-To achieve greater realism and utility, in late 1900s and early 2000s the industry moved toward physically-based rendering (PBR). PBR aims to simulate the physical behavior of light as it interacts with the optics of the virtual scene, in our case, the anatomy of the patient.
+## Goals
 
-The gold standard for this is path tracing (specifically Monte Carlo Path Tracing), which calculates the path of light rays as they bounce through the volume. While this produces superior visual quality, it introduces a massive computational cost.
+The primary objective of this thesis is to develop a **rendering framework** that transforms the raw volumetric data into a visual representation both intuitive for non-professionals and functionally valuable for professionals.
+
+> **Note:** Or at least a prototype of rendering framework. Features such as full user interface are outside of the core research scope of this work.
+> **Note:** An experienced radiologist might see a fracture where unskilled eye sees only a gray overlapping shapes.
+
+By moving beyond traditional **transfer functions** toward photorealistic **path tracing** and **splatting**, we aim to provide **clinicians** and **educators** with a tool that improves spatial comprehension and **diagnostic quality**. The goal here is to demonstrate that **anatomical realism** does not have to be sacrificed for **performance** and specifically, we aim to enable a degree of **interactivity** previously reserved for lower-fidelity models. This includes **dynamic lightning** where users can manipulate light sources in real-time allowing for better understanding of **depth** and **surface texture**, linear and non-linear transformations, the ability to move, rotate and scale specific anatomical structures and temporal interactivity, where scans containing temporal dimension could be used to **animate organs** such as heart.
+
+For surgeons and medical students, the benefit of photorealistic visualization lies in the depth of perception and **material differentiation**. Traditional rendering often results in 'flat' or 'plastic' appearances that lack both the obvious and subtle anatomical details. By simulating the complex behavior of light, such as subsurface scattering and realistic shadowing, our goal is to produce visualizations that mimic the look and feel of a physical human body dissection. This level of visual fidelity allows for better understanding of the relative distance and orientation of overlapping structures. Together with an UI that could envelop the internal rendering systems, it could provides students with a 'virtual cadaver' with realistic lighting, aiding in the transition from reading textbook theory to seeing the operating theater as close to in person as technology allows.
+
+A core goal of this framework is to alow the user to manipulate the digital volume. Rather than viewing a static image, users will be able to interact with the anatomy through:
+
+* **Segmentation** - using neural network-assisted classification to isolate specific organs or tissue layers.
+* **Volumetric editing** - enabling the 'peeling back' of tissue layers, creating slices through the volume or scaling specific structures to reveal underlying pathology.
+* **Variable transparency** - adjusting the opacity of structures (like the skin or musculature) to make them semi-transparent, allowing for a 'see-through' effect that visualizes the internal relations within the body.
+
+The nuances of this goal, however, lie in the tradeoff between what is achievable if high-end computing clusters are available and what can be done with a consumer-grade hardware found in clinical institutions and teaching faculties.
+
+> **Note:** This metric will be determined by an indirect survey.
+
+Achieving path-traced realism in real-time requires clever data structures and pruning algorithms to minimize redundant calculations and the waste of available compute power by rendering elements outisde the line of sight. Optimizing how the splatting engine traverses the volumetric grid to ensure that only visible and relevant data points contribute to the final image. Implementing efficient ways to handle high-resolution medical datasets without exceeding the VRAM limits of standard GPUs. Balancing the stochastic character of path tracing with the rasterization speed of Gaussian splatting to maintain high-frame-rate experience without inducing sickness in the user.
+
+> **Note:** A common problem in VR systems with low framerates.
+
+The motivating drive behind the proposal of this thesis is supported by the rapid improvement and increasing accessibility of computing hardware capable of such feats. Over the last several years, the sector has moved beyond large, costly solutions requiring flagship hardware toward self-contained, ergonomic systems. Virtual Reality (VR) still dominates the immersive experience of medical training. It provides a fully controlled environment for risk-free procedural rehearsals with a active proprietary software provider sector. There has also been a significant surge caused by a push for in the development of augmented reality (AR) and mixed reality (MR) devices that allow user to mix the light coming from the real environment with rendered objects. [TODO]
+
+Modern, eyeglass-like wearables, such as smart glasses, are increasingly viewed as the primary global development target for augmented reality. These systems enable surgeons to overlay volumetric data directly onto the surgical field or allowing students to collaborate around a shared holographic specimen in a physical classroom, or potentially, from home. As the industry moves toward miniaturized, lightweight form factors with higher pixel densities and wider fields of view, the demand for rendering frameworks that can deliver photorealistic, low-latency results increases. This thesis addresses this need by optimizing the path-tracing and splatting pipeline specifically for the performance profiles of these emerging miniaturized wearable platforms.
+
+> **Note:** We will research the capabilities of such systems already in market and in development.
+
+Finally, the development of this framework will not occur in a communication vacuum. A significant goal of this research is to ensure the output meets the standards of the medical community. We will be gathering qualitative critiques from clinical professionals to assess the diagnostic utility and accuracy of the rendered images and educational faculties to evaluate the efficacy of the tool as a pedagogical resource for medical training.
+
+This iterative process of consultation and improvement aims to ensure that our rendering optimizations translate into tangible benefits for the clinical field.
+
+---
+
+## Methodology and Related Work
+
+As the field of medical visualization has moved from simple cross-sectional slices to complex, interactive 3D environments, achieving the current state of the art requires a clever combination of classical volume rendering, high-end cinematic techniques, and the results of recent explosion of interest in differentiable rendering.
+
+> **Note:** Such that those used in movie making and computer game development.
+
+Historically, the visualization of volumetric grids has relied on two primary methods: **isosurface reconstruction** and **direct volume rendering** (DVR).
+
+DVR uses ray marching method to simulate a ray attutenation from arbitrary viewing angle. The rays are extended from the viewing plane according to the desired type of projection (orthographic, perspective) and for each datapoint hit, the resulting dimming of the ray is calculated. Using transfer function to map scalar values to color and opacity, DVR allows for a semi-transparent view of internal structures. This method can be combined with precalculated gradient to simulate basic shading on the normals. While versatile, standard DVR often lacks realistic lighting, resulting in images that struggle to convey depth and material properties properly, acting more like a x-ray with arbitrary user-specifiec rotation and scale.
+
+Isosurface reconstruction, most notably the **marching cubes** algorithm implementation, extracts a polygonal mesh from a volume at a specific intensity threshold. While efficient for hardware-accelerated rendering, it discards the internal 'fuzzinnes' of the data and tends to create choppy, smoothed out plastic-like surfaces.
+
+The current industry gold standard for photorealistic medical visualization is **Cinematic Rendering** first introduced to mainstream by Siemens Healthineers (niedermayr-2024). In contrast to simplistic lighting models of DVR this model employs **monte carlo path tracing** to simulate the complex physics of light transport, including global illumination, soft shadows, and ambient occlusion. While Cinematic Rendering results in state-of-the-art visual quality, it is computationally expensive. It continues to struggle to maintain high framerate interactivity on consumer-grade hardware, often requiring specialized workstations or offline rendering.
+
+In the pursuit of real-time performance, various **novel view synthesis** approaches building on the advances in **differentiable rendering** have been explored.
+
+> **Note:** Essentially outsourcing the problem of calculating high volumes of linear algebra appearing in ray optics mechanics to linear algebra of machine learning.
+> **Note:** A rendering pipeline that is differentiable with respect to the parameters of the rendered scene. This allows for a gradient flow from a loss calculated using the ground truth and some scene with flexible enough components back to the scene, adjusting the components to represent the ground truth faithfuly.
+
+Neural radiance fields (Mildenhall, 2020) (NeRFs) introduced a way to represent scenes within neural networks. However, NeRFs often suffer from long training times and slow inference speeds, making them not suitable for real-life performance and the interactive needs of a clinical environment.
+
+The introduction of **3D Gaussian Splatting** (3DGS) (Kerbl, 2023) has marked a significant shift in the field, offering the high fidelity of neural methods with the speed of point-based rasterization. Current research is rapidly expanding the capabilities of this approach. Recent advances have introduced relightable Gaussians (Gao, 2023; Jiang, 2023), allowing for dynamic lighting changes by incorporating BRDF-like properties into each splat.
+
+> **Note:** Bidirectional reflectance distribution function describes the way light behaves ones it hits the surface of given texture. It is a core part of physically based rendering mathematics.
+
+Advances in shading functions (Liang, 2023) and reflective properties (Yao, 2024) are moving splatting toward true **physically based rendering** (PBR). New methods are addressing the challenge of shadows and complex occlusions within splatted scenes (Bai, 2025), which is vital for understanding the spatial depth of anatomical structures. Leveraging these advancements in Gaussian Splatting and combining them with path-tracing principles, this thesis aims to deliver a framework that matches the visual quality of Siemens’ Cinematic Rendering while maintaining the real-time performance necessary for modern medical practice.
+
+---
+
+## Virtual Reality
+
+While 2D monitors are sufficient for standard diagnostics, VR provides a 1:1 spatial mapping that aligns with how humans naturally perceive the physical world. This is particularly important in two key areas.
+
+Traditional medical training often relies on textbooks, 2D atlases, and limited access to cadaver specimens. VR overcomes these problems by providing a 'digital cadaver' that is infinitely reusable and free from biological decay. By allowing students to 'walk through' a heart or navigate the vascular system at an exaggerated scale, VR enables for a deeper understanding of complex spatial relationships that are often lost in cross-sectional imaging. Students can perform repeated manipulations such as isolating a specific nerve or simulating a surgical pathway, allowing them to learn from mistakes without patient risk.
+
+For surgeons, VR acts as a bridge between the digital scan and the operating theater. Surgeons can use the proposed rendering framework to interact with patient-specific anatomy, testing different surgical approaches by manipulating and 'hiding' tissue layers to find the most efficient route. Our framework could offer a multi-user environment where a team (e.g., a radiologist and a surgeon) can simultaneously view the same model in a shared virtual space, regardless of their physical location.
+
+---
+
+## Progress so Far
+
+The chosen topic covers both medical and computer science. The initial phase involved a study of the medical literature to understand the specific requirements. A review of current standards in medical imaging (e.g., DICOM, CT/MRI segmentation) was conducted where the limitations of traditional 2D slice viewing were discovered. Parallel to the medical study, a review of state-of-the-art computer science literature was conducted. Investigating the mathematical framework of 3D Gaussians scene reconstruction and studying how gradient-based optimization can be used to refine medical models.
+
+### Bibliography
+
+* **Jacques, Steven L (2013).** Optical properties of biological tissues: a review. *Physics in Medicine & Biology*, 58(11), R37.
+* **Engel, Klaus (2016).** Real-Time Monte-Carlo Path Tracing of Medical Volume Data. *Proceedings of the GPU Technology Conference (GTC)*.
+* **Pharr, Matt; Jakob, Wenzel; Humphreys, Greg (2023).** *Physically Based Rendering: From Theory to Implementation* (4th ed.). MIT Press.
+* **Kerbl, Bernhard et al. (2023).** 3D Gaussian Splatting for Real-Time Radiance Field Rendering. *arXiv:2308.04079*.
+* **Zhu, Zuoliang et al. (2025).** GS-ROR2: bidirectional-guided 3DGS and SDF for reflective object relighting and reconstruction. *ACM Transactions on Graphics*, 45(1).
+* **Gao, Jian et al. (2023).** Relightable 3D Gaussians: Realistic Point Cloud Relighting with BRDF Decomposition and Ray Tracing. *arXiv:2311.16043*.
+* **Jiang, Yingwenqi et al. (2023).** GaussianShader: 3D Gaussian Splatting with Shading Functions for Reflective Surfaces. *arXiv:2311.17977*.
+* **Liang, Zhihao et al. (2023).** GS-IR: 3D Gaussian splatting for inverse rendering. *arXiv:2311.16473*.
+* **Bai, Haiyang et al. (2025).** GaRe: Relightable 3D Gaussian Splatting for Outdoor Scenes from Unconstrained Photo Collections. *arXiv:2507.20512*.
+* **Yao, Yuxuan et al. (2024).** Reflective gaussian splatting. *arXiv:2412.19282*.
+* **Niedermayr, Simon et al. (2024).** Application of 3D Gaussian splatting for cinematic anatomy on consumer class devices. *arXiv:2404.11285*.
+* **Mildenhall, Ben et al. (2020).** NERF: Representing scenes as neural radiance fields for view synthesis. *arXiv:2003.08934*.
