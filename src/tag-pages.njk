@@ -1,0 +1,28 @@
+---
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag | slugify }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "Tag: {{ tag }}"
+eleventyExcludeFromCollections: true
+---
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="/">Home</a><span class="crumb-sep" aria-hidden="true">/</span><a href="/tags/">Tags</a><span class="crumb-sep" aria-hidden="true">/</span><span aria-current="page">{{ tag }}</span>
+</nav>
+<section class="section-head">
+  <h1>{{ tag }}</h1>
+  <p class="section-meta">{{ collections[tag].length }} page{% if collections[tag].length != 1 %}s{% endif %} tagged.</p>
+</section>
+<div class="lattice">
+  {% for p in collections[tag] %}
+  <a class="tile" href="{{ p.url }}">
+    <span class="tile-eyebrow">{{ p.url | crumbPath }}</span>
+    <span class="tile-title">{{ p.data.title }}</span>
+    {% if p.data.summary %}<span class="tile-summary">{{ p.data.summary }}</span>{% endif %}
+    {% if p.data.glyph %}<span class="tile-glyph" aria-hidden="true">{% include "glyphs/" + p.data.glyph + ".svg" ignore missing %}</span>{% endif %}
+  </a>
+  {% endfor %}
+</div>

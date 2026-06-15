@@ -1,0 +1,23 @@
+---
+permalink: /search/index.html
+layout: layouts/base.njk
+title: Search
+eleventyExcludeFromCollections: true
+---
+<section class="section-head">
+  <h1>Search</h1>
+  <p class="section-meta">Full-text search across every article. Press <code>/</code> anywhere to get here.</p>
+</section>
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+<div id="search"></div>
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    if (window.PagefindUI) {
+      new PagefindUI({ element: "#search", showSubResults: true, autofocus: true });
+    } else {
+      document.getElementById("search").innerHTML =
+        "<p class='empty'>No search index found. The index is created by <code>npm run build</code> (and on every deploy); the dev server alone does not build it.</p>";
+    }
+  });
+</script>

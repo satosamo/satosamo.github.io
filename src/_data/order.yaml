@@ -1,0 +1,141 @@
+# ============================================================
+#  order.yaml — the one file that controls the map of the site
+# ============================================================
+#  Each key is a folder path under src/content/ ("" = homepage).
+#  For every folder you can set:
+#    title:  display name of that section
+#    glyph:  name of an SVG in src/_includes/glyphs/ (no .svg)
+#    blurb:  one-line description shown on its tile + page
+#    order:  the order of tiles inside it (folder or file slugs).
+#            Anything not listed appears after, alphabetically.
+#
+#  Moving "differential-forms" above "vector-fields" is literally
+#  swapping two lines below. Folders you haven't configured still
+#  work — they get a prettified name and alphabetical order.
+# ------------------------------------------------------------
+
+"":
+  title: Compendium
+  order:
+    - mathematics
+    - physics
+    - computer-science
+    - chemistry
+    - masters-thesis
+    - research
+    - mobility
+    - languages
+
+mathematics:
+  title: Mathematics
+  glyph: integral
+  blurb: Articles and coursework, from algebra to differential geometry.
+  order:
+    - articles
+    - coursework
+
+mathematics/articles:
+  title: Articles
+  glyph: pen
+  blurb: Self-contained notes organised by field.
+  order:
+    - differential-geometry
+    - algebra
+    - computability
+
+mathematics/articles/differential-geometry:
+  title: Differential Geometry
+  glyph: manifold
+  blurb: Manifolds, forms, and the machinery of smooth structures.
+  order:
+    - differential-forms
+    - vector-fields
+
+mathematics/articles/algebra:
+  title: Algebra
+  glyph: group
+  blurb: Linear and abstract algebra.
+
+mathematics/articles/computability:
+  title: Computability
+  glyph: tape
+  blurb: Machines, decidability, and the limits of computation.
+
+mathematics/coursework:
+  title: Coursework
+  glyph: rule
+  blurb: Notes following university courses, lecture by lecture.
+
+physics:
+  title: Physics
+  glyph: lightcone
+  blurb: From relativity to quantum mechanics.
+
+physics/articles:
+  title: Articles
+  glyph: pen
+
+physics/articles/relativity:
+  title: Relativity
+  glyph: lightcone
+  blurb: Special and general relativity.
+
+chemistry:
+  title: Chemistry
+  glyph: flask
+  blurb: Physical and quantum chemistry.
+
+chemistry/articles:
+  title: Articles
+  glyph: pen
+
+chemistry/articles/quantum-chemistry:
+  title: Quantum Chemistry
+  glyph: orbital
+
+masters-thesis:
+  title: Master's Thesis
+  glyph: thesis
+  blurb: Working notes, drafts, and references for the thesis.
+
+research:
+  title: Research
+  glyph: compass
+  blurb: Reading notes, open questions, ongoing work.
+
+computer-science:
+  title: Computer Science
+  glyph: chip
+  blurb: Algorithms, complexity, and systems.
+  order:
+    - articles
+    - coursework
+
+computer-science/articles:
+  title: Articles
+  glyph: pen
+
+computer-science/articles/algorithms:
+  title: Algorithms
+  glyph: chip
+  blurb: Design, analysis, and the cost models behind them.
+
+mobility:
+  title: Mobility
+  glyph: plane
+  blurb: Erasmus — learning agreement, course mapping, and the practical critical path.
+  order:
+    - learning-agreement
+    - courses
+    - deadlines
+    - practical
+
+mobility/courses:
+  title: Courses Abroad
+  glyph: rule
+  blurb: One page per host course, mapped to home equivalents.
+
+languages:
+  title: Languages
+  glyph: speech
+  blurb: Academic vocabulary and phrase notes.

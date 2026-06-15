@@ -1,0 +1,10 @@
+---
+pagination:
+  data: collections.sectionNodes
+  size: 1
+  alias: node
+permalink: "{% if node.path %}/{{ node.path }}/{% else %}/{% endif %}index.html"
+layout: layouts/section.njk
+eleventyComputed:
+  title: "{{ node.title }}"
+---

@@ -1,0 +1,22 @@
+---
+permalink: /tags/index.html
+layout: layouts/base.njk
+title: Tags
+eleventyExcludeFromCollections: true
+---
+<section class="section-head">
+  <h1>Tags</h1>
+  <p class="section-meta">A second axis through the notes — topics that cut across sections.</p>
+</section>
+{% if collections.tagList.length %}
+<div class="lattice">
+  {% for t in collections.tagList %}
+  <a class="tile tile-compact" href="/tags/{{ t | slugify }}/">
+    <span class="tile-eyebrow">{{ collections[t].length }} page{% if collections[t].length != 1 %}s{% endif %}</span>
+    <span class="tile-title">{{ t }}</span>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty">No tags yet — add <code>tags: [topology, analysis]</code> to any article's front matter.</p>
+{% endif %}

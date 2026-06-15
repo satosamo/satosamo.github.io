@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title and title != site.title %}{{ title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  {% if summary %}<meta name="description" content="{{ summary }}">{% endif %}
+  <script>
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/katex/katex.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
+</head>
+<body>
+  <header class="site-head">
+    <a class="site-mark" href="/">{{ site.title }}</a>
+    <div class="head-tools">
+      <a class="head-btn" id="search-link" href="/search/" aria-label="Search" title="Search ( / )">
+        <svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <circle cx="9" cy="9" r="5.5"/><path d="M13.5 13.5 L17 17"/>
+        </svg>
+      </a>
+      <button class="head-btn" id="theme-toggle" type="button" aria-label="Switch theme">
+        <svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true">
+          <circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M10 3.5 A6.5 6.5 0 0 1 10 16.5 Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-foot">
+    <span>{{ site.author }}</span>
+    <span class="foot-sep" aria-hidden="true">·</span>
+    <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">Text CC BY 4.0</a>
+    <span class="foot-rule" aria-hidden="true"></span>
+    <a href="/about/">About</a>
+    <span class="foot-sep" aria-hidden="true">·</span>
+    <a href="/tags/">Tags</a>
+    <span class="foot-sep" aria-hidden="true">·</span>
+    <a href="/feed.xml">Feed</a>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+</body>
+</html>

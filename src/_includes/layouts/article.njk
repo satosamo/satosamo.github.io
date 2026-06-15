@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+---
+{% set parent = collections.sectionNodes | parentNode(page.filePathStem) %}
+{% set nav = collections.sectionNodes | siblingNav(page.filePathStem) %}
+{% set links = page.filePathStem | backlinksFor %}
+{% if parent %}
+<nav class="crumbs" aria-label="Breadcrumb">
+  {% for c in parent.breadcrumbs %}<a href="{{ c.url }}">{{ c.title }}</a><span class="crumb-sep" aria-hidden="true">/</span>{% endfor %}<a href="{{ parent.url }}">{{ parent.title }}</a>
+</nav>
+{% endif %}
+
+<article class="prose" data-pagefind-body>
+  <header class="prose-head">
+    {% if draft %}<p class="draft-badge" data-pagefind-ignore>Draft — excluded from published builds</p>{% endif %}
+    <h1>{{ title }}</h1>
+    {% if summary %}<p class="prose-summary">{{ summary }}</p>{% endif %}
+    {% if page.date %}<p class="prose-date" data-pagefind-ignore>Last updated {{ page.date | readableDate }}</p>{% endif %}
+  </header>
+  {{ content | safe }}
+</article>
+
+{% if tags and tags.length %}
+<p class="tag-row" data-pagefind-ignore>
+  {% for t in tags %}<a class="tag" href="/tags/{{ t | slugify }}/">{{ t }}</a>{% endfor %}
+</p>
+{% endif %}
+
+{% if links.length %}
+<aside class="backlinks">
+  <p class="backlinks-label">Linked from</p>
+  <ul>
+    {% for l in links %}<li><a href="{{ l.url }}">{{ l.title }}</a></li>{% endfor %}
+  </ul>
+</aside>
+{% endif %}
+
+{% if nav.prev or nav.next %}
+<nav class="pn" aria-label="Previous and next article">
+  {% if nav.prev %}<a class="pn-prev" href="{{ nav.prev.url }}"><span class="pn-dir">&larr; Previous</span><span class="pn-title">{{ nav.prev.title }}</span></a>{% else %}<span></span>{% endif %}
+  {% if nav.next %}<a class="pn-next" href="{{ nav.next.url }}"><span class="pn-dir">Next &rarr;</span><span class="pn-title">{{ nav.next.title }}</span></a>{% endif %}
+</nav>
+{% endif %}
+
+{% if parent %}
+<p class="back"><a href="{{ parent.url }}">&larr; Back to {{ parent.title }}</a></p>
+{% endif %}

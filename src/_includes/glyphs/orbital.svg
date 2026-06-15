@@ -1,0 +1,5 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <circle pathLength="100" cx="24" cy="24" r="2.4"/>
+  <ellipse pathLength="100" cx="24" cy="24" rx="16" ry="6.5" transform="rotate(30 24 24)"/>
+  <ellipse pathLength="100" cx="24" cy="24" rx="16" ry="6.5" transform="rotate(-30 24 24)"/>
+</svg>

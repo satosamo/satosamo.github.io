@@ -1,25 +1,23 @@
 {
-  "name": "satosamo.github.io-main",
-  "version": "1.0.0",
-  "description": "",
-  "main": "eleventy.config.js",
+  "name": "compendium",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Personal university knowledge repository",
   "scripts": {
-    "build": "eleventy",
-    "start": "eleventy --serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "eleventy --serve",
+    "build": "eleventy && pagefind --site _site"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
-  },
-  "dependencies": {
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
-    "@vscode/markdown-it-katex": "^1.1.2",
-    "github-markdown-css": "^5.8.1",
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "js-yaml": "^4.1.0",
+    "katex": "^0.16.11",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
     "markdown-it-container": "^4.0.0",
-    "markdown-it-deflist": "^3.0.0"
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-texmath": "^1.0.0",
+    "pagefind": "^1.1.0"
   }
 }
