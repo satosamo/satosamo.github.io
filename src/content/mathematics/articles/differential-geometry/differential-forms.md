@@ -3,6 +3,7 @@ title: Differential Forms
 summary: The exterior algebra, the differential, and why integration was secretly about forms all along.
 glyph: wedge
 tags: [topology, geometry]
+hide: true
 ---
 
 ## Motivation

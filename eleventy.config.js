@@ -37,7 +37,9 @@ const pagesBySlug = new Map();   // "constancy..." -> [entries]
 const backlinks = new Map();     // target stem -> [{title,url}]
 const WIKILINK_RE = /\[\[([^\]|\n]+)(?:\|([^\]\n]+))?\]\]/g;
 
+
 function scanContent() {
+
   const files = [];
   (function walk(dir) {
     if (!fs.existsSync(dir)) return;
@@ -54,13 +56,16 @@ function scanContent() {
     const slug = stem.split("/").pop();
     const fm = raw.match(/^---\n([\s\S]*?)\n---/);
     const titleMatch = fm && fm[1].match(/^title:\s*["']?(.+?)["']?\s*$/m);
+    const hideMatch  = fm && fm[1].match(/^hide:\s*true\s*$/im); 
     const draftMatch = fm && fm[1].match(/^draft:\s*true\s*$/m);
+    if (hideMatch) continue;
     if (PROD && draftMatch) continue;
     const entry = { stem, slug, url: `/${stem}/`, title: titleMatch ? titleMatch[1] : prettify(slug) };
     pagesByStem.set(stem, entry);
     if (!pagesBySlug.has(slug)) pagesBySlug.set(slug, []);
     pagesBySlug.get(slug).push(entry);
   }
+
   // second pass: backlink graph
   for (const f of files) {
     const raw = fs.readFileSync(f, "utf8");
@@ -77,7 +82,10 @@ function scanContent() {
     }
   }
 }
+
+
 function resolveWikilink(target) {
+
   if (target.includes("/")) return pagesByStem.get(target.replace(/^\/|\/$/g, "")) || null;
   const hits = pagesBySlug.get(target) || [];
   if (hits.length > 1) {
@@ -87,12 +95,15 @@ function resolveWikilink(target) {
 }
 scanContent();
 
+
 /* ============================================================
    Build-time Mermaid via Kroki, cached, with client fallback
    ============================================================ */
 const KROKI_CACHE = path.join(__dirname, ".cache/kroki");
 let krokiDown = false;
+
 async function renderMermaid(code) {
+
   const hash = crypto.createHash("sha256").update(code).digest("hex").slice(0, 24);
   const cached = path.join(KROKI_CACHE, hash + ".svg");
   if (fs.existsSync(cached)) return fs.readFileSync(cached, "utf8");
@@ -108,13 +119,17 @@ async function renderMermaid(code) {
 }
 const MERMAID_FALLBACK_SCRIPT = `<script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";mermaid.initialize({startOnLoad:true,theme:"neutral"});</script>`;
 
+
 /* ============================================================ */
 
+
 module.exports = function (eleventyConfig) {
+
   eleventyConfig.addDataExtension("yaml,yml", (contents) => yaml.load(contents));
 
   // ---------- drafts: excluded entirely from production builds ----------
   eleventyConfig.addPreprocessor("drafts", "md", (data) => {
+    if (data.hide) return false;
     if (data.draft && PROD) return false;
   });
 
@@ -272,7 +287,7 @@ module.exports = function (eleventyConfig) {
       const parts = stem.split("/");
       const slug = parts.pop();
       ensure(parts.join("/")).articles.push({
-        kind: "article",
+        kind: pg.data.course ? "course" : "article",
         slug,
         title: pg.data.title || prettify(slug),
         url: pg.url,
@@ -287,9 +302,11 @@ module.exports = function (eleventyConfig) {
 
     const out = [];
     const walk = (n, crumbs) => {
+
       const conf = orderCfg[n.path] || {};
       const title = conf.title || (n.path === "" ? "Home" : prettify(n.slug));
       const url = "/" + (n.path ? n.path + "/" : "");
+
       const sectionItems = [...n.subs.values()].map((s) => {
         const sc = orderCfg[s.path] || {};
         return {
@@ -300,23 +317,54 @@ module.exports = function (eleventyConfig) {
           count: countArticles(s),
         };
       });
+
       const items = [...sectionItems, ...n.articles];
       const orderList = conf.order || [];
-      items.sort((a, b) => {
-        const ia = orderList.indexOf(a.slug), ib = orderList.indexOf(b.slug);
-        if (ia === -1 && ib === -1) return a.title.localeCompare(b.title);
-        if (ia === -1) return 1;
-        if (ib === -1) return -1;
-        return ia - ib;
-      });
+
+      // Resolve order by *name*, not by position: walk the list once, emitting
+      // each named item where it appears and a {kind:"break"} at every "-".
+      // Because lookups are by slug, a "-" keeps its place even when some listed
+      // slugs don't exist yet, and breaks may sit anywhere in the list.
+      const bySlug = new Map(items.map((it) => [it.slug, it]));
+      const used = new Set();
+      const sequence = [];
+      for (const entry of orderList) {
+        if (entry === "makebreak") {            // was: entry === "-"
+          sequence.push({ kind: "break" });
+        } else if (bySlug.has(entry)) {
+          sequence.push(bySlug.get(entry));
+          used.add(entry);
+        }
+      }
+
+      // Anything not named in order.yaml follows, alphabetically by title.
+      for (const it of items
+        .filter((i) => !used.has(i.slug))
+        .sort((a, b) => a.title.localeCompare(b.title))) {
+        sequence.push(it);
+      }
+
+      // Tidy separators: drop leading/trailing breaks and collapse runs, so a
+      // "-" only ever renders between two groups that both have content.
+      const itemsWithBreaks = [];
+      for (const it of sequence) {
+        const prev = itemsWithBreaks[itemsWithBreaks.length - 1];
+        if (it.kind === "break" && (!prev || prev.kind === "break")) continue;
+        itemsWithBreaks.push(it);
+      }
+      while (itemsWithBreaks.length && itemsWithBreaks.at(-1).kind === "break") {
+        itemsWithBreaks.pop();
+      }
+
       out.push({
         path: n.path, isRoot: n.path === "", title, url,
         glyph: conf.glyph || null, blurb: conf.blurb || null,
-        count: countArticles(n), breadcrumbs: crumbs, items,
+        count: countArticles(n), breadcrumbs: crumbs, items: itemsWithBreaks,
       });
       const next = [...crumbs, { title, url }];
       for (const it of items) if (it.kind === "section") walk(n.subs.get(it.slug), next);
     };
+
     walk(nodes.get(""), []);
     return out;
   });

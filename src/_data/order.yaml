@@ -15,16 +15,14 @@
 # ------------------------------------------------------------
 
 "":
-  title: Compendium
+  title: Main
   order:
-    - mathematics
-    - physics
-    - computer-science
-    - chemistry
     - masters-thesis
-    - research
-    - mobility
-    - languages
+    - makebreak
+    - mathematics
+    - computer-science
+    - physics
+    - makebreak
 
 mathematics:
   title: Mathematics
@@ -65,6 +63,10 @@ mathematics/coursework:
   title: Coursework
   glyph: rule
   blurb: Notes following university courses, lecture by lecture.
+  order:
+    - functional-analysis
+    - algebra-1
+    - probability
 
 physics:
   title: Physics

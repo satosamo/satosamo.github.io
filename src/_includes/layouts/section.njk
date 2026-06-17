@@ -20,23 +20,29 @@ layout: layouts/base.njk
 {% if node.items.length %}
 <div class="lattice">
   {% for item in node.items %}
-  <a class="tile" href="{{ item.url }}">
-    <span class="tile-eyebrow">
-      {%- if item.draft -%}Draft · {% endif -%}
-      {%- if item.kind == "section" -%}
-        Section · {{ item.count }} page{% if item.count != 1 %}s{% endif %}
-      {%- else -%}
-        Article
-      {%- endif -%}
-    </span>
-    <span class="tile-title">{{ item.title }}</span>
-    {% if item.summary %}<span class="tile-summary">{{ item.summary }}</span>{% endif %}
-    {% if item.glyph %}
-    <span class="tile-glyph" aria-hidden="true">
-      {%- include "glyphs/" + item.glyph + ".svg" ignore missing -%}
-    </span>
+    {% if item.kind == "break" %}
+    <div class="lattice-break"></div>
+    {%- else -%}
+      <a class="tile" href="{{ item.url }}">
+        <span class="tile-eyebrow">
+          {%- if item.draft -%}Draft · {% endif -%}
+          {%- if item.kind == "section" -%}
+            Section · {{ item.count }} page{% if item.count != 1 %}s{% endif %}
+          {%- elif item.kind == "course" -%}
+            Course
+          {%- else -%}
+            Article
+          {%- endif -%}
+        </span>
+        <span class="tile-title">{{ item.title }}</span>
+        {% if item.summary %}<span class="tile-summary">{{ item.summary }}</span>{% endif %}
+        {% if item.glyph %}
+        <span class="tile-glyph" aria-hidden="true">
+          {%- include "glyphs/" + item.glyph + ".svg" ignore missing -%}
+        </span>
+        {% endif %}
+      </a>
     {% endif %}
-  </a>
   {% endfor %}
 </div>
 {% else %}

@@ -2,6 +2,7 @@
 title: Reading Notes
 summary: Running notes on papers, with questions worth returning to.
 glyph: compass
+hide: true
 ---
 
 ## How this section works

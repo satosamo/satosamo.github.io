@@ -2,6 +2,7 @@
 title: Learning Agreement
 summary: The ECTS mapping — host courses, home equivalents, signatures, amendments.
 glyph: rule
+hide: true
 ---
 
 ## Mapping (Table A / Table B)

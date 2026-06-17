@@ -2,6 +2,7 @@
 title: Practical Notes
 summary: Residence registration, insurance, banking, transit — the boring critical path.
 glyph: compass
+hide: true
 ---
 
 ## Checklist on arrival

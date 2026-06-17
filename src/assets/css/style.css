@@ -179,6 +179,13 @@ a:focus-visible, .tile:focus-visible {
   border: 1px solid var(--line);
 }
 
+.lattice-break {
+  grid-column: 1 / -1;
+  height: 0;
+  background: none;
+  border: none;
+}
+
 .tile {
   position: relative;
   display: flex;
@@ -244,10 +251,12 @@ a:focus-visible, .tile:focus-visible {
   to   { stroke-dashoffset: 0; }
 }
 
+/*
 @media (prefers-reduced-motion: reduce) {
   .tile:hover .tile-glyph svg * { animation: none; }
   html { scroll-behavior: auto; }
 }
+*/
 
 .empty {
   color: var(--muted);

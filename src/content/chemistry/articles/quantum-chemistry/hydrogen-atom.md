@@ -3,6 +3,7 @@ title: The Hydrogen Atom
 summary: Separation of variables and the origin of quantum numbers.
 glyph: orbital
 tags: [quantum]
+hide: true
 ---
 
 ## The Schrödinger equation

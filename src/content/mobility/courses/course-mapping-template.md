@@ -2,6 +2,7 @@
 title: Course Mapping Template
 summary: Copy this file once per host course.
 draft: true
+hide: true
 ---
 
 ## *(Host course code — title)*

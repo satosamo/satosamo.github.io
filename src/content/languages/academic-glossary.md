@@ -2,6 +2,7 @@
 title: Academic Glossary
 summary: The vocabulary general language courses never teach.
 glyph: speech
+hide: true
 ---
 
 ## Mathematics
