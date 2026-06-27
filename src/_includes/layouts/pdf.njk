@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+---
+{% set parent = collections.sectionNodes | parentNode(doc.stem) %}
+{% set nav = collections.sectionNodes | siblingNav(doc.stem) %}
+{% set links = doc.stem | backlinksFor %}
+{% if parent %}
+<nav class="crumbs" aria-label="Breadcrumb">
+  {% for c in parent.breadcrumbs %}<a href="{{ c.url }}">{{ c.title }}</a><span class="crumb-sep" aria-hidden="true">/</span>{% endfor %}<a href="{{ parent.url }}">{{ parent.title }}</a>
+</nav>
+{% endif %}
+
+<article class="prose pdf-page">
+  <header class="prose-head">
+    {% if doc.draft %}<p class="draft-badge">Draft — excluded from published builds</p>{% endif %}
+    <h1>{{ doc.title }}</h1>
+    {% if doc.summary %}<p class="prose-summary">{{ doc.summary }}</p>{% endif %}
+    <div class="pdf-switch" role="group" aria-label="Document view">
+      <span class="pdf-switch-opt is-active" aria-current="true">Embedded</span>
+      <a class="pdf-switch-opt" href="{{ ("/" + doc.pdf) | url }}">Open raw file ↗</a>
+    </div>
+  </header>
+
+  <div class="pdf-frame">
+    <iframe src="{{ ("/" + doc.pdf) | url }}" title="{{ doc.title }}" loading="lazy"></iframe>
+  </div>
+  <p class="pdf-fallback">Can’t see the document? <a href="{{ ("/" + doc.pdf) | url }}">Open it directly</a>.</p>
+</article>
+
+{% if links.length %}
+<aside class="backlinks">
+  <p class="backlinks-label">Linked from</p>
+  <ul>
+    {% for l in links %}<li><a href="{{ l.url }}">{{ l.title }}</a></li>{% endfor %}
+  </ul>
+</aside>
+{% endif %}
+
+{% if nav.prev or nav.next %}
+<nav class="pn" aria-label="Previous and next article">
+  {% if nav.prev %}<a class="pn-prev" href="{{ nav.prev.url }}"><span class="pn-dir">&larr; Previous</span><span class="pn-title">{{ nav.prev.title }}</span></a>{% else %}<span></span>{% endif %}
+  {% if nav.next %}<a class="pn-next" href="{{ nav.next.url }}"><span class="pn-dir">Next &rarr;</span><span class="pn-title">{{ nav.next.title }}</span></a>{% endif %}
+</nav>
+{% endif %}
+
+{% if parent %}
+<p class="back"><a href="{{ parent.url }}">&larr; Back to {{ parent.title }}</a></p>
+{% endif %}

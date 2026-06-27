@@ -35,18 +35,21 @@ const CONTENT_DIR = path.join(__dirname, "src/content");
 const pagesByStem = new Map();   // "physics/articles/relativity/constancy..." -> {stem,slug,url,title}
 const pagesBySlug = new Map();   // "constancy..." -> [entries]
 const backlinks = new Map();     // target stem -> [{title,url}]
+const pdfPages = [];             // PDF "articles": {stem,slug,url,pdf,title,summary,glyph,tags,draft}
 const WIKILINK_RE = /\[\[([^\]|\n]+)(?:\|([^\]\n]+))?\]\]/g;
 
 
 function scanContent() {
 
   const files = [];
+  const pdfFiles = [];
   (function walk(dir) {
     if (!fs.existsSync(dir)) return;
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
       const p = path.join(dir, e.name);
       if (e.isDirectory()) walk(p);
       else if (e.name.endsWith(".md")) files.push(p);
+      else if (e.name.endsWith(".pdf")) pdfFiles.push(p);
     }
   })(CONTENT_DIR);
 
@@ -64,6 +67,36 @@ function scanContent() {
     pagesByStem.set(stem, entry);
     if (!pagesBySlug.has(slug)) pagesBySlug.set(slug, []);
     pagesBySlug.get(slug).push(entry);
+  }
+
+  // PDF "articles": registered like md pages (so they tile, order, and are
+  // wiki-linkable) but their page just opens the file. Metadata is optional
+  // and comes from a sidecar "<name>.yaml" next to "<name>.pdf".
+  for (const f of pdfFiles) {
+    const stem = path.relative(CONTENT_DIR, f).replace(/\\/g, "/").replace(/\.pdf$/, "");
+    const slug = stem.split("/").pop();
+    let meta = {};
+    const sidecar = f.replace(/\.pdf$/, ".yaml");
+    if (fs.existsSync(sidecar)) {
+      try { meta = yaml.load(fs.readFileSync(sidecar, "utf8")) || {}; }
+      catch (e) { console.warn(`[pdf] bad sidecar ${sidecar}: ${e.message}`); }
+    }
+    if (meta.hide) continue;
+    if (PROD && meta.draft) continue;
+    const entry = {
+      stem, slug,
+      url: `/${stem}/`,
+      pdf: `${stem}.pdf`,
+      title: meta.title || prettify(slug),
+      summary: meta.summary || null,
+      glyph: meta.glyph || null,
+      tags: meta.tags || [],
+      draft: !!meta.draft,
+    };
+    pagesByStem.set(stem, entry);
+    if (!pagesBySlug.has(slug)) pagesBySlug.set(slug, []);
+    pagesBySlug.get(slug).push(entry);
+    pdfPages.push(entry);
   }
 
   // second pass: backlink graph
@@ -235,6 +268,11 @@ module.exports = function (eleventyConfig) {
     "node_modules/katex/dist/fonts": "assets/katex/fonts",
   });
 
+  // copy each PDF to its clean output path (content/a/b.pdf -> /a/b.pdf)
+  for (const p of pdfPages) {
+    eleventyConfig.addPassthroughCopy({ ["src/content/" + p.pdf]: p.pdf });
+  }
+
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   // ---------- Atom feed ----------
@@ -255,6 +293,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("articles", (api) =>
     api.getFilteredByGlob("src/content/**/*.md").sort((a, b) => b.date - a.date)
   );
+
+  // PDF pages (drives src/pdfs.njk, one clean-URL page per PDF)
+  eleventyConfig.addCollection("pdfPages", () => pdfPages);
 
   eleventyConfig.addCollection("tagList", (api) => {
     const tags = new Set();
@@ -294,6 +335,21 @@ module.exports = function (eleventyConfig) {
         glyph: pg.data.glyph || null,
         summary: pg.data.summary || null,
         draft: !!pg.data.draft,
+      });
+    }
+
+    // PDFs sit in the tree as article-like tiles (kind: "pdf")
+    for (const pd of pdfPages) {
+      const parts = pd.stem.split("/");
+      const slug = parts.pop();
+      ensure(parts.join("/")).articles.push({
+        kind: "pdf",
+        slug,
+        title: pd.title,
+        url: pd.url,
+        glyph: pd.glyph,
+        summary: pd.summary,
+        draft: pd.draft,
       });
     }
 
@@ -382,7 +438,7 @@ module.exports = function (eleventyConfig) {
     const slug = parts.pop();
     const node = nodes.find((n) => n.path === parts.join("/"));
     if (!node) return {};
-    const arts = node.items.filter((i) => i.kind === "article");
+    const arts = node.items.filter((i) => i.kind === "article" || i.kind === "pdf");
     const i = arts.findIndex((a) => a.slug === slug);
     if (i === -1) return {};
     return { prev: arts[i - 1] || null, next: arts[i + 1] || null };

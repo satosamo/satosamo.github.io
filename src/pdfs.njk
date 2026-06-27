@@ -1,0 +1,11 @@
+---
+pagination:
+  data: collections.pdfPages
+  size: 1
+  alias: doc
+permalink: "/{{ doc.stem }}/index.html"
+layout: layouts/pdf.njk
+eleventyComputed:
+  title: "{{ doc.title }}"
+  summary: "{{ doc.summary }}"
+---

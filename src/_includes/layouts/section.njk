@@ -30,6 +30,8 @@ layout: layouts/base.njk
             Section · {{ item.count }} page{% if item.count != 1 %}s{% endif %}
           {%- elif item.kind == "course" -%}
             Course
+          {%- elif item.kind == "pdf" -%}
+            PDF
           {%- else -%}
             Article
           {%- endif -%}

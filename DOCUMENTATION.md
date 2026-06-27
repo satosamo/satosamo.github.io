@@ -111,6 +111,32 @@ HTML passes through markdown untouched, so a page can carry its own widget (see 
 
 ---
 
+## 2a. PDF pages
+
+Drop a `.pdf` straight into `src/content/` anywhere a markdown file could go. It behaves like any other article **everywhere except its own page**: it gets a tile in its folder's grid (eyebrow reads "PDF"), participates in `order.yaml`, sibling prev/next, and is wiki-linkable as `[[filename]]`. Its page, however, is a thin wrapper that embeds the document and offers a switch to **open the raw file** (`Embedded ↔ Open raw file ↗`).
+
+```
+src/content/research/some-paper.pdf      ← the file (served at /research/some-paper.pdf)
+src/content/research/some-paper.yaml     ← OPTIONAL sidecar, same basename
+```
+
+The page lives at the clean URL `/research/some-paper/`; the file itself is copied to `/research/some-paper.pdf`.
+
+The sidecar is plain YAML (no `---` fences — it's not markdown) and every field is optional:
+
+```yaml
+title: A Sample Paper        # falls back to the prettified filename
+summary: One sentence.       # tile + page subtitle (optional)
+glyph: thesis                # SVG from _includes/glyphs/ (optional)
+draft: true                  # visible locally, excluded from deploys (optional)
+hide: true                   # excluded everywhere (optional)
+```
+
+Notes:
+- No sidecar at all is fine — you just get a filename-derived title and no summary/glyph.
+- PDFs are **not** in full-text search, the Atom feed, or `/tags/` (their text isn't markdown). They are tile-, order-, sibling-, and wiki-link-aware.
+- Like wiki-link targets generally, a brand-new PDF needs a dev-server restart to be picked up (the content scan runs at startup).
+
 ## 3. The map: `order.yaml`
 
 One file controls naming, ordering, and decoration of every tile grid. Each key is a folder path under `src/content/` (`""` = homepage).
@@ -178,7 +204,7 @@ Deploy = push to `main`. One-time: Settings → Pages → Source → "GitHub Act
 
 | Symptom | Cause / fix |
 | --- | --- |
-| New page doesn't appear | Not under `src/content/`, or no `.md` extension. The build log lists every page. |
+| New page doesn't appear | Not under `src/content/`, or not a `.md`/`.pdf` file. The build log lists every page. New PDFs (like wiki-link targets) need a dev-server restart. |
 | Tile in the wrong place | Slug in `order.yaml` doesn't match the filename (typo or rename). Unmatched slugs are ignored. |
 | Math shows raw `$...$` | Unbalanced `$` or unsupported KaTeX command. Literal dollar: `\$`. |
 | Wiki-link is grey/dashed | Target file doesn't exist, or was created after the dev server started (restart), or you need the full-path form. |
