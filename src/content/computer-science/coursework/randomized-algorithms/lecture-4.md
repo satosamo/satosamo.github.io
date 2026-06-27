@@ -1,6 +1,6 @@
 ---
 title: "Lecture 4.1: Design Methods I"
-summary: Catalogue of randomized-design methods; the first beats the worst case by randomizing the strategy. Paging k-hard; two-job scheduling 9/8-hard deterministically but →1 randomized; Yao's principle.
+summary: "Catalogue of randomized-design methods; the first beats the worst case by randomizing the strategy. Paging k-hard; two-job scheduling 9/8-hard deterministically but →1 randomized; Yao's principle."
 tags: [online-algorithms, competitive-analysis, Yao-principle, adversary, lower-bounds]
 ---
 

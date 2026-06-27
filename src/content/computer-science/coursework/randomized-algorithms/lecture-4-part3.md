@@ -1,6 +1,6 @@
 ---
 title: "Lecture 4.3: Design Methods III"
-summary: The witness method — randomly hunt an element proving a property: primality (Fermat → Miller–Rabin → Solovay–Strassen), plus witnesses for Boolean matrix products rebuilding all-pairs shortest paths.
+summary: "The witness method — randomly hunt an element proving a property: primality (Fermat → Miller–Rabin → Solovay–Strassen), plus witnesses for Boolean matrix products rebuilding all-pairs shortest paths."
 tags: [witnesses, primality, Miller-Rabin, Solovay-Strassen, number-theory, Jacobi-symbol, matrix-multiplication, shortest-paths, co-RP]
 ---
 

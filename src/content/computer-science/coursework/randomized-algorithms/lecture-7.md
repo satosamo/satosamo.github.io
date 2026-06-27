@@ -1,6 +1,6 @@
 ---
 title: "Lecture 7: Interactive Proofs & PCP Theorem"
-summary: IP = PSPACE via arithmetization and the sum-check protocol, then the PCP theorem NP = PCP[O(log n), O(1)] — proofs checkable in O(1) bits — so approximating Max-3-SAT is NP-hard.
+summary: "IP = PSPACE via arithmetization and the sum-check protocol, then the PCP theorem NP = PCP[O(log n), O(1)] — proofs checkable in O(1) bits — so approximating Max-3-SAT is NP-hard."
 tags: [interactive-proofs, IP, PSPACE, arithmetization, sum-check, TQBF, PCP, probabilistically-checkable-proofs, linearity-test, BLR, self-correction, low-degree-test, zero-testers, composition-lemma, inapproximability, independent-set, Max-3-SAT]
 ---
 

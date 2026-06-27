@@ -1,6 +1,6 @@
 ---
 title: "Lecture 5: Markov Chains, Random Walks & MC Sampling"
-summary: Memoryless random motion settling into a unique stationary distribution, made into a sampler (MCMC, Metropolis–Hastings); mixing via coupling, stopping times and expanders; sampling becomes counting.
+summary: "Memoryless random motion settling into a unique stationary distribution, made into a sampler (MCMC, Metropolis–Hastings); mixing via coupling, stopping times and expanders; sampling becomes counting."
 tags: [markov-chains, random-walks, stationary-distribution, reversibility, Metropolis-Hastings, mixing-time, coupling, card-shuffling, expanders, Monte-Carlo, FPRAS, DNF-counting]
 ---
 

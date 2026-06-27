@@ -1,6 +1,6 @@
 ---
 title: "Lecture 6: Complexity II"
-summary: Randomness in the verifier: BPP low in the polynomial hierarchy (Sipser–Gács); a prover + coin-flipping verifier captures PSPACE (IP=PSPACE via arithmetization, SumCheck); and, made local, PCP.
+summary: "Randomness in the verifier: BPP low in the polynomial hierarchy (Sipser–Gács); a prover + coin-flipping verifier captures PSPACE (IP=PSPACE via arithmetization, SumCheck); and, made local, PCP."
 tags: [polynomial-hierarchy, BPP, Sipser-Gacs, interactive-proofs, Arthur-Merlin, AM, MA, graph-isomorphism, IP-PSPACE, arithmetization, SumCheck, TQBF, PCP, linearity-testing, self-correction, inapproximability]
 ---
 

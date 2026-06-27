@@ -1,6 +1,6 @@
 ---
 title: "Lecture 8: Derandomization"
-summary: Removing randomness while keeping the speed: enumeration, non-uniform advice, conditional probabilities with pessimistic estimators, k-wise independence, and PRGs (Nisan–Wigderson).
+summary: "Removing randomness while keeping the speed: enumeration, non-uniform advice, conditional probabilities with pessimistic estimators, k-wise independence, and PRGs (Nisan–Wigderson)."
 tags: [derandomization, conditional-probabilities, pessimistic-estimator, pairwise-independence, k-wise-independence, covering-codes, Schoning-kSAT, parallel-MIS, MaxCut, SetBalancing, pseudorandom-generators, Nisan-Wigderson, hardness-vs-randomness, BPP]
 ---
 

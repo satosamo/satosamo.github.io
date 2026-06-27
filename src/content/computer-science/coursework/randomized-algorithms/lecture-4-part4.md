@@ -1,6 +1,6 @@
 ---
 title: "Lecture 4.4: Design Methods IV"
-summary: Relax an integer program to an LP/SDP, then round with coins: SetCover → O(ln n); MaxCut → Goemans–Williamson 0.878 via a random hyperplane. Then solving LP by randomization (Seidel, MSW, Clarkson).
+summary: "Relax an integer program to an LP/SDP, then round with coins: SetCover → O(ln n); MaxCut → Goemans–Williamson 0.878 via a random hyperplane. Then solving LP by randomization (Seidel, MSW, Clarkson)."
 tags: [linear-programming, randomized-rounding, SDP, MaxCut, Goemans-Williamson, SetCover, LP-type, Seidel, MSW, Clarkson, backward-analysis]
 ---
 
