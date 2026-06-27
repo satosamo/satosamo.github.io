@@ -122,6 +122,22 @@ computer-science/articles/algorithms:
   glyph: chip
   blurb: Design, analysis, and the cost models behind them.
 
+computer-science/coursework:
+  title: Coursework
+  glyph: rule
+  order:
+    - lecture-1
+    - lecture-2
+    - lecture-3
+    - lecture-4
+    - lecture-4-part2
+    - lecture-4-part3
+    - lecture-4-part4
+    - lecture-5
+    - lecture-6
+    - lecture-7
+    - lecture-8
+
 mobility:
   title: Mobility
   glyph: plane
