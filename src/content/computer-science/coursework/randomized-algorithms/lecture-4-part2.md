@@ -1,6 +1,6 @@
 ---
 title: "Lecture 4.2: Design Methods II"
-summary: The fingerprint method — replace big objects by tiny random projections: Freivalds, Schwartz–Zippel, Karp–Rabin; then universal and perfect hashing, Tutte matrices and the Isolation Lemma.
+summary: "The fingerprint method — replace big objects by tiny random projections: Freivalds, Schwartz–Zippel, Karp–Rabin; then universal and perfect hashing, Tutte matrices and the Isolation Lemma."
 tags: [fingerprints, polynomial-identity, Schwartz-Zippel, hashing, universal-hashing, perfect-hashing, matching, isolation-lemma, RNC]
 ---
 
