@@ -122,9 +122,8 @@ computer-science/articles/algorithms:
   glyph: chip
   blurb: Design, analysis, and the cost models behind them.
 
-computer-science/coursework:
-  title: Coursework
-  glyph: rule
+computer-science/coursework/randomized-algorithms:
+  title: Randomized Algorithms
   order:
     - lecture-1
     - lecture-2
