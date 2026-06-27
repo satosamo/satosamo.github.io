@@ -1,6 +1,6 @@
 ---
-title: Design Methods III — Witnesses (Svedkovia)
-summary: The witness method — hunt randomly for an element that *proves* a property. Its flagship is primality testing (Fermat → Miller–Rabin → Solovay–Strassen) where the Lagrange/subgroup argument makes witnesses dense; its second face is finding a witness for a Boolean matrix product, which reconstructs all-pairs shortest paths.
+title: "Lecture 4.3: Design Methods III"
+summary: The witness method — randomly hunt an element proving a property: primality (Fermat → Miller–Rabin → Solovay–Strassen), plus witnesses for Boolean matrix products rebuilding all-pairs shortest paths.
 tags: [witnesses, primality, Miller-Rabin, Solovay-Strassen, number-theory, Jacobi-symbol, matrix-multiplication, shortest-paths, co-RP]
 ---
 

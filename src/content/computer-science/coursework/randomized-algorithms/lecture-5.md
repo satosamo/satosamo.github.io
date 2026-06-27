@@ -1,6 +1,6 @@
 ---
-title: Markov Chains, Random Walks & Monte Carlo Sampling
-summary: Memoryless random motion that forgets where it started and settles into a unique stationary distribution — turned into a sampling machine (MCMC, Metropolis–Hastings), with mixing time measured by variation distance and bounded via coupling, strong uniform stopping times and expander eigenvalues; then sampling becomes counting (FPRAS, #DNF).
+title: "Lecture 5: Markov Chains, Random Walks & MC Sampling"
+summary: Memoryless random motion settling into a unique stationary distribution, made into a sampler (MCMC, Metropolis–Hastings); mixing via coupling, stopping times and expanders; sampling becomes counting.
 tags: [markov-chains, random-walks, stationary-distribution, reversibility, Metropolis-Hastings, mixing-time, coupling, card-shuffling, expanders, Monte-Carlo, FPRAS, DNF-counting]
 ---
 

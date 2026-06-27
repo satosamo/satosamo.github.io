@@ -1,6 +1,6 @@
 ---
-title: Design Methods I — Eliminating the Adversary (Online / Competitive)
-summary: The catalogue of randomized-design methods, then the first one in depth — beating the worst case by randomizing your strategy. Paging is k-hard; two-job scheduling is 9/8-hard for deterministic but → 1 randomized; and Yao's minimax principle turns a hard randomized lower bound into an easy deterministic one.
+title: "Lecture 4.1: Design Methods I"
+summary: Catalogue of randomized-design methods; the first beats the worst case by randomizing the strategy. Paging k-hard; two-job scheduling 9/8-hard deterministically but →1 randomized; Yao's principle.
 tags: [online-algorithms, competitive-analysis, Yao-principle, adversary, lower-bounds]
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Broader Introduction — A Gallery of Randomized Algorithms
+title: "Lecture 1: Introduction"
 summary: Motivating examples (fingerprinting, Karger min-cut, QuickSort, Freivalds) where a few coin flips replace heavy deterministic work at a tiny, controllable error.
 tags: [fingerprinting, min-cut, quicksort, freivalds, derandomization, primality]
 ---

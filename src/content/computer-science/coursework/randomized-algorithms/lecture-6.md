@@ -1,6 +1,6 @@
 ---
-title: Complexity II — Interactive Proofs, IP=PSPACE & the PCP Theorem
-summary: Randomness inside the verifier. BPP sits low in the polynomial hierarchy (Sipser–Gács); a talkative prover + coin-flipping verifier captures all of PSPACE (IP=PSPACE, via arithmetization and the SumCheck protocol); and the same algebraic ideas, made local, give the PCP theorem NP = PCP[log n, O(1)] — every NP proof is checkable by reading O(1) random bits, which is exactly why approximation is hard.
+title: "Lecture 6: Complexity II"
+summary: Randomness in the verifier: BPP low in the polynomial hierarchy (Sipser–Gács); a prover + coin-flipping verifier captures PSPACE (IP=PSPACE via arithmetization, SumCheck); and, made local, PCP.
 tags: [polynomial-hierarchy, BPP, Sipser-Gacs, interactive-proofs, Arthur-Merlin, AM, MA, graph-isomorphism, IP-PSPACE, arithmetization, SumCheck, TQBF, PCP, linearity-testing, self-correction, inapproximability]
 ---
 
