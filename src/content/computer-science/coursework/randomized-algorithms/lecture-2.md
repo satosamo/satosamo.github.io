@@ -1,3 +1,9 @@
+---
+title: Analysis of Randomized Algorithms — Tail Bounds, Sorting & Searching
+summary: The Markov–Chebyshev–Chernoff ladder of tail inequalities (one idea at three strengths), used to prove QuickSort is O(n log n) w.h.p. and R-Select finds the median in 2n + o(n).
+tags: [concentration, markov, chebyshev, chernoff, union-bound, quicksort, selection]
+---
+
 # Lecture 2 — Analysis of Randomized Algorithms; Sorting & Searching
 
 > Course **2-INF-135/15 Pravdepodobnostné algoritmy**, LS 2025/26.
