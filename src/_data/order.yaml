@@ -21,6 +21,7 @@
     - makebreak
     - mathematics
     - computer-science
+    - bioinformatics
     - physics
     - makebreak
 
@@ -67,6 +68,29 @@ mathematics/coursework:
     - functional-analysis
     - algebra-1
     - probability
+
+bioinformatics:
+  title: Bioinformatics
+  glyph: helix
+  blurb: Omics, sequence analysis, and the statistics behind them. Topic notes plus course maps.
+  order:
+    - articles
+    - coursework
+
+bioinformatics/articles:
+  title: Articles
+  glyph: pen
+  blurb: Self-contained notes organised by topic.
+
+bioinformatics/articles/statistics:
+  title: Statistics for Omics
+  glyph: integral
+  blurb: Linear models, inference, multiple testing, experimental design.
+
+bioinformatics/coursework:
+  title: Coursework
+  glyph: rule
+  blurb: Course maps linking official material to my topic notes.
 
 physics:
   title: Physics

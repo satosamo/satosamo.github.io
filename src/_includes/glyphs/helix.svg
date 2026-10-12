@@ -1,0 +1,7 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <path pathLength="100" d="M15 5 C15 17 33 19 33 24 S15 31 15 43"/>
+  <path pathLength="100" d="M33 5 C33 17 15 19 15 24 S33 31 33 43"/>
+  <line pathLength="100" x1="18" y1="12" x2="30" y2="12"/>
+  <line pathLength="100" x1="15" y1="24" x2="33" y2="24"/>
+  <line pathLength="100" x1="18" y1="36" x2="30" y2="36"/>
+</svg>
