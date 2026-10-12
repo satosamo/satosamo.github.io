@@ -412,10 +412,26 @@ module.exports = function (eleventyConfig) {
         itemsWithBreaks.pop();
       }
 
+      // Homepage: three columns (thesis | 2×2 fields | other) from order.yaml.
+      // Root items not named anywhere join the fields so nothing goes missing.
+      let home = null;
+      if (n.path === "" && (conf.thesis || conf.fields || conf.other)) {
+        const fields = conf.fields || [];
+        const placed = new Set([conf.thesis, conf.other, ...fields]);
+        home = {
+          thesis: bySlug.get(conf.thesis) || null,
+          fields: [
+            ...fields.map((s) => bySlug.get(s)).filter(Boolean),
+            ...sequence.filter((i) => i.kind !== "break" && !placed.has(i.slug)),
+          ],
+          other: bySlug.get(conf.other) || null,
+        };
+      }
+
       out.push({
         path: n.path, isRoot: n.path === "", title, url,
         glyph: conf.glyph || null, blurb: conf.blurb || null,
-        count: countArticles(n), breadcrumbs: crumbs, items: itemsWithBreaks,
+        count: countArticles(n), breadcrumbs: crumbs, items: itemsWithBreaks, home,
       });
       const next = [...crumbs, { title, url }];
       for (const it of items) if (it.kind === "section") walk(n.subs.get(it.slug), next);

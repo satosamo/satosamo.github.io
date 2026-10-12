@@ -2,7 +2,11 @@
 #  order.yaml — the one file that controls the map of the site
 # ============================================================
 #  Each key is a folder path under src/content/ ("" = homepage).
-#  For every folder you can set:
+#  The homepage is laid out in three columns instead of an order:
+#    thesis: one section (left box)
+#    fields: sections for the 2×2 grid (middle); unlisted ones join it
+#    other:  one section (right box)
+#  For every other folder you can set:
 #    title:  display name of that section
 #    glyph:  name of an SVG in src/_includes/glyphs/ (no .svg)
 #    blurb:  one-line description shown on its tile + page
@@ -16,14 +20,23 @@
 
 "":
   title: Home
-  order:
-    - masters-thesis
-    - makebreak
+  thesis: masters-thesis
+  fields:
     - mathematics
     - computer-science
     - bioinformatics
     - physics
-    - makebreak
+  other: other
+
+other:
+  title: Other
+  glyph: compass
+  blurb: Everything outside the fields.
+
+other/prose:
+  title: Prose
+  glyph: pen
+  blurb: Fiction and other writing.
 
 mathematics:
   title: Mathematics

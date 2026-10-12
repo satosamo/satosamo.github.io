@@ -16,7 +16,37 @@ layout: layouts/base.njk
   </section>
 {% endif %}
 
-{% if node.items.length %}
+{% macro homeTile(item, cls, mark) %}
+  <a class="tile {{ cls }}" href="{{ item.url }}">
+    {% if mark %}<span class="tile-eyebrow">{{ mark }}</span>{% endif %}
+    <span class="tile-title">{{ item.title }}</span>
+    {% if item.glyph %}
+    <span class="tile-glyph" aria-hidden="true">
+      {%- include "glyphs/" + item.glyph + ".svg" ignore missing -%}
+    </span>
+    {% endif %}
+  </a>
+{% endmacro %}
+
+{% if node.home %}
+<div class="home">
+  {% if node.home.thesis %}
+  <p class="home-label">Thesis</p>
+  {{ homeTile(node.home.thesis, "home-thesis") }}
+  {% endif %}
+
+  {% if node.home.fields.length %}
+  <p class="home-label">Fields</p>
+  <div class="home-fields">
+    {% for item in node.home.fields %}{{ homeTile(item, "home-field", (loop.index | string).padStart(2, "0")) }}{% endfor %}
+  </div>
+  {% endif %}
+
+  {% if node.home.other %}
+  {{ homeTile(node.home.other, "home-other") }}
+  {% endif %}
+</div>
+{% elif node.items.length %}
 <div class="lattice">
   {% for item in node.items %}
     {% if item.kind == "break" %}

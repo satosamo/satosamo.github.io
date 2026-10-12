@@ -152,6 +152,7 @@ mathematics/articles/differential-geometry:
 ```
 
 - Slugs not listed appear after listed ones, alphabetically. Folders with no entry at all still work (prettified name, alphabetical).
+- The homepage (`""`) uses `thesis` (left box), `fields` (middle 2×2 grid) and `other` (right box) instead of `order`. Top-level sections not named there join the fields grid.
 - An article's `glyph`/`summary` come from its own front matter; a section's come from here.
 - Renaming a file changes its URL **and** its slug — update its `order:` line and any `[[wiki-links]]` to it.
 

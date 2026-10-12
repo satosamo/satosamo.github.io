@@ -65,21 +65,11 @@ a { color: inherit; }
 .site-head {
   max-width: 920px;
   margin: 0 auto;
-  padding: 1.4rem 1.25rem 2.6rem;
+  padding: 1.4rem 1.25rem 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
-
-.site-mark {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.site-mark:hover { color: var(--accent); }
 
 .theme-toggle {
   appearance: none;
@@ -120,15 +110,15 @@ a:focus-visible, .tile:focus-visible {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
-  margin: 0 0 0.9rem;
+  margin: 0 0 0.4rem;
 }
 
-.hero { padding: 1rem 0 2.8rem; }
+.hero { padding: 0 0 2rem; }
 
 .hero-title {
   font-family: var(--display);
   font-weight: 600;
-  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-size: clamp(1.9rem, 4.5vw, 2.6rem);
   letter-spacing: -0.02em;
   line-height: 1.05;
   margin: 0 0 0.8rem;
@@ -263,6 +253,76 @@ a:focus-visible, .tile:focus-visible {
   font-style: italic;
 }
 
+/* ---------- homepage: thesis band · numbered fields · other strip ---------- */
+
+.home { display: flex; flex-direction: column; }
+
+.home-label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 2.4rem 0 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.home-label:first-child { margin-top: 0; }
+.home-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+/* every home tile carries its own hairline frame */
+.home .tile { border: 1px solid var(--line); }
+
+.home-thesis {
+  min-height: 100px;
+  justify-content: flex-end;
+  padding: 1.1rem 1.4rem;
+}
+.home-thesis .tile-title {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  max-width: none;
+}
+.home-thesis .tile-glyph { top: 1rem; right: 1.3rem; bottom: auto; }
+.home-thesis .tile-glyph svg { width: 48px; height: 48px; }
+
+.home-fields {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.home-fields .tile { border: none; }
+.home-field {
+  min-height: 110px;
+  justify-content: space-between;
+}
+.home-field .tile-glyph { right: 1.1rem; bottom: 1rem; }
+.home-field .tile-glyph svg { width: 42px; height: 42px; }
+.home-field .tile-title { padding-right: 3.5rem; }
+.home-field .tile-title { font-size: 1.12rem; }
+
+.home-other {
+  flex-direction: row;
+  align-items: center;
+  min-height: 0;
+  margin-top: 2.4rem;
+  padding: 0.9rem 1.2rem;
+}
+.home-other .tile-title { font-size: 1.05rem; flex: 1; max-width: none; }
+.home-other .tile-title::after {
+  content: "→";
+  float: right;
+  color: var(--muted);
+  transition: transform 0.18s ease;
+}
+.home-other:hover .tile-title::after { color: var(--accent); transform: translateX(4px); }
+.home-other .tile-glyph { position: static; order: -1; margin-right: 0.9rem; }
+.home-other .tile-glyph svg { width: 24px; height: 24px; }
+
 /* ---------- article prose ---------- */
 
 .prose { max-width: 70ch; }
@@ -361,6 +421,10 @@ a:focus-visible, .tile:focus-visible {
   .lattice { grid-template-columns: 1fr 1fr; }
   .tile { min-height: 140px; padding: 0.9rem; }
   .tile-summary { display: none; }
+  .home-fields { grid-template-columns: 1fr 1fr; }
+  .home-field { min-height: 104px; }
+  .home-thesis { min-height: 90px; padding: 1rem 1.2rem; }
+  .home-other { min-height: 0; padding: 0.9rem 1.2rem; }
 }
 @media (max-width: 380px) {
   .lattice { grid-template-columns: 1fr; }
