@@ -38,6 +38,15 @@ layout: layouts/base.njk
 
 {% if node.home %}
 <div class="home">
+  {% if node.home.quickAccess.length %}
+  <div class="home-quick">
+    <span class="home-quick-label" aria-hidden="true">Quick Access</span>
+    <nav class="home-quick-items" aria-label="Quick Access">
+      {% for item in node.home.quickAccess %}{{ homeTile(item, "home-quick-item") }}{% endfor %}
+    </nav>
+  </div>
+  {% endif %}
+
   {% if node.home.theses.length %}
   <p class="home-label">{% if node.home.theses.length > 1 %}Theses{% else %}Thesis{% endif %}</p>
   {% for item in node.home.theses %}{{ homeTile(item, "home-thesis") }}{% endfor %}

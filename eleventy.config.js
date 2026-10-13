@@ -374,6 +374,20 @@ module.exports = function (eleventyConfig) {
     const countCourses = (n) =>
       [...n.subs.values()].reduce((a, c) => a + ((orderCfg[c.path] || {}).course ? 1 : countCourses(c)), 0);
 
+    const sectionItem = (s) => {
+      const sc = orderCfg[s.path] || {};
+      return {
+        kind: "section", slug: s.slug,
+        title: sc.title || prettify(s.slug),
+        url: "/" + s.path + "/",
+        glyph: sc.glyph || null, summary: sc.blurb || null,
+        thesisTitle: sc.thesis_title || null,
+        course: !!sc.course,
+        count: countArticles(s),
+        courses: s.slug === "coursework" ? countCourses(s) : null,
+      };
+    };
+
     const out = [];
     const walk = (n, crumbs) => {
 
@@ -381,19 +395,7 @@ module.exports = function (eleventyConfig) {
       const title = conf.title || (n.path === "" ? "Home" : prettify(n.slug));
       const url = "/" + (n.path ? n.path + "/" : "");
 
-      const sectionItems = [...n.subs.values()].map((s) => {
-        const sc = orderCfg[s.path] || {};
-        return {
-          kind: "section", slug: s.slug,
-          title: sc.title || prettify(s.slug),
-          url: "/" + s.path + "/",
-          glyph: sc.glyph || null, summary: sc.blurb || null,
-          thesisTitle: sc.thesis_title || null,
-          course: !!sc.course,
-          count: countArticles(s),
-          courses: s.slug === "coursework" ? countCourses(s) : null,
-        };
-      });
+      const sectionItems = [...n.subs.values()].map(sectionItem);
 
       const items = [...sectionItems, ...n.articles];
       const orderList = conf.order || [];
@@ -447,6 +449,10 @@ module.exports = function (eleventyConfig) {
             ...sequence.filter((i) => i.kind !== "break" && !placed.has(i.slug)),
           ],
           other: bySlug.get(conf.other) || null,
+          quickAccess: (conf.quick_access || [])
+            .map((p) => nodes.get(p))
+            .filter(Boolean)
+            .map(sectionItem),
         };
       }
 

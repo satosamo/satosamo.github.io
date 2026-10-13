@@ -6,6 +6,9 @@
 #    thesis: one section, or a list of them (stacked bands on top)
 #    fields: sections for the 2×2 grid (middle); unlisted ones join it
 #    other:  one section (right box)
+#    quick_access: up to four full folder paths (e.g. a course) shown in
+#            the blurred "Quick Access" box under the Home title, left to right.
+#            Swap the paths to change what it links to.
 #  For every other folder you can set:
 #    title:  display name of that section
 #    glyph:  name of an SVG in src/_includes/glyphs/ (no .svg)
@@ -32,6 +35,11 @@
     - bioinformatics
     - physics
   other: other
+  quick_access:
+    - bioinformatics/coursework/statistical-genomics
+    - bioinformatics/coursework/applied-high-throughput-analysis
+    - computer-science/coursework/parallel-and-distributed-software-systems
+    - computer-science/coursework/visual-computing
 
 other:
   title: Other

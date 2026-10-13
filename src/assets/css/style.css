@@ -367,6 +367,57 @@ a:focus-visible, .tile:focus-visible {
 .home-other .tile-glyph { position: static; order: -1; margin-right: 0.9rem; }
 .home-other .tile-glyph svg { width: 24px; height: 24px; }
 
+/* quick access: blurred until hovered / focused; label fades as it clears */
+.home-quick {
+  position: relative;
+  border: 1px solid var(--line);
+}
+.home-quick-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  filter: blur(7px);
+  opacity: 0.7;
+  transition: filter 0.25s ease, opacity 0.25s ease;
+}
+.home-quick-label {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: opacity 0.25s ease;
+}
+.home-quick:hover .home-quick-items,
+.home-quick:focus-within .home-quick-items { filter: none; opacity: 1; }
+.home-quick:hover .home-quick-label,
+.home-quick:focus-within .home-quick-label { opacity: 0; }
+
+.home-quick-item {
+  flex-direction: row;
+  align-items: center;
+  min-height: 0;
+  padding: 0.55rem 0.9rem;
+  border: none;
+}
+.home-quick-item .tile-title { font-size: 0.88rem; flex: 1; max-width: none; }
+.home-quick-item .tile-glyph { position: static; order: -1; margin-right: 0.6rem; }
+.home-quick-item .tile-glyph svg { width: 20px; height: 20px; }
+
+/* no hover on touch screens: show it plainly */
+@media (hover: none) {
+  .home-quick-items { filter: none; opacity: 1; }
+  .home-quick-label { display: none; }
+}
+
 /* ---------- article prose ---------- */
 
 .prose { max-width: 70ch; }
@@ -470,6 +521,7 @@ a:focus-visible, .tile:focus-visible {
   .home-thesis { min-height: 90px; padding: 1rem 1.2rem; padding-right: 4.6rem; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
   .home-thesis .tile-thesis-title { text-align: left; }
   .home-other { min-height: 0; padding: 0.9rem 1.2rem; }
+  .home-quick-items { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 380px) {
   .lattice { grid-template-columns: 1fr; }
