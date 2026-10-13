@@ -9,9 +9,6 @@ eleventyComputed:
   title: "Tag: {{ tag }}"
 eleventyExcludeFromCollections: true
 ---
-<nav class="crumbs" aria-label="Breadcrumb">
-  <a href="/">Home</a><span class="crumb-sep" aria-hidden="true">/</span><a href="/tags/">Tags</a><span class="crumb-sep" aria-hidden="true">/</span><span aria-current="page">{{ tag }}</span>
-</nav>
 <section class="section-head">
   <h1>{{ tag }}</h1>
   <p class="section-meta">{{ collections[tag].length }} page{% if collections[tag].length != 1 %}s{% endif %} tagged.</p>

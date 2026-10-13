@@ -6,9 +6,6 @@ layout: layouts/base.njk
     <h1 class="hero-title">{{ site.title }}</h1>
   </section>
 {% else %}
-  <nav class="crumbs" aria-label="Breadcrumb">
-    {% for c in node.breadcrumbs %}<a href="{{ c.url }}">{{ c.title }}</a><span class="crumb-sep" aria-hidden="true">/</span>{% endfor %}<span aria-current="page">{{ node.title }}</span>
-  </nav>
   <section class="section-head">
     <div class="section-titlebar">
       {% if node.about %}

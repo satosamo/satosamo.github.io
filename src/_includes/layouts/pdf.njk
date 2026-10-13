@@ -4,12 +4,6 @@ layout: layouts/base.njk
 {% set parent = collections.sectionNodes | parentNode(doc.stem) %}
 {% set nav = collections.sectionNodes | siblingNav(doc.stem) %}
 {% set links = doc.stem | backlinksFor %}
-{% if parent %}
-<nav class="crumbs" aria-label="Breadcrumb">
-  {% for c in parent.breadcrumbs %}<a href="{{ c.url }}">{{ c.title }}</a><span class="crumb-sep" aria-hidden="true">/</span>{% endfor %}<a href="{{ parent.url }}">{{ parent.title }}</a>
-</nav>
-{% endif %}
-
 <article class="prose pdf-page">
   <header class="prose-head">
     {% if doc.draft %}<p class="draft-badge">Draft — excluded from published builds</p>{% endif %}

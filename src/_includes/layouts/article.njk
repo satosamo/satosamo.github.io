@@ -4,12 +4,6 @@ layout: layouts/base.njk
 {% set parent = collections.sectionNodes | parentNode(page.filePathStem) %}
 {% set nav = collections.sectionNodes | siblingNav(page.filePathStem) %}
 {% set links = page.filePathStem | backlinksFor %}
-{% if parent %}
-<nav class="crumbs" aria-label="Breadcrumb">
-  {% for c in parent.breadcrumbs %}<a href="{{ c.url }}">{{ c.title }}</a><span class="crumb-sep" aria-hidden="true">/</span>{% endfor %}<a href="{{ parent.url }}">{{ parent.title }}</a>
-</nav>
-{% endif %}
-
 <article class="prose" data-pagefind-body>
   <header class="prose-head">
     {% if draft %}<p class="draft-badge" data-pagefind-ignore>Draft — excluded from published builds</p>{% endif %}
