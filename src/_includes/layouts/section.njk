@@ -3,7 +3,6 @@ layout: layouts/base.njk
 ---
 {% if node.isRoot %}
   <section class="hero">
-    <p class="eyebrow">Personal knowledge repository</p>
     <h1 class="hero-title">{{ site.title }}</h1>
   </section>
 {% else %}
@@ -12,7 +11,16 @@ layout: layouts/base.njk
   </nav>
   <section class="section-head">
     <div class="section-titlebar">
+      {% if node.about %}
+      <a class="course-title course-title-link" href="{{ node.about.url }}" aria-label="{{ node.title }} — About">
+        <h1>{{ node.title }}</h1>
+        <span class="course-title-label" aria-hidden="true">About</span>
+      </a>
+      {% elif node.course %}
+      <div class="course-title"><h1>{{ node.title }}</h1></div>
+      {% else %}
       <h1>{{ node.title }}</h1>
+      {% endif %}
       {% if node.courses != none %}
       <span class="chip">{{ node.courses }} course{% if node.courses != 1 %}s{% endif %}</span>
       {% else %}
@@ -68,6 +76,7 @@ layout: layouts/base.njk
   {% for item in node.items %}
     {% if item.kind == "break" %}
     <div class="lattice-break"></div>
+    {%- elif node.about and item.slug == "about" and item.kind == "article" -%}
     {%- else -%}
       {% set bare = item.kind == "section" and item.slug in ["articles", "coursework"] %}
       <a class="tile" href="{{ item.url }}">

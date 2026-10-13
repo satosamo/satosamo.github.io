@@ -461,6 +461,9 @@ module.exports = function (eleventyConfig) {
         glyph: conf.glyph || null, blurb: conf.blurb || null,
         count: countArticles(n), courses: n.slug === "coursework" ? countCourses(n) : null,
         breadcrumbs: crumbs, items: itemsWithBreaks, home,
+        // a course's about page hangs off its title box instead of being a tile
+        course: !!conf.course,
+        about: conf.course ? n.articles.find((a) => a.slug === "about") || null : null,
       });
       const next = [...crumbs, { title, url }];
       for (const it of items) if (it.kind === "section") walk(n.subs.get(it.slug), next);
