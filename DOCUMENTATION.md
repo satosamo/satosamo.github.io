@@ -152,9 +152,19 @@ mathematics/articles/differential-geometry:
 ```
 
 - Slugs not listed appear after listed ones, alphabetically. Folders with no entry at all still work (prettified name, alphabetical).
-- The homepage (`""`) uses `thesis` (left box), `fields` (middle 2×2 grid) and `other` (right box) instead of `order`. Top-level sections not named there join the fields grid.
+- The homepage (`""`) uses `thesis` (one section or a list, stacked as bands), `fields` (2×2 grid) and `other` (bottom strip) instead of `order`. Top-level sections not named there join the fields grid.
+- `course: true` on a folder makes its tile read "Course · N pages" instead of "Section". Folders named `coursework` count courses instead of pages. Convention: one folder per course, with an `about.md` (code, semester, ECTS, links to the notes); topic notes that outlive the course go in `articles/`.
+- `makebreak` in an `order:` list starts a new row of tiles.
 - An article's `glyph`/`summary` come from its own front matter; a section's come from here.
 - Renaming a file changes its URL **and** its slug — update its `order:` line and any `[[wiki-links]]` to it.
+
+---
+
+### The Course List (`courses.yaml`)
+
+`src/_data/courses.yaml` is the single source for `/other/course-list/` and its CSV download (`/other/course-list.csv`). Edit the YAML (field reference at its top), never the generated tables. The page `src/content/other/course-list.md` holds only the intro text plus a `<!--course-list-->` marker; at build time `courses.js` expands the marker into one table per term. A course's `notes:` folder becomes a wiki-link to its `about` page, which shows as plain text until that page stops being a draft.
+
+A course's own `about.md` carries no metadata by hand: it holds `<!--course-info-->`, which expands to the original title, institution, code, term, ECTS and type of every YAML entry whose `notes:` equals that course's folder (a table when the page covers several, e.g. *Matematika (1)–(4)*). A new course page = add its YAML entry, put the marker in `about.md`. Still hand-written: the `summary:` front matter and the `blurb:` in `order.yaml` (term text), and the about pages of the state exam and thesis defence (not in the list).
 
 ---
 
@@ -177,6 +187,8 @@ Articles show "Last updated" from their **latest git commit** (`git Last Modifie
 ## 8. Glyphs
 
 Inline SVGs in `src/_includes/glyphs/` (15 included: `integral`, `wedge`, `manifold`, `vector`, `group`, `tape`, `lightcone`, `orbital`, `flask`, `thesis`, `compass`, `pen`, `rule`, `chip`, `plane`, `speech`). The contract for your own: 48×48 viewBox, strokes only, no colors, `pathLength="100"` on every shape (powers the draw-on-hover animation). A typo'd glyph name fails silently — the tile just has no graphic.
+
+Every course has its own glyph in `src/_includes/glyphs/courses/`, named after the course folder (e.g. `courses/randomized-algorithms`; the thesis entries are `bsc-thesis-seminar`, `bsc-state-exam`, `bsc-thesis-defence`, `msc-thesis-seminar`, `msc-project`). Set it in `order.yaml` with `glyph: courses/<name>`.
 
 ## 9. Look and feel
 

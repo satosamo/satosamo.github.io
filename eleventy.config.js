@@ -13,6 +13,7 @@ const { HtmlBasePlugin } = require("@11ty/eleventy");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const { feedPlugin } = require("@11ty/eleventy-plugin-rss");
 const site = require("./src/_data/site.json");
+const courses = require("./courses.js");
 
 const PROD = !!process.env.ELEVENTY_PRODUCTION;
 
@@ -166,8 +167,22 @@ module.exports = function (eleventyConfig) {
     if (data.draft && PROD) return false;
   });
 
+  // ---------- course list: <!--course-list--> expands to the tables from courses.yaml ----------
+  eleventyConfig.addPreprocessor("course-list", "md", (data, content) => {
+    if (content.includes("<!--course-list-->")) return content.replace("<!--course-list-->", () => courses.toMarkdown());
+  });
+  // <!--course-info--> on a course's about page expands to its code / term / ECTS block
+  eleventyConfig.addPreprocessor("course-info", "md", (data, content) => {
+    if (!content.includes("<!--course-info-->")) return;
+    const folder = data.page.filePathStem.replace(/^\/content\//, "").split("/").slice(0, -1).join("/");
+    const info = courses.toInfoMarkdown(folder);
+    if (!info) { console.warn(`[courses] no entry in courses.yaml with notes: ${folder}`); return; }
+    return content.replace("<!--course-info-->", () => info);
+  });
+  eleventyConfig.addWatchTarget("src/_data/courses.yaml");
+
   // ---------- markdown ----------
-  const md = markdownIt({ html: true, typographer: true, linkify: true })
+  const md =markdownIt({ html: true, typographer: true, linkify: true })
     .use(anchor, { permalink: false })
     .use(footnote)
     .use(texmath, {
@@ -328,7 +343,7 @@ module.exports = function (eleventyConfig) {
       const parts = stem.split("/");
       const slug = parts.pop();
       ensure(parts.join("/")).articles.push({
-        kind: pg.data.course ? "course" : "article",
+        kind: "article",
         slug,
         title: pg.data.title || prettify(slug),
         url: pg.url,
@@ -355,6 +370,9 @@ module.exports = function (eleventyConfig) {
 
     const countArticles = (n) =>
       n.articles.length + [...n.subs.values()].reduce((a, c) => a + countArticles(c), 0);
+    // "coursework" folders report how many courses they hold instead of pages
+    const countCourses = (n) =>
+      [...n.subs.values()].reduce((a, c) => a + ((orderCfg[c.path] || {}).course ? 1 : countCourses(c)), 0);
 
     const out = [];
     const walk = (n, crumbs) => {
@@ -370,7 +388,10 @@ module.exports = function (eleventyConfig) {
           title: sc.title || prettify(s.slug),
           url: "/" + s.path + "/",
           glyph: sc.glyph || null, summary: sc.blurb || null,
+          thesisTitle: sc.thesis_title || null,
+          course: !!sc.course,
           count: countArticles(s),
+          courses: s.slug === "coursework" ? countCourses(s) : null,
         };
       });
 
@@ -412,14 +433,15 @@ module.exports = function (eleventyConfig) {
         itemsWithBreaks.pop();
       }
 
-      // Homepage: three columns (thesis | 2×2 fields | other) from order.yaml.
+      // Homepage: thesis band(s) | 2×2 fields | other, from order.yaml.
       // Root items not named anywhere join the fields so nothing goes missing.
       let home = null;
       if (n.path === "" && (conf.thesis || conf.fields || conf.other)) {
         const fields = conf.fields || [];
-        const placed = new Set([conf.thesis, conf.other, ...fields]);
+        const theses = [].concat(conf.thesis || []);
+        const placed = new Set([...theses, conf.other, ...fields]);
         home = {
-          thesis: bySlug.get(conf.thesis) || null,
+          theses: theses.map((s) => bySlug.get(s)).filter(Boolean),
           fields: [
             ...fields.map((s) => bySlug.get(s)).filter(Boolean),
             ...sequence.filter((i) => i.kind !== "break" && !placed.has(i.slug)),
@@ -431,7 +453,8 @@ module.exports = function (eleventyConfig) {
       out.push({
         path: n.path, isRoot: n.path === "", title, url,
         glyph: conf.glyph || null, blurb: conf.blurb || null,
-        count: countArticles(n), breadcrumbs: crumbs, items: itemsWithBreaks, home,
+        count: countArticles(n), courses: n.slug === "coursework" ? countCourses(n) : null,
+        breadcrumbs: crumbs, items: itemsWithBreaks, home,
       });
       const next = [...crumbs, { title, url }];
       for (const it of items) if (it.kind === "section") walk(n.subs.get(it.slug), next);

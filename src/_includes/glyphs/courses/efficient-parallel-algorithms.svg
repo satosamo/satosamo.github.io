@@ -1,0 +1,7 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <circle pathLength="100" cx="7" cy="24" r="2.5"/>
+  <circle pathLength="100" cx="41" cy="24" r="2.5"/>
+  <path pathLength="100" d="M9.5 22.5L16 12H32L38.5 22.5"/>
+  <path pathLength="100" d="M9.5 24H38.5"/>
+  <path pathLength="100" d="M9.5 25.5L16 36H32L38.5 25.5"/>
+</svg>

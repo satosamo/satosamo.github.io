@@ -1,0 +1,10 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <rect pathLength="100" x="6" y="12" width="12" height="7" rx="1.5"/>
+  <rect pathLength="100" x="21" y="12" width="8" height="7" rx="1.5"/>
+  <rect pathLength="100" x="32" y="12" width="10" height="7" rx="1.5"/>
+  <rect pathLength="100" x="6" y="24" width="8" height="7" rx="1.5"/>
+  <rect pathLength="100" x="17" y="24" width="14" height="7" rx="1.5"/>
+  <rect pathLength="100" x="34" y="24" width="8" height="7" rx="1.5"/>
+  <rect pathLength="100" x="6" y="36" width="16" height="7" rx="1.5"/>
+  <rect pathLength="100" x="25" y="36" width="9" height="7" rx="1.5"/>
+</svg>

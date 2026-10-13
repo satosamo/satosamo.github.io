@@ -1,0 +1,8 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <rect pathLength="100" x="6" y="8" width="10" height="32"/>
+  <path pathLength="100" d="M6 16H16 M6 24H16 M6 32H16"/>
+  <path pathLength="100" d="M16 20H22 M30 20H34 M16 36H22"/>
+  <rect pathLength="100" x="22" y="16" width="8" height="8"/>
+  <rect pathLength="100" x="34" y="16" width="8" height="8"/>
+  <rect pathLength="100" x="22" y="32" width="8" height="8"/>
+</svg>

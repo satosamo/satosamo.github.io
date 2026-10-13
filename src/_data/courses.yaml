@@ -1,0 +1,145 @@
+# ============================================================
+#  courses.yaml — single source for the Course List page and its CSV
+# ============================================================
+#  programs → terms → courses. One course per line:
+#    title:      English title (shown, linked when `notes` page exists)
+#    sk:         original Slovak title (optional)
+#    code:       official course code (optional)
+#    ects:       credits
+#    type:       A required · B required elective · C elective (optional)
+#    recognised: true for a 0-ECTS recognised credit (optional)
+#    notes:      folder of my notes under src/content (optional); the link
+#                points at <notes>/about, and stays plain text until that
+#                page is no longer a draft
+#  A term may carry `status:` (e.g. "in progress", "planned").
+#  A program may carry `note:` (markdown, shown under its tables).
+#  Pages: src/content/other/course-list.md  ·  CSV: /other/course-list.csv
+# ------------------------------------------------------------
+
+- program: "BSc Physics"
+  institution: "Comenius University (FMFI)"
+  note: "Not listed: Physical Education (1)–(4), English (1) and (4), and the final bachelor exams ([[bachelors-thesis/state-exam/about|State Exam: Physics]], [[bachelors-thesis/defence/about|Thesis Defence]])."
+  terms:
+    - year: "2020/21"
+      term: Winter
+      courses:
+        - { title: "Algebra and Geometry (1)", sk: "Algebra a geometria (1)", code: FMFI.KAG/1-FYZ-115/13, ects: 5, type: A, notes: mathematics/coursework/algebra-and-geometry }
+        - { title: "Algebra Exercises (1)", sk: "Cvičenie z algebry (1)", code: FMFI.KAG/1-FYZ-411/13, ects: 1, type: C, notes: mathematics/coursework/algebra-and-geometry }
+        - { title: "Mechanics (1)", sk: "Mechanika (1)", code: FMFI.KJFB+KTF/1-FYZ-111/15, ects: 7, type: A, notes: physics/coursework/mechanics }
+        - { title: "Mechanics Exercises (1)", sk: "Cvičenie z mechaniky (1)", code: FMFI.KTF/1-FYZ-118/16, ects: 2, type: C, notes: physics/coursework/mechanics }
+        - { title: "Mathematics (1)", sk: "Matematika (1)", code: FMFI.KMANM/1-FYZ-120/17, ects: 9, type: A, notes: mathematics/coursework/analysis }
+        - { title: "Mathematical Analysis (1)", sk: "Matematická analýza (1)", code: FMFI.KMANM/1-FYZ-405/13, ects: 1, type: C, notes: mathematics/coursework/analysis }
+        - { title: "Mathematical Methods of Physics (1)", sk: "Matematické metódy fyziky (1)", code: FMFI.KJFB+KTF/1-FYZ-116/17, ects: 6, type: A, notes: mathematics/coursework/mathematical-methods-of-physics }
+    - year: "2020/21"
+      term: Summer
+      courses:
+        - { title: "Algebra and Geometry (2)", sk: "Algebra a geometria (2)", code: FMFI.KAG/1-FYZ-160/13, ects: 5, type: B, notes: mathematics/coursework/algebra-and-geometry }
+        - { title: "Algebra Exercises (2)", sk: "Cvičenie z algebry (2)", code: FMFI.KAG/1-FYZ-412/13, ects: 1, type: C, notes: mathematics/coursework/algebra-and-geometry }
+        - { title: "Mechanics (2)", sk: "Mechanika (2)", code: FMFI.KJFB+KTF/1-FYZ-112/15, ects: 7, type: A, notes: physics/coursework/mechanics }
+        - { title: "Mechanics Exercises (2)", sk: "Cvičenie z mechaniky (2)", code: FMFI.KTF/1-FYZ-119/16, ects: 2, type: C, notes: physics/coursework/mechanics }
+        - { title: "Mathematics (2)", sk: "Matematika (2)", code: FMFI.KMANM/1-FYZ-135/17, ects: 9, type: A, notes: mathematics/coursework/analysis }
+        - { title: "Mathematical Analysis (2)", sk: "Matematická analýza (2)", code: FMFI.KMANM/1-FYZ-406/13, ects: 1, type: C, notes: mathematics/coursework/analysis }
+        - { title: "Mathematical Methods of Physics (2)", sk: "Matematické metódy fyziky (2)", code: FMFI.KJFB+KTF/1-FYZ-117/17, ects: 6, type: A, notes: mathematics/coursework/mathematical-methods-of-physics }
+    - year: "2021/22"
+      term: Winter
+      courses:
+        - { title: "Algebra and Geometry (3)", sk: "Algebra a geometria (3)", code: FMFI.KAG/1-FYZ-216/15, ects: 3, type: B, notes: mathematics/coursework/algebra-and-geometry }
+        - { title: "Electromagnetism and Optics", sk: "Elektromagnetizmus a optika", code: FMFI.KEF/1-FYZ-211/17, ects: 11, type: A, notes: physics/coursework/electromagnetism-and-optics }
+        - { title: "Mathematics (3)", sk: "Matematika (3)", code: FMFI.KMANM/1-FYZ-215/17, ects: 8, type: A, notes: mathematics/coursework/analysis }
+        - { title: "Mathematical Analysis (3)", sk: "Matematická analýza (3)", code: FMFI.KMANM/1-FYZ-407/13, ects: 1, type: C, notes: mathematics/coursework/analysis }
+        - { title: "Laboratory Practical I", sk: "Praktikum I", code: FMFI.KEF/1-OZE-211/15, ects: 4, type: B, notes: physics/coursework/lab-practicals }
+        - { title: "Theoretical Mechanics", sk: "Teoretická mechanika", code: FMFI.KTF/1-FYZ-251/15, ects: 7, type: A, notes: physics/coursework/theoretical-mechanics }
+        - { title: "Programming Fundamentals", sk: "Základy programovania", code: FMFI.KEF/1-FYZ-212/15, ects: 5, type: A, notes: computer-science/coursework/programming-fundamentals }
+    - year: "2021/22"
+      term: Summer
+      courses:
+        - { title: "Mathematics (4)", sk: "Matematika (4)", code: FMFI.KMANM/1-FYZ-225/15, ects: 6, type: A, notes: mathematics/coursework/analysis }
+        - { title: "Mathematical Analysis (4)", sk: "Matematická analýza (4)", code: FMFI.KMANM/1-FYZ-408/13, ects: 1, type: C, notes: mathematics/coursework/analysis }
+        - { title: "Electromagnetic Field Theory", sk: "Teória elektromagnetického poľa", code: FMFI.KTF/1-FYZ-265/15, ects: 6, type: A, notes: physics/coursework/electromagnetic-field-theory }
+        - { title: "Introduction to Quantum Physics", sk: "Úvod do kvantovej fyziky", code: FMFI.KJFB+KEF/1-FYZ-231/15, ects: 7, type: A, notes: physics/coursework/intro-to-quantum-physics }
+        - { title: "Laboratory Practical II", sk: "Praktikum II", code: FMFI.KEF/1-OZE-212/15, ects: 4, type: B, notes: physics/coursework/lab-practicals }
+        - { title: "Advanced Programming", sk: "Pokročilé programovanie", code: FMFI.KEF/1-FYZ-232/15, ects: 4, type: A, notes: computer-science/coursework/advanced-programming }
+    - year: "2022/23"
+      term: Winter
+      courses:
+        - { title: "Quantum Theory (1)", sk: "Kvantová teória (1)", code: FMFI.KTF/1-FYZ-310/15, ects: 7, type: A, notes: physics/coursework/quantum-theory }
+        - { title: "Statistical Physics and Thermodynamics", sk: "Štatistická fyzika a termodynamika", code: FMFI.KEF/1-FYZ-315/15, ects: 7, type: A, notes: physics/coursework/statistical-physics }
+        - { title: "Mathematical Physics", sk: "Matematická fyzika", code: FMFI.KTF/1-FYZ-677/15, ects: 7, type: C, notes: mathematics/coursework/mathematical-physics }
+        - { title: "Selected Topics in Relativity", sk: "Vybrané kapitoly z teórie relativity", code: FMFI.KTF/2-FTF-136/17, ects: 3, type: C, notes: physics/coursework/topics-in-relativity }
+        - { title: "High-Performance Computing for Physicists", sk: "Vysokovýkonné počítanie pre fyzikov", code: FMFI.KAFZM/1-FYZ-453/22, ects: 3, type: C, notes: computer-science/coursework/hpc-for-physicists }
+        - { title: "Electromagnetism", sk: "Elektromagnetizmus", code: FMFI.KEF/1-FYZ-217/22, ects: 0, type: A, recognised: true }
+        - { title: "Practical in Mechanics and Molecular Physics", sk: "Praktikum z mechaniky a molekulovej fyziky", code: FMFI.KEF/1-FYZ-221/22, ects: 0, type: B, recognised: true }
+        - { title: "Practical in Optics", sk: "Praktikum z optiky", code: FMFI.KEF/1-FYZ-321/22, ects: 0, type: B, recognised: true }
+    - year: "2022/23"
+      term: Summer
+      courses:
+        - { title: "Quantum Theory (2)", sk: "Kvantová teória (2)", code: FMFI.KTF/1-FYZ-365/15, ects: 7, type: C, notes: physics/coursework/quantum-theory }
+        - { title: "Error Analysis of Measurements", sk: "Analýza chýb meraní – štatistika pre fyzikov", code: FMFI.KEF+KAFZM/1-FYZ-122/22, ects: 3, type: A, notes: mathematics/coursework/measurement-error-analysis }
+        - { title: "Bachelor Thesis Seminar", sk: "Seminár k bakalárskej práci", code: FMFI.KAFZM/1-FYZ-323/22, ects: 2, type: A, notes: bachelors-thesis/seminar }
+        - { title: "Optics", sk: "Optika", code: FMFI.KEF/1-FYZ-218/22, ects: 0, type: A, recognised: true }
+        - { title: "Practical in Electricity and Magnetism", sk: "Praktikum z elektriny a magnetizmu", code: FMFI.KEF/1-FYZ-222/22, ects: 0, type: B, recognised: true }
+
+- program: "MSc Computer Science"
+  institution: "Comenius University (FMFI)"
+  terms:
+    - year: "2024/25"
+      term: Winter
+      courses:
+        - { title: "Algorithms and Data Structures", sk: "Algoritmy a dátové štruktúry", code: FMFI.KI/1-INF-220/00, ects: 5, type: C, notes: computer-science/coursework/algorithms-and-data-structures }
+        - { title: "Formal Languages and Automata (1)", sk: "Formálne jazyky a automaty (1)", code: FMFI.KI/1-INF-215/14, ects: 6, type: C, notes: computer-science/coursework/formal-languages-and-automata }
+        - { title: "Cryptology (1)", sk: "Kryptológia (1)", code: FMFI.KI/2-INF-178/15, ects: 6, type: B, notes: computer-science/coursework/cryptology }
+        - { title: "Principles of Computers", sk: "Princípy počítačov", code: FMFI.KI/1-INF-130/00, ects: 5, type: C, notes: computer-science/coursework/computer-principles }
+        - { title: "Machine Learning", sk: "Strojové učenie", code: FMFI.KAI/2-INF-150/15, ects: 6, type: B, notes: computer-science/coursework/machine-learning }
+        - { title: "Foundations of Probability and Statistics", sk: "Základy pravdepodobnosti a štatistiky", code: FMFI.KAMŠ/1-DAV-201/20, ects: 6, type: B, notes: mathematics/coursework/probability-and-statistics }
+        - { title: "Introduction to Database Systems", sk: "Úvod do databázových systémov", code: FMFI.KI/1-INF-230/00, ects: 5, type: C, notes: computer-science/coursework/database-systems }
+    - year: "2024/25"
+      term: Summer
+      courses:
+        - { title: "Efficient Parallel Algorithms", sk: "Efektívne paralelné algoritmy", code: FMFI.KI/2-INF-231/00, ects: 6, type: B, notes: computer-science/coursework/efficient-parallel-algorithms }
+        - { title: "Intro to Genomics", sk: "Genomika", code: FMFI.KAI/2-INF-269/15, ects: 4, type: B, notes: bioinformatics/coursework/genomics }
+        - { title: "Data Management", sk: "Manažment dát", code: FMFI.KAI/1-DAV-202/20, ects: 5, type: B, notes: computer-science/coursework/data-management }
+        - { title: "Neural Networks", sk: "Neurónové siete", code: FMFI.KAI/2-AIN-132/15, ects: 6, type: B, notes: computer-science/coursework/neural-networks }
+        - { title: "Statistical Methods in AI", sk: "Štatistické metódy v umelej inteligencii", code: FMFI.KAI/2-AIN-137/24, ects: 6, type: B, notes: mathematics/coursework/statistical-methods-in-ai }
+    - year: "2025/26"
+      term: Winter
+      courses:
+        - { title: "Approximation of Optimization Problems", sk: "Aproximácia optimalizačných problémov", code: FMFI.KI/2-INF-221/15, ects: 6, type: B, notes: computer-science/coursework/approximation-algorithms }
+        - { title: "Diploma Seminar (1)", sk: "Diplomový seminár (1)", code: FMFI.KI/2-INF-920/00, ects: 2, type: A, notes: masters-thesis/seminar }
+        - { title: "Deep Learning for Computer Vision", sk: "Hlboké učenie pre počítačové videnie", code: FMFI.KAI/2-AIN-226/22, ects: 6, type: C, notes: computer-science/coursework/deep-vision }
+        - { title: "Methods in Bioinformatics", sk: "Metódy v bioinformatike", code: FMFI.KAI+KI/1-BIN-301/15, ects: 6, type: B, notes: bioinformatics/coursework/methods-in-bioinformatics }
+        - { title: "Principles of Software Development (1)", sk: "Princípy tvorby softvéru (1)", code: FMFI.KI/1-INF-517/22, ects: 3, type: C, notes: computer-science/coursework/software-development-principles }
+        - { title: "Selected Topics in Data Structures", sk: "Vybrané partie z dátových štruktúr", code: FMFI.KI/2-INF-237/00, ects: 6, type: B, notes: computer-science/coursework/topics-in-data-structures }
+    - year: "2025/26"
+      term: Summer
+      courses:
+        - { title: "Diploma Seminar (2)", sk: "Diplomový seminár (2)", code: FMFI.KI/2-INF-923/22, ects: 2, type: A, notes: masters-thesis/seminar }
+        - { title: "Computing and Society", sk: "Informatika a spoločnosť", code: FMFI.KI/2-INF-106/22, ects: 2, type: A, notes: computer-science/coursework/computing-and-society }
+        - { title: "Master's Project", sk: "Magisterský projekt", code: FMFI.KI/2-INF-166/15, ects: 6, type: A, notes: masters-thesis/project }
+        - { title: "Modern Machine Learning Techniques", sk: "Moderné techniky strojového učenia", code: FMFI.KAI/2-INF-188/22, ects: 6, type: B, notes: computer-science/coursework/modern-machine-learning }
+        - { title: "Randomized Algorithms", sk: "Pravdepodobnostné algoritmy", code: FMFI.KI/2-INF-135/15, ects: 6, type: B, notes: computer-science/coursework/randomized-algorithms }
+        - { title: "Natural Language Processing", sk: "Spracovanie prirodzeného jazyka", code: FMFI.KAI/2-IKV-189/16, ects: 6, type: C, notes: computer-science/coursework/natural-language-processing }
+        - { title: "Computability Theory", sk: "Teória vypočítateľnosti", code: FMFI.KI/2-INF-121/15, ects: 6, type: B, notes: computer-science/coursework/computability-theory }
+        - { title: "Introduction to Distributed Algorithms", sk: "Úvod do distribuovaných algoritmov", code: FMFI.KI/2-INF-132/15, ects: 4, type: C, notes: computer-science/coursework/distributed-algorithms }
+    - year: "2026/27"
+      term: Winter
+      status: in progress
+      courses:
+        - { title: "Diploma Seminar (3)", sk: "Diplomový seminár (3)", code: FMFI.KI/2-INF-921/22, ects: 2, type: A, notes: masters-thesis/seminar }
+        - { title: "Concurrent and Distributed Programming and Systems (1)", sk: "Konkurentné a distribuované programovanie a systémy (1)", code: FMFI.KI/2-INF-179/15, ects: 6, type: B, notes: computer-science/coursework/concurrent-and-distributed-programming }
+    - year: "2026/27"
+      term: Summer
+      status: planned
+      courses:
+        - { title: "Diploma Seminar (4)", sk: "Diplomový seminár (4)", code: FMFI.KI/2-INF-922/22, ects: 2, type: A, notes: masters-thesis/seminar }
+
+- program: "Erasmus"
+  institution: "Ghent University"
+  terms:
+    - year: "2026/27"
+      term: Winter
+      status: in progress
+      courses:
+        - { title: "Statistical Genomics", ects: 6, notes: bioinformatics/coursework/statistical-genomics }
+        - { title: "Applied High-Throughput Analysis", ects: 6, notes: bioinformatics/coursework/applied-high-throughput-analysis }
+        - { title: "Parallel and Distributed Software Systems", code: E017930A, ects: 6, notes: computer-science/coursework/parallel-and-distributed-software-systems }
+        - { title: "Visual Computing", code: E010311A, ects: 6, notes: computer-science/coursework/visual-computing }

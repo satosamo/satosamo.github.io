@@ -1,0 +1,6 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <path pathLength="100" d="M24 10c-4-3-10-3-14-1v26c4-2 10-2 14 1 4-3 10-3 14-1V9c-4-2-10-2-14 1z"/>
+  <path pathLength="100" d="M24 10v26"/>
+  <path pathLength="100" d="M10 35v6c4-2 10-2 14 1 4-3 10-3 14-1v-6"/>
+  <path pathLength="100" d="M10 38c4-2 10-2 14 1 4-3 10-3 14-1"/>
+</svg>

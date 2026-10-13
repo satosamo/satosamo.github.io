@@ -11,8 +11,15 @@ layout: layouts/base.njk
     {% for c in node.breadcrumbs %}<a href="{{ c.url }}">{{ c.title }}</a><span class="crumb-sep" aria-hidden="true">/</span>{% endfor %}<span aria-current="page">{{ node.title }}</span>
   </nav>
   <section class="section-head">
-    <h1>{{ node.title }}</h1>
-    <p class="section-meta">{{ node.count }} page{% if node.count != 1 %}s{% endif %}{% if node.blurb %} · {{ node.blurb }}{% endif %}</p>
+    <div class="section-titlebar">
+      <h1>{{ node.title }}</h1>
+      {% if node.courses != none %}
+      <span class="chip">{{ node.courses }} course{% if node.courses != 1 %}s{% endif %}</span>
+      {% else %}
+      <span class="chip">{{ node.count }} page{% if node.count != 1 %}s{% endif %}</span>
+      {% endif %}
+    </div>
+    {% if node.blurb %}<p class="section-meta"><span class="chip">{{ node.blurb }}</span></p>{% endif %}
   </section>
 {% endif %}
 
@@ -20,6 +27,7 @@ layout: layouts/base.njk
   <a class="tile {{ cls }}" href="{{ item.url }}">
     {% if mark %}<span class="tile-eyebrow">{{ mark }}</span>{% endif %}
     <span class="tile-title">{{ item.title }}</span>
+    {% if item.thesisTitle %}<span class="tile-thesis-title">{{ item.thesisTitle }}</span>{% endif %}
     {% if item.glyph %}
     <span class="tile-glyph" aria-hidden="true">
       {%- include "glyphs/" + item.glyph + ".svg" ignore missing -%}
@@ -30,9 +38,9 @@ layout: layouts/base.njk
 
 {% if node.home %}
 <div class="home">
-  {% if node.home.thesis %}
-  <p class="home-label">Thesis</p>
-  {{ homeTile(node.home.thesis, "home-thesis") }}
+  {% if node.home.theses.length %}
+  <p class="home-label">{% if node.home.theses.length > 1 %}Theses{% else %}Thesis{% endif %}</p>
+  {% for item in node.home.theses %}{{ homeTile(item, "home-thesis") }}{% endfor %}
   {% endif %}
 
   {% if node.home.fields.length %}
@@ -52,13 +60,17 @@ layout: layouts/base.njk
     {% if item.kind == "break" %}
     <div class="lattice-break"></div>
     {%- else -%}
+      {% set bare = item.kind == "section" and item.slug in ["articles", "coursework"] %}
       <a class="tile" href="{{ item.url }}">
         <span class="tile-eyebrow">
           {%- if item.draft -%}Draft · {% endif -%}
           {%- if item.kind == "section" -%}
-            Section · {{ item.count }} page{% if item.count != 1 %}s{% endif %}
-          {%- elif item.kind == "course" -%}
-            Course
+            {% if item.course %}Course · {% elif not bare %}Section · {% endif %}
+            {%- if item.courses != none -%}
+              {{ item.courses }} course{% if item.courses != 1 %}s{% endif %}
+            {%- else -%}
+              {{ item.count }} page{% if item.count != 1 %}s{% endif %}
+            {%- endif -%}
           {%- elif item.kind == "pdf" -%}
             PDF
           {%- else -%}
@@ -66,7 +78,7 @@ layout: layouts/base.njk
           {%- endif -%}
         </span>
         <span class="tile-title">{{ item.title }}</span>
-        {% if item.summary %}<span class="tile-summary">{{ item.summary }}</span>{% endif %}
+        {% if item.summary and not bare %}<span class="tile-summary">{{ item.summary }}</span>{% endif %}
         {% if item.glyph %}
         <span class="tile-glyph" aria-hidden="true">
           {%- include "glyphs/" + item.glyph + ".svg" ignore missing -%}

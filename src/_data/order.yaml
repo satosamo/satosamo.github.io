@@ -3,15 +3,18 @@
 # ============================================================
 #  Each key is a folder path under src/content/ ("" = homepage).
 #  The homepage is laid out in three columns instead of an order:
-#    thesis: one section (left box)
+#    thesis: one section, or a list of them (stacked bands on top)
 #    fields: sections for the 2×2 grid (middle); unlisted ones join it
 #    other:  one section (right box)
 #  For every other folder you can set:
 #    title:  display name of that section
 #    glyph:  name of an SVG in src/_includes/glyphs/ (no .svg)
 #    blurb:  one-line description shown on its tile + page
+#    thesis_title: full thesis title, shown faintly on its homepage band
+#    course: true marks the folder as a course (tile reads "Course")
 #    order:  the order of tiles inside it (folder or file slugs).
 #            Anything not listed appears after, alphabetically.
+#            "makebreak" starts a new row.
 #
 #  Moving "differential-forms" above "vector-fields" is literally
 #  swapping two lines below. Folders you haven't configured still
@@ -20,7 +23,9 @@
 
 "":
   title: Home
-  thesis: masters-thesis
+  thesis:
+    - bachelors-thesis
+    - masters-thesis
   fields:
     - mathematics
     - computer-science
@@ -43,7 +48,6 @@ mathematics:
   glyph: integral
   blurb: Articles and coursework, from algebra to differential geometry.
   order:
-    - articles
     - coursework
 
 mathematics/articles:
@@ -73,37 +77,27 @@ mathematics/articles/computability:
   glyph: tape
   blurb: Machines, decidability, and the limits of computation.
 
-mathematics/coursework:
-  title: Coursework
-  glyph: rule
-  blurb: Notes following university courses, lecture by lecture.
-  order:
-    - functional-analysis
-    - algebra-1
-    - probability
+mathematics/articles/analysis:
+  title: Analysis
+  glyph: integral
+  blurb: Real and functional analysis.
+
+mathematics/articles/probability:
+  title: Probability
+  glyph: integral
+  blurb: Probability spaces, conditioning, and random variables.
 
 bioinformatics:
   title: Bioinformatics
   glyph: helix
   blurb: Omics, sequence analysis, and the statistics behind them. Topic notes plus course maps.
   order:
-    - articles
     - coursework
 
-bioinformatics/articles:
-  title: Articles
-  glyph: pen
-  blurb: Self-contained notes organised by topic.
-
-bioinformatics/articles/statistics:
+bioinformatics/coursework/statistical-genomics/statistics:
   title: Statistics for Omics
   glyph: integral
   blurb: Linear models, inference, multiple testing, experimental design.
-
-bioinformatics/coursework:
-  title: Coursework
-  glyph: rule
-  blurb: Course maps linking official material to my topic notes.
 
 physics:
   title: Physics
@@ -132,10 +126,26 @@ chemistry/articles/quantum-chemistry:
   title: Quantum Chemistry
   glyph: orbital
 
+bachelors-thesis:
+  title: Bachelor's Thesis
+  glyph: thesis
+  thesis_title: Spacetimes Curved by Negative Energy Matter
+  blurb: The BSc Physics thesis, its seminar, and the final exams.
+  order:
+    - overview
+    - seminar
+    - state-exam
+    - defence
+
 masters-thesis:
   title: Master's Thesis
-  glyph: thesis
+  glyph: thesis-thick
+  thesis_title: Modern Techniques for Medical Data Imaging on Consumer-Grade Hardware
   blurb: Working notes, drafts, and references for the thesis.
+  order:
+    - seminar
+    - project
+    - makebreak
 
 research:
   title: Research
@@ -159,21 +169,6 @@ computer-science/articles/algorithms:
   glyph: chip
   blurb: Design, analysis, and the cost models behind them.
 
-computer-science/coursework/randomized-algorithms:
-  title: Randomized Algorithms
-  order:
-    - lecture-1
-    - lecture-2
-    - lecture-3
-    - lecture-4
-    - lecture-4-part2
-    - lecture-4-part3
-    - lecture-4-part4
-    - lecture-5
-    - lecture-6
-    - lecture-7
-    - lecture-8
-
 mobility:
   title: Mobility
   glyph: plane
@@ -193,3 +188,491 @@ languages:
   title: Languages
   glyph: speech
   blurb: Academic vocabulary and phrase notes.
+
+# ---- courses (ordered chronologically; placeholders are draft until notes exist) ----
+
+mathematics/coursework:
+  title: Coursework
+  glyph: rule
+  blurb: "Notes following university courses."
+  order:
+    - mathematical-methods-of-physics
+    - algebra-and-geometry
+    - analysis
+    - mathematical-physics
+    - measurement-error-analysis
+    - probability-and-statistics
+    - statistical-methods-in-ai
+
+physics/coursework:
+  title: Coursework
+  glyph: rule
+  blurb: "Notes following university courses."
+  order:
+    - mechanics
+    - electromagnetism-and-optics
+    - lab-practicals
+    - theoretical-mechanics
+    - electromagnetic-field-theory
+    - intro-to-quantum-physics
+    - quantum-theory
+    - topics-in-relativity
+    - statistical-physics
+
+computer-science/coursework:
+  title: Coursework
+  glyph: rule
+  blurb: "Notes following university courses."
+  order:
+    - programming-fundamentals
+    - advanced-programming
+    - hpc-for-physicists
+    - algorithms-and-data-structures
+    - cryptology
+    - formal-languages-and-automata
+    - database-systems
+    - machine-learning
+    - computer-principles
+    - data-management
+    - efficient-parallel-algorithms
+    - neural-networks
+    - approximation-algorithms
+    - deep-vision
+    - software-development-principles
+    - topics-in-data-structures
+    - computability-theory
+    - computing-and-society
+    - distributed-algorithms
+    - modern-machine-learning
+    - natural-language-processing
+    - randomized-algorithms
+    - concurrent-and-distributed-programming
+    - parallel-and-distributed-software-systems
+    - visual-computing
+
+bioinformatics/coursework:
+  title: Coursework
+  glyph: rule
+  blurb: "Course maps linking official material to my topic notes."
+  order:
+    - genomics
+    - methods-in-bioinformatics
+    - applied-high-throughput-analysis
+    - statistical-genomics
+
+mathematics/coursework/analysis:
+  title: "Analysis"
+  glyph: courses/analysis
+  blurb: "BSc Physics · 2020/21 – 2021/22"
+  course: true
+  order:
+    - about
+
+mathematics/coursework/algebra-and-geometry:
+  title: "Algebra and Geometry"
+  glyph: courses/algebra-and-geometry
+  blurb: "BSc Physics · 2020/21 – winter 2021/22"
+  course: true
+  order:
+    - about
+
+mathematics/coursework/mathematical-methods-of-physics:
+  title: "Mathematical Methods of Physics"
+  glyph: courses/mathematical-methods-of-physics
+  blurb: "BSc Physics · Winter + summer 2020/21"
+  course: true
+  order:
+    - about
+
+mathematics/coursework/mathematical-physics:
+  title: "Mathematical Physics"
+  glyph: courses/mathematical-physics
+  blurb: "BSc Physics · Winter 2022/23"
+  course: true
+  order:
+    - about
+
+mathematics/coursework/measurement-error-analysis:
+  title: "Error Analysis of Measurements"
+  glyph: courses/measurement-error-analysis
+  blurb: "BSc Physics · Summer 2022/23"
+  course: true
+  order:
+    - about
+
+mathematics/coursework/probability-and-statistics:
+  title: "Foundations of Probability and Statistics"
+  glyph: courses/probability-and-statistics
+  blurb: "MSc Computer Science · Winter 2024/25"
+  course: true
+  order:
+    - about
+
+mathematics/coursework/statistical-methods-in-ai:
+  title: "Statistical Methods in AI"
+  glyph: courses/statistical-methods-in-ai
+  blurb: "MSc Computer Science · Summer 2024/25"
+  course: true
+  order:
+    - about
+
+physics/coursework/mechanics:
+  title: "Mechanics"
+  glyph: courses/mechanics
+  blurb: "BSc Physics · Winter + summer 2020/21"
+  course: true
+  order:
+    - about
+
+physics/coursework/electromagnetism-and-optics:
+  title: "Electromagnetism and Optics"
+  glyph: courses/electromagnetism-and-optics
+  blurb: "BSc Physics · Winter 2021/22"
+  course: true
+  order:
+    - about
+
+physics/coursework/lab-practicals:
+  title: "Laboratory Practicals"
+  glyph: courses/lab-practicals
+  blurb: "BSc Physics · Winter + summer 2021/22"
+  course: true
+  order:
+    - about
+
+physics/coursework/theoretical-mechanics:
+  title: "Theoretical Mechanics"
+  glyph: courses/theoretical-mechanics
+  blurb: "BSc Physics · Winter 2021/22"
+  course: true
+  order:
+    - about
+
+physics/coursework/electromagnetic-field-theory:
+  title: "Electromagnetic Field Theory"
+  glyph: courses/electromagnetic-field-theory
+  blurb: "BSc Physics · Summer 2021/22"
+  course: true
+  order:
+    - about
+
+physics/coursework/intro-to-quantum-physics:
+  title: "Introduction to Quantum Physics"
+  glyph: courses/intro-to-quantum-physics
+  blurb: "BSc Physics · Summer 2021/22"
+  course: true
+  order:
+    - about
+
+physics/coursework/quantum-theory:
+  title: "Quantum Theory"
+  glyph: courses/quantum-theory
+  blurb: "BSc Physics · Winter + summer 2022/23"
+  course: true
+  order:
+    - about
+
+physics/coursework/topics-in-relativity:
+  title: "Selected Topics in Relativity"
+  glyph: courses/topics-in-relativity
+  blurb: "BSc Physics · Winter 2022/23"
+  course: true
+  order:
+    - about
+
+physics/coursework/statistical-physics:
+  title: "Statistical Physics and Thermodynamics"
+  glyph: courses/statistical-physics
+  blurb: "BSc Physics · Winter 2022/23"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/programming-fundamentals:
+  title: "Programming Fundamentals"
+  glyph: courses/programming-fundamentals
+  blurb: "BSc Physics · Winter 2021/22"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/advanced-programming:
+  title: "Advanced Programming"
+  glyph: courses/advanced-programming
+  blurb: "BSc Physics · Summer 2021/22"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/hpc-for-physicists:
+  title: "High-Performance Computing for Physicists"
+  glyph: courses/hpc-for-physicists
+  blurb: "BSc Physics · Winter 2022/23"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/algorithms-and-data-structures:
+  title: "Algorithms and Data Structures"
+  glyph: courses/algorithms-and-data-structures
+  blurb: "MSc Computer Science · Winter 2024/25"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/formal-languages-and-automata:
+  title: "Formal Languages and Automata"
+  glyph: courses/formal-languages-and-automata
+  blurb: "MSc Computer Science · Winter 2024/25"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/cryptology:
+  title: "Cryptology"
+  glyph: courses/cryptology
+  blurb: "MSc Computer Science · Winter 2024/25"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/computer-principles:
+  title: "Principles of Computers"
+  glyph: courses/computer-principles
+  blurb: "MSc Computer Science · Winter 2024/25"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/machine-learning:
+  title: "Machine Learning"
+  glyph: courses/machine-learning
+  blurb: "MSc Computer Science · Winter 2024/25"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/database-systems:
+  title: "Introduction to Database Systems"
+  glyph: courses/database-systems
+  blurb: "MSc Computer Science · Winter 2024/25"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/efficient-parallel-algorithms:
+  title: "Efficient Parallel Algorithms"
+  glyph: courses/efficient-parallel-algorithms
+  blurb: "MSc Computer Science · Summer 2024/25"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/data-management:
+  title: "Data Management"
+  glyph: courses/data-management
+  blurb: "MSc Computer Science · Summer 2024/25"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/neural-networks:
+  title: "Neural Networks"
+  glyph: courses/neural-networks
+  blurb: "MSc Computer Science · Summer 2024/25"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/approximation-algorithms:
+  title: "Approximation of Optimization Problems"
+  glyph: courses/approximation-algorithms
+  blurb: "MSc Computer Science · Winter 2025/26"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/deep-vision:
+  title: "Deep Learning for Computer Vision"
+  glyph: courses/deep-vision
+  blurb: "MSc Computer Science · Winter 2025/26"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/software-development-principles:
+  title: "Principles of Software Development"
+  glyph: courses/software-development-principles
+  blurb: "MSc Computer Science · Winter 2025/26"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/topics-in-data-structures:
+  title: "Selected Topics in Data Structures"
+  glyph: courses/topics-in-data-structures
+  blurb: "MSc Computer Science · Winter 2025/26"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/modern-machine-learning:
+  title: "Modern Machine Learning Techniques"
+  glyph: courses/modern-machine-learning
+  blurb: "MSc Computer Science · Summer 2025/26"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/natural-language-processing:
+  title: "Natural Language Processing"
+  glyph: courses/natural-language-processing
+  blurb: "MSc Computer Science · Summer 2025/26"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/computability-theory:
+  title: "Computability Theory"
+  glyph: courses/computability-theory
+  blurb: "MSc Computer Science · Summer 2025/26"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/distributed-algorithms:
+  title: "Introduction to Distributed Algorithms"
+  glyph: courses/distributed-algorithms
+  blurb: "MSc Computer Science · Summer 2025/26"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/computing-and-society:
+  title: "Computing and Society"
+  glyph: courses/computing-and-society
+  blurb: "MSc Computer Science · Summer 2025/26"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/randomized-algorithms:
+  title: "Randomized Algorithms"
+  glyph: courses/randomized-algorithms
+  blurb: "MSc Computer Science · Summer 2025/26"
+  course: true
+  order:
+    - about
+    - lecture-1
+    - lecture-2
+    - lecture-3
+    - lecture-4
+    - lecture-4-part2
+    - lecture-4-part3
+    - lecture-4-part4
+    - lecture-5
+    - lecture-6
+    - lecture-7
+    - lecture-8
+
+computer-science/coursework/concurrent-and-distributed-programming:
+  title: "Concurrent and Distributed Programming and Systems"
+  glyph: courses/concurrent-and-distributed-programming
+  blurb: "MSc Computer Science · Winter 2026/27"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/parallel-and-distributed-software-systems:
+  title: "Parallel and Distributed Software Systems"
+  glyph: courses/parallel-and-distributed-software-systems
+  blurb: "Erasmus · 2026/27"
+  course: true
+  order:
+    - about
+
+computer-science/coursework/visual-computing:
+  title: "Visual Computing"
+  glyph: courses/visual-computing
+  blurb: "Erasmus · 2026/27"
+  course: true
+  order:
+    - about
+
+bioinformatics/coursework/genomics:
+  title: "Intro to Genomics"
+  glyph: courses/genomics
+  blurb: "MSc Computer Science · Summer 2024/25"
+  course: true
+  order:
+    - about
+
+bioinformatics/coursework/methods-in-bioinformatics:
+  title: "Methods in Bioinformatics"
+  glyph: courses/methods-in-bioinformatics
+  blurb: "MSc Computer Science · Winter 2025/26"
+  course: true
+  order:
+    - about
+    - intro_emu
+    - pipeline
+    - estimation_maximization
+    - cigar_strings
+    - qna
+
+bioinformatics/coursework/statistical-genomics:
+  title: "Statistical Genomics"
+  glyph: courses/statistical-genomics
+  blurb: "UGent course on the statistics of proteomics and RNA-seq data."
+  course: true
+  order:
+    - about
+    - statistics
+
+bioinformatics/coursework/applied-high-throughput-analysis:
+  title: "Applied High-Throughput Analysis"
+  glyph: courses/applied-high-throughput-analysis
+  blurb: "Erasmus · 2026/27"
+  course: true
+  order:
+    - about
+
+bachelors-thesis/seminar:
+  title: "Bachelor Thesis Seminar"
+  glyph: courses/bsc-thesis-seminar
+  blurb: "BSc Physics · Summer 2022/23"
+  course: true
+  order:
+    - about
+
+bachelors-thesis/state-exam:
+  title: "State Exam: Physics"
+  glyph: courses/bsc-state-exam
+  blurb: "BSc Physics · 2023/24"
+  course: true
+  order:
+    - about
+
+bachelors-thesis/defence:
+  title: "Thesis Defence"
+  glyph: courses/bsc-thesis-defence
+  blurb: "BSc Physics · 2023/24"
+  course: true
+  order:
+    - about
+
+masters-thesis/seminar:
+  title: "Master's Thesis Seminar"
+  glyph: courses/msc-thesis-seminar
+  blurb: "MSc Computer Science · 2025/26 – 2026/27"
+  course: true
+  order:
+    - about
+
+masters-thesis/project:
+  title: "Master's Project"
+  glyph: courses/msc-project
+  blurb: "MSc Computer Science · Summer 2025/26"
+  course: true
+  order:
+    - about

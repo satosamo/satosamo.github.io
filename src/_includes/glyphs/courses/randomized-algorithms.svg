@@ -1,0 +1,8 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <rect pathLength="100" x="8" y="8" width="32" height="32" rx="5"/>
+  <circle pathLength="100" cx="17" cy="17" r="1.8"/>
+  <circle pathLength="100" cx="31" cy="17" r="1.8"/>
+  <circle pathLength="100" cx="24" cy="24" r="1.8"/>
+  <circle pathLength="100" cx="17" cy="31" r="1.8"/>
+  <circle pathLength="100" cx="31" cy="31" r="1.8"/>
+</svg>
