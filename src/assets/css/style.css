@@ -312,7 +312,7 @@ a:focus-visible, .tile:focus-visible {
   padding: 1.1rem 1.4rem;
 }
 .home-thesis .tile-title {
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-size: clamp(1.25rem, 3vw, 1.65rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   max-width: none;
