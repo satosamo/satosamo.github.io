@@ -101,7 +101,8 @@ a:focus-visible, .tile:focus-visible {
   padding: 1.2rem 1.25rem 2.2rem;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.8rem;
   font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
@@ -564,14 +565,6 @@ a:focus-visible, .tile:focus-visible {
   padding: 0.2rem 0;
 }
 
-.back {
-  margin-top: 3rem;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-}
-.back a { text-decoration: none; color: var(--muted); }
-.back a:hover { color: var(--accent); }
-
 @media (max-width: 540px) {
   .lattice { grid-template-columns: 1fr 1fr; }
   .tile { min-height: 140px; padding: 0.9rem; }
@@ -618,12 +611,20 @@ a:focus-visible, .tile:focus-visible {
 
 /* footer links */
 .site-foot a { color: var(--muted); text-decoration: none; }
-.site-foot a:hover { color: var(--accent); }
+.site-foot a:hover { color: var(--accent); border-color: var(--accent); }
+.site-foot > span:not([aria-hidden]), .site-foot a {
+  padding: 0.18rem 0.6rem;
+  border: 2px dashed var(--line);   /* dashed = not clickable; solid = clickable */
+}
+.site-foot a { border-style: solid; }
 .foot-sep { opacity: 0.5; }
 
 /* article meta */
 .prose-date {
-  margin: 0.5rem 0 0;
+  display: inline-block;
+  margin: 2.2rem 0 0;
+  padding: 0.18rem 0.6rem;
+  border: 2px dashed var(--line);   /* dashed = not clickable */
   font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
@@ -729,24 +730,55 @@ a.pdf-switch-opt.is-active:hover { color: var(--bg); }
 .tile-compact { min-height: 100px; }
 
 /* backlinks */
+/* boxed label (clickable, so solid); hover/focus unrolls a 2-column grid of boxed links */
 .backlinks {
   margin-top: 2.2rem;
-  padding: 0.9rem 1.15rem;
-  border: 1px solid var(--line);
-  border-radius: 6px;
   max-width: 70ch;
 }
+.prose-date + .backlinks { margin-top: 1rem; }
 .backlinks-label {
-  margin: 0 0 0.4rem;
+  display: inline-block;
+  margin: 0;
+  padding: 0.18rem 0.6rem;
+  border: 2px solid var(--line);
   font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   color: var(--muted);
+  cursor: default;
 }
-.backlinks ul { margin: 0; padding-left: 1.2rem; }
-.backlinks a { color: var(--accent); text-decoration: none; }
-.backlinks a:hover { text-decoration: underline; }
+.backlinks:hover .backlinks-label,
+.backlinks:focus-within .backlinks-label { color: var(--accent); border-color: var(--accent); }
+.backlinks-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.2s ease;
+}
+.backlinks:hover .backlinks-panel,
+.backlinks:focus-within .backlinks-panel { grid-template-rows: 1fr; }
+.backlinks-clip { min-height: 0; overflow: hidden; }
+/* only the label and the link boxes react to hover, not the full-width row; the spacing lives in each li's
+   padding so the pointer never crosses a dead gap (which would collapse the grid) */
+.backlinks { pointer-events: none; }
+.backlinks-label, .backlinks li { pointer-events: auto; }
+.backlinks ul {
+  list-style: none;
+  margin: 0 -0.3rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.backlinks li { padding: 0.6rem 0.3rem 0; }
+.backlinks a {
+  display: block;
+  padding: 0.4rem 0.8rem;
+  border: 2px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+.backlinks a:hover, .backlinks a:focus-visible { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 540px) { .backlinks ul { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .backlinks-panel { transition: none; } }
 
 /* prev / next */
 .pn {
@@ -766,6 +798,7 @@ a.pdf-switch-opt.is-active:hover { color: var(--bg); }
 }
 .pn a:hover { background: var(--tile-hover); }
 .pn-next { text-align: right; }
+.pn-back { grid-column: 1 / -1; }
 .pn-dir {
   font-family: var(--mono);
   font-size: 0.68rem;
@@ -874,7 +907,7 @@ a.pdf-switch-opt.is-active:hover { color: var(--bg); }
 
 /* print: just the article, in ink */
 @media print {
-  .site-head, .site-foot, .crumbs, .back, .pn, .tag-row, .backlinks, .tm-controls, .fig-controls { display: none !important; }
+  .site-head, .site-foot, .crumbs, .pn, .tag-row, .backlinks, .tm-controls, .fig-controls { display: none !important; }
   body { background: #fff; color: #000; font-size: 11pt; }
   .page { max-width: none; padding: 0; }
   .prose { max-width: none; }

@@ -30,13 +30,10 @@ layout: layouts/base.njk
 </aside>
 {% endif %}
 
-{% if nav.prev or nav.next %}
+{% if nav.prev or nav.next or parent %}
 <nav class="pn" aria-label="Previous and next article">
   {% if nav.prev %}<a class="pn-prev" href="{{ nav.prev.url }}"><span class="pn-dir">&larr; Previous</span><span class="pn-title">{{ nav.prev.title }}</span></a>{% else %}<span></span>{% endif %}
-  {% if nav.next %}<a class="pn-next" href="{{ nav.next.url }}"><span class="pn-dir">Next &rarr;</span><span class="pn-title">{{ nav.next.title }}</span></a>{% endif %}
+  {% if nav.next %}<a class="pn-next" href="{{ nav.next.url }}"><span class="pn-dir">Next &rarr;</span><span class="pn-title">{{ nav.next.title }}</span></a>{% else %}<span></span>{% endif %}
+  {% if parent %}<a class="pn-back" href="{{ parent.url }}"><span class="pn-dir">&larr; Back to</span><span class="pn-title">{{ parent.title }}</span></a>{% endif %}
 </nav>
-{% endif %}
-
-{% if parent %}
-<p class="back"><a href="{{ parent.url }}">&larr; Back to {{ parent.title }}</a></p>
 {% endif %}

@@ -9,7 +9,6 @@ layout: layouts/base.njk
     {% if draft %}<p class="draft-badge" data-pagefind-ignore>Draft — excluded from published builds</p>{% endif %}
     <h1>{{ title }}</h1>
     {% if summary %}<p class="prose-summary">{{ summary }}</p>{% endif %}
-    {% if page.date %}<p class="prose-date" data-pagefind-ignore>Last updated {{ page.date | readableDate }}</p>{% endif %}
   </header>
   {{ content | safe }}
 </article>
@@ -20,22 +19,23 @@ layout: layouts/base.njk
 </p>
 {% endif %}
 
+{% if page.date %}<p class="prose-date" data-pagefind-ignore>Last updated {{ page.date | readableDate }}</p>{% endif %}
+
 {% if links.length %}
 <aside class="backlinks">
-  <p class="backlinks-label">Linked from</p>
-  <ul>
-    {% for l in links %}<li><a href="{{ l.url }}">{{ l.title }}</a></li>{% endfor %}
-  </ul>
+  <p class="backlinks-label" tabindex="0">Linked from &middot; {{ links.length }}</p>
+  <div class="backlinks-panel"><div class="backlinks-clip">
+    <ul>
+      {% for l in links %}<li><a href="{{ l.url }}">{{ l.title }}</a></li>{% endfor %}
+    </ul>
+  </div></div>
 </aside>
 {% endif %}
 
-{% if nav.prev or nav.next %}
+{% if nav.prev or nav.next or parent %}
 <nav class="pn" aria-label="Previous and next article">
   {% if nav.prev %}<a class="pn-prev" href="{{ nav.prev.url }}"><span class="pn-dir">&larr; Previous</span><span class="pn-title">{{ nav.prev.title }}</span></a>{% else %}<span></span>{% endif %}
-  {% if nav.next %}<a class="pn-next" href="{{ nav.next.url }}"><span class="pn-dir">Next &rarr;</span><span class="pn-title">{{ nav.next.title }}</span></a>{% endif %}
+  {% if nav.next %}<a class="pn-next" href="{{ nav.next.url }}"><span class="pn-dir">Next &rarr;</span><span class="pn-title">{{ nav.next.title }}</span></a>{% else %}<span></span>{% endif %}
+  {% if parent %}<a class="pn-back" href="{{ parent.url }}"><span class="pn-dir">&larr; Back to</span><span class="pn-title">{{ parent.title }}</span></a>{% endif %}
 </nav>
-{% endif %}
-
-{% if parent %}
-<p class="back"><a href="{{ parent.url }}">&larr; Back to {{ parent.title }}</a></p>
 {% endif %}
