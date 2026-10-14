@@ -26,7 +26,7 @@ a contradiction. Rice's theorem generalises: every non-trivial semantic property
 The machine below computes **binary increment**: state `scan` walks right to the end of the input, then `carry` flips trailing 1s to 0s until it can write the carried 1. Try `111` to watch a full carry chain.
 
 <div class="tm-mount"></div>
-<script src="/assets/js/turing.js" defer></script>
+<script src="/assets/js/figures/turing.js" defer></script>
 
 <noscript><em>The interactive figure needs JavaScript; the transition table above is the same machine.</em></noscript>
 

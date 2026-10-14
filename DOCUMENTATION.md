@@ -26,7 +26,7 @@ src/
 │   └── layouts/            ← base / section / article templates
 ├── assets/
 │   ├── css/style.css       ← all styling
-│   └── js/                 ← theme toggle, Turing machine widget
+│   └── js/                 ← theme toggle; figures/ holds one script per interactive figure
 ├── content/                ← YOUR MARKDOWN LIVES HERE
 │   └── content.11tydata.js ← layout + clean URLs + git dates for all content
 ├── sections.njk            ← generates one index page per folder
@@ -107,7 +107,7 @@ Rendered **at build time** to static SVG via the Kroki service (cached in `.cach
 
 ### Raw HTML / interactivity
 
-HTML passes through markdown untouched, so a page can carry its own widget (see the Turing machine at the bottom of `turing-machines.md`: a `<div>` mount plus a `<script src="/assets/js/...js" defer>`). Keep scripts per-article; the site itself stays JS-free apart from the theme toggle.
+HTML passes through markdown untouched, so a page can carry its own widget (see the Turing machine at the bottom of `turing-machines.md`: a `<div>` mount plus a `<script src="/assets/js/figures/...js" defer>`). Keep scripts per-article; the site itself stays JS-free apart from the theme toggle.
 
 ---
 
