@@ -228,7 +228,6 @@ a:focus-visible, .tile:focus-visible {
 }
 .course-title-link { border-style: solid; }
 .course-title h1 {
-  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
   transition: filter 0.25s ease, opacity 0.25s ease;
 }
 .course-title-label {

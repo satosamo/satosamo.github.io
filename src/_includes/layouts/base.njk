@@ -27,12 +27,12 @@
   {% else %}
     {% set stem = doc.stem if doc else page.filePathStem %}
     {% if doc or "/content/" in stem %}{% set parent = collections.sectionNodes | parentNode(stem) %}{% endif %}
-    {% if parent %}{% set trail = parent.breadcrumbs.concat([{ title: parent.title, url: parent.url }]) %}{% endif %}
+    {% if parent %}{% set trail = parent.breadcrumbs.concat([{ title: parent.title, url: parent.url }]) %}{% set here = doc.title if doc else title %}{% set hereShort = here | truncate(5, true, "...") %}{% endif %}
   {% endif %}
   <header class="site-head">
     {% if trail %}
     <nav class="crumbs" aria-label="Breadcrumb">
-      {% for c in trail %}<a href="{{ c.url }}">{{ c.title }}</a>{% if not loop.last or here %}<span class="crumb-sep" aria-hidden="true">/</span>{% endif %}{% endfor %}{% if here %}<span aria-current="page">{{ here }}</span>{% endif %}
+      {% for c in trail %}<a href="{{ c.url }}">{{ c.title }}</a>{% if not loop.last or here %}<span class="crumb-sep" aria-hidden="true">/</span>{% endif %}{% endfor %}{% if here %}<span aria-current="page"{% if hereShort and hereShort != here %} title="{{ here }}"{% endif %}>{{ hereShort or here }}</span>{% endif %}
     </nav>
     {% endif %}
     {% if node.isRoot %}<p class="head-affiliation">Comenius University Bratislava</p><p class="head-affiliation head-affiliation-right">Personal knowledge repository</p>{% endif %}
