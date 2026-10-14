@@ -12,6 +12,7 @@
   --accent: #2742c8;
   --tile-hover: #f4f2ea;
   --code-bg: #f1efe7;
+  --fig-1: #c2570a;
 
   --display: "Space Grotesk", system-ui, sans-serif;
   --body: "Source Serif 4", Georgia, serif;
@@ -27,15 +28,18 @@
     --accent: #9caeff;
     --tile-hover: #1b1e24;
     --code-bg: #1d2026;
+    --fig-1: #f0a050;
   }
 }
 :root[data-theme="light"] {
   --bg: #fbfaf6; --ink: #1c1c20; --muted: #71706a; --line: #e3e1d7;
   --accent: #2742c8; --tile-hover: #f4f2ea; --code-bg: #f1efe7;
+  --fig-1: #c2570a;
 }
 :root[data-theme="dark"] {
   --bg: #15171b; --ink: #e8e6dd; --muted: #97958c; --line: #2b2e35;
   --accent: #9caeff; --tile-hover: #1b1e24; --code-bg: #1d2026;
+  --fig-1: #f0a050;
 }
 
 * { box-sizing: border-box; }
@@ -839,9 +843,28 @@ a.pdf-switch-opt.is-active:hover { color: var(--bg); }
   padding: 0.32rem 0.55rem; width: 9ch;
 }
 
+/* Interactive figures (inline SVG + controls; colours follow the theme variables) */
+.fig { margin: 1.8rem 0; padding: 1.1rem; border: 1px solid var(--line); border-radius: 6px; font-family: var(--mono); }
+.fig-svg { display: block; width: 100%; height: auto; }
+.fig-guide { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.fig-trace { fill: none; stroke: var(--fig-1); stroke-width: 3.5; stroke-linecap: round; }
+.fig-radius { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.fig-dot { fill: var(--bg); stroke: var(--fig-1); stroke-width: 2.5; }
+.fig-label { font-family: var(--mono); font-size: 11px; fill: var(--muted); }
+.fig-controls { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; margin-top: 0.8rem; }
+.fig-controls button {
+  font-family: var(--mono); font-size: 0.76rem;
+  background: none; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 4px;
+  padding: 0.35rem 0.8rem; cursor: pointer;
+}
+.fig-controls button:hover { border-color: var(--accent); color: var(--accent); }
+.fig-controls input[type="range"] { flex: 1 1 10rem; accent-color: var(--fig-1); }
+.fig-readout { font-size: 0.78rem; color: var(--muted); min-width: 11ch; }
+
 /* print: just the article, in ink */
 @media print {
-  .site-head, .site-foot, .crumbs, .back, .pn, .tag-row, .backlinks, .tm-controls { display: none !important; }
+  .site-head, .site-foot, .crumbs, .back, .pn, .tag-row, .backlinks, .tm-controls, .fig-controls { display: none !important; }
   body { background: #fff; color: #000; font-size: 11pt; }
   .page { max-width: none; padding: 0; }
   .prose { max-width: none; }
