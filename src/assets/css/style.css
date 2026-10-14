@@ -847,9 +847,16 @@ a.pdf-switch-opt.is-active:hover { color: var(--bg); }
 .fig { margin: 1.8rem 0; padding: 1.1rem; border: 1px solid var(--line); border-radius: 6px; font-family: var(--mono); }
 .fig-svg { display: block; width: 100%; height: auto; }
 .fig-guide { fill: none; stroke: var(--line); stroke-width: 1.5; }
-.fig-trace { fill: none; stroke: var(--fig-1); stroke-width: 3.5; stroke-linecap: round; }
+.fig-curve { fill: none; stroke: var(--ink); stroke-width: 2; }
+.fig-tangent { stroke: var(--accent); stroke-width: 1.5; }
+.fig-lin, .fig-err, .fig-full { stroke-width: 3.5; stroke-linecap: round; }
+.fig-lin { stroke: var(--accent); }
+.fig-err { stroke: var(--fig-1); }
+.fig-full { stroke: var(--ink); }
 .fig-radius { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 3; }
 .fig-dot { fill: var(--bg); stroke: var(--fig-1); stroke-width: 2.5; }
+.fig-dot-lin { stroke: var(--accent); }
+.fig-dot-fixed { fill: var(--ink); stroke: var(--bg); stroke-width: 2; }
 .fig-label { font-family: var(--mono); font-size: 11px; fill: var(--muted); }
 .fig-controls { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; margin-top: 0.8rem; }
 .fig-controls button {
@@ -860,7 +867,10 @@ a.pdf-switch-opt.is-active:hover { color: var(--bg); }
 }
 .fig-controls button:hover { border-color: var(--accent); color: var(--accent); }
 .fig-controls input[type="range"] { flex: 1 1 10rem; accent-color: var(--fig-1); }
-.fig-readout { font-size: 0.78rem; color: var(--muted); min-width: 11ch; }
+.fig-stats { display: flex; flex-wrap: wrap; gap: 0.3rem 1.4rem; margin-top: 0.8rem; font-size: 0.76rem; color: var(--muted); }
+.fig-stats b { font-weight: 500; color: var(--ink); margin-left: 0.3em; }
+.fig-stats .lin b { color: var(--accent); }
+.fig-stats .err b { color: var(--fig-1); }
 
 /* print: just the article, in ink */
 @media print {
