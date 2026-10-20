@@ -192,7 +192,7 @@ Every course has its own glyph in `src/_includes/glyphs/courses/`, named after t
 
 ## 9. Look and feel
 
-All colors are CSS variables at the top of `src/assets/css/style.css` — each defined for light and dark (in both the `prefers-color-scheme` block and the explicit `[data-theme]` blocks; change all occurrences). Syntax-highlight colors are the `--syn-*` variables; Pagefind UI inherits via `--pagefind-ui-*`. Fonts load from Google Fonts in `base.njk`. Layout knobs: tile width `minmax(250px, 1fr)`, tile height `min-height: 170px`, page width `920px`, prose `70ch`.
+All colors are CSS variables at the top of `src/assets/css/style.css` — each defined for light and dark (in both the `prefers-color-scheme` block and the explicit `[data-theme]` blocks) and for the `autumn-light` and `autumn-dark` themes (the autumn harvest palette: Linen, Espresso, Saddle Brown, Desert Sand, Golden Chestnut); change all occurrences. The header's theme picker is a menu (Auto, Light, Dark, Autumn light, Autumn dark). To add a theme: add its `[data-theme]` blocks, a `.swatch-*` rule and a `data-theme-choice` item in `base.njk`, and put its name in the allow-list in the inline script in `base.njk`. Syntax-highlight colors are the `--syn-*` variables; Pagefind UI inherits via `--pagefind-ui-*`. Fonts load from Google Fonts in `base.njk`. Layout knobs: tile width `minmax(250px, 1fr)`, tile height `min-height: 170px`, page width `920px`, prose `70ch`.
 
 **Print:** every article has a print stylesheet — `Ctrl/Cmd-P` gives a clean ink-on-white PDF with chrome stripped and external URLs expanded.
 

@@ -81,4 +81,4 @@ eleventy.config.js        ← builds the section tree, KaTeX, ordering
 
 ## Theming
 
-Auto light/dark via `prefers-color-scheme`, with a toggle in the header (persisted in `localStorage`). All colors are CSS variables at the top of `style.css` — change six hex values to retheme.
+Auto light/dark via `prefers-color-scheme`, with a theme menu in the header (Auto, Light, Dark, Autumn light, Autumn dark; persisted in `localStorage`). All colors are CSS variables at the top of `style.css` — change six hex values to retheme.

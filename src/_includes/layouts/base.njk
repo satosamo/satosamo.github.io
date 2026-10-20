@@ -8,7 +8,7 @@
   <script>
     (function () {
       var t = localStorage.getItem("theme");
-      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      if (t === "light" || t === "dark" || t === "autumn-light" || t === "autumn-dark") document.documentElement.dataset.theme = t;
       if (localStorage.getItem("zen") === "1") document.documentElement.dataset.zen = "";
     })();
   </script>
@@ -43,12 +43,21 @@
           <circle cx="9" cy="9" r="5.5"/><path d="M13.5 13.5 L17 17"/>
         </svg>
       </a>
-      <button class="head-btn" id="theme-toggle" type="button" aria-label="Switch theme">
-        <svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true">
-          <circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
-          <path d="M10 3.5 A6.5 6.5 0 0 1 10 16.5 Z" fill="currentColor"/>
-        </svg>
-      </button>
+      <div class="theme-picker">
+        <button class="head-btn" id="theme-toggle" type="button" aria-label="Theme" aria-haspopup="menu" aria-expanded="false" aria-controls="theme-menu" title="Theme">
+          <svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true">
+            <circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M10 3.5 A6.5 6.5 0 0 1 10 16.5 Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <ul class="theme-menu" id="theme-menu" role="menu" aria-label="Theme" hidden>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="auto"><span class="swatch swatch-auto" aria-hidden="true"></span>Auto</button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="light"><span class="swatch swatch-light" aria-hidden="true"></span>Light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="dark"><span class="swatch swatch-dark" aria-hidden="true"></span>Dark</button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="autumn-light"><span class="swatch swatch-autumn-light" aria-hidden="true"></span>Autumn light</button></li>
+          <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="autumn-dark"><span class="swatch swatch-autumn-dark" aria-hidden="true"></span>Autumn dark</button></li>
+        </ul>
+      </div>
       <button class="head-btn" id="zen-toggle" type="button" aria-label="Zen mode" aria-pressed="false" aria-keyshortcuts="Control+Z" title="Zen mode ( Ctrl+Z )">
         <svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 7 V3 H7 M13 3 H17 V7 M17 13 V17 H13 M7 17 H3 V13"/>
