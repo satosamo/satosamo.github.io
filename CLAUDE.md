@@ -1,3 +1,8 @@
+# What is this
+
+A personal university knowledge repository. Static, markdown-first, GitHub Pages ready.
+Built with [Eleventy](https://www.11ty.dev/) (Nunjucks) and build-time [KaTeX](https://katex.org/).
+
 # Main
 
 1. Ask, don't assume. If something is unclear, ask before writing a single line. Never make silent assumptions about intent, architecture, or requirements. When running unattended, pick the most reasonable interpretation, proceed, and record the assumption rather than blocking.
