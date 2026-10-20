@@ -12,6 +12,18 @@
       localStorage.setItem("theme", next);
     });
   }
+  // zen mode: hides page chrome on article pages (see :root[data-zen] in style.css)
+  var zen = document.getElementById("zen-toggle");
+  if (zen) {
+    var root = document.documentElement;
+    var sync = function () { zen.setAttribute("aria-pressed", String("zen" in root.dataset)); };
+    sync();
+    zen.addEventListener("click", function () {
+      if ("zen" in root.dataset) { delete root.dataset.zen; localStorage.removeItem("zen"); }
+      else { root.dataset.zen = ""; localStorage.setItem("zen", "1"); }
+      sync();
+    });
+  }
   // press "/" anywhere to jump to search
   var search = document.getElementById("search-link");
   if (search) {

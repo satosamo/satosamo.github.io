@@ -608,6 +608,25 @@ a:focus-visible, .tile:focus-visible {
 .head-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .theme-toggle { display: none; } /* superseded by .head-btn */
 
+/* zen mode: on article pages only the title, the body and the zen button remain */
+:root[data-zen] body:has(article.prose:not(.pdf-page)) {
+  font-size: 19px;
+}
+:root[data-zen] body:has(article.prose:not(.pdf-page)) :is(.crumbs, #search-link, #theme-toggle, .prose-summary, .tag-row, .prose-date, .backlinks, .pn, .site-foot) {
+  display: none;
+}
+:root[data-zen] body:has(article.prose:not(.pdf-page)) .site-head {
+  position: fixed; top: 0; right: 0; left: auto;
+  max-width: none; margin: 0; padding: 1rem 1.25rem;
+}
+:root[data-zen] body:has(article.prose:not(.pdf-page)) .page {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-top: 4rem; padding-bottom: 4rem;
+}
+:root[data-zen] body:has(article.prose:not(.pdf-page)) .prose { width: 100%; margin: 0 auto; }
+#zen-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+
 /* footer links */
 .site-foot a { color: var(--muted); text-decoration: none; }
 .site-foot a:hover { color: var(--accent); border-color: var(--accent); }
