@@ -625,7 +625,15 @@ a:focus-visible, .tile:focus-visible {
   padding-top: 4rem; padding-bottom: 4rem;
 }
 :root[data-zen] body:has(article.prose:not(.pdf-page)) .prose { width: 100%; margin: 0 auto; }
-#zen-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+/* zen button states: off (outline) · hover (accent + tint) · held (pressed in) · on (filled) */
+#zen-toggle:hover { background: var(--tile-hover); }
+#zen-toggle:active { background: var(--line); transform: scale(0.9); }
+#zen-toggle[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+#zen-toggle[aria-pressed="true"]:hover { background: var(--accent); color: var(--bg); opacity: 0.8; }
+#zen-toggle[aria-pressed="true"]:active { opacity: 0.65; }
+@media (prefers-reduced-motion: no-preference) {
+  #zen-toggle { transition: transform 0.08s, background-color 0.12s, opacity 0.12s; }
+}
 
 /* footer links */
 .site-foot a { color: var(--muted); text-decoration: none; }

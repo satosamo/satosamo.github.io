@@ -18,10 +18,19 @@
     var root = document.documentElement;
     var sync = function () { zen.setAttribute("aria-pressed", String("zen" in root.dataset)); };
     sync();
-    zen.addEventListener("click", function () {
+    var toggleZen = function () {
       if ("zen" in root.dataset) { delete root.dataset.zen; localStorage.removeItem("zen"); }
       else { root.dataset.zen = ""; localStorage.setItem("zen", "1"); }
       sync();
+    };
+    zen.addEventListener("click", toggleZen);
+    // Ctrl+Z toggles, except where it means undo
+    document.addEventListener("keydown", function (e) {
+      if (e.key.toLowerCase() !== "z" || !e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
+      var t = e.target;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      e.preventDefault();
+      toggleZen();
     });
   }
   // press "/" anywhere to jump to search
